@@ -67,5 +67,5 @@ observables.values|all in ["evil.com","reflexsoar.com"]
 
 ```python
 # Match any event that contains a base64 encoded command that once decoded contains the following phrases
-command exists AND command|b64decode|lowercase Contains ["invoke-mimikatz","invoke-bloodhound","invoke-powerdump","invoke-kerberoast"]
+command exists and command|b64decode|lowercase Contains ["invoke-mimikatz","invoke-bloodhound","invoke-powerdump","invoke-kerberoast"]
 ```
