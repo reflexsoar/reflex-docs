@@ -7,7 +7,7 @@ RQL is a query language designed to ask Reflex questions about Event.s. RQL is u
 The following Expressions are used to compare target field data to intended data.
 
 - `RegExp` - The item has a value that matches a regular expression e.g. `title RegExp "^Event.*"`
-- `In` - The item has a value in a list of values (e.g. tags In ['foo','bar']) e.g. `observables.tags.name in ["malware"]`
+- `In` - The item has a value in a list of values e.g. `observables.tags.name in ["malware"]`
 - `Contains` - The target value contains a specific string e.g. `description Contains "malware"`
 - `ConaintsCIS` - Same as `Contains` but will make the target value and checked value the same case
 - `=|eq|Eq` - Equal to (= or eq)
@@ -40,6 +40,7 @@ Mutators take a field and perform an extra operation on it to make it digestible
 
 - Support for IP ranges not using CIDR example `ip between "192.168.0.1-10"`
 - `|semver` - Semantic Versioning, will convert a string to a tuple so it can be compared e.g. `process.version|semver < 3.1.0` so you can exclude events from a process with a known bug in it
+- `|b64extract` - Will attempt to find base64 encoded data in a string and extract it for comparison later in the query e.g. and event contains a command `powershell -encodedCommand SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` would extract and decode `SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` to `Invoke-WebRequest https://www.reflexsoar.com`.  An analyst could then use a query like `command|b64extract Contains "reflexsoar.com"`
 
 
 ## Example Queries
@@ -62,4 +63,9 @@ description Contains "malware" or severity > 3
 ```python
 # Match any Event that has all of the below observables
 observables.values|all in ["evil.com","reflexsoar.com"]
+```
+
+```python
+# Match any event that contains a base64 encoded command that once decoded contains the following phrases
+command exists AND command|b64decode|lowercase Contains ["invoke-mimikatz","invoke-bloodhound","invoke-powerdump","invoke-kerberoast"]
 ```
