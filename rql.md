@@ -19,6 +19,7 @@ The following fields are supported as part of a search.
   - `ioc`
   - `original_source_field`
 - `title`
+- `description`
 - `tlp`
 - `severity`
 - `status`,
@@ -67,6 +68,7 @@ Mutators take a field and perform an extra operation on it to make it digestible
 - `|max` - Finds the max value given a list of values e.g. `vulnerablities.cvss_score|max > 7`
 - `|min` - Finds the minimum value given a list of values
 - `|sum` - Add up all the values in a list of integer or float values
+- `|split` - Splits a string that contains spaces in to an array
 
 ## Future Additions
 
