@@ -104,3 +104,21 @@ observables.values|all in ["evil.com","reflexsoar.com"]
 # Match any event that contains a base64 encoded command that once decoded contains the following phrases
 command exists and command|b64decode|lowercase Contains ["invoke-mimikatz","invoke-bloodhound","invoke-powerdump","invoke-kerberoast"]
 ```
+
+```python
+# Match any suspicious DNS query for a specific domain that originates from a specific user and source process 
+# Should always be this event title
+title = "Suspicious DNS Query"
+
+# Observables should always exist
+and observables exists
+
+# Brian must be the source user of the event
+and expand observables (value Contains "Brian" and source_field|lowercase = "winlog.event_data.user")
+
+# And the DNS resolution should always be for netwars-support.slack.com
+and expand observables (value = "netwars-support.slack.com" and source_field|lowercase = "dns.question.name")
+
+# And should originate from Slack
+and raw_log.process.executable EndsWith "slack.exe"
+```
