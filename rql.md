@@ -58,18 +58,21 @@ Mutators take a field and perform an extra operation on it to make it digestible
 - `|lowercase` - Lowercase a string (redundant for ContainsCIS but can be used for other fields)
 - `|refang` - If for some reason the target value has been defanged, think `hXXps[:]//` instead of `https://` this will refang the value to perform a proper comparison e.g. `url.full|refang eq "https://www.google.com"`
 - `|b64decode` - If the target value is base64 encoded and you want to write rules using the terms with in it, first base64 decode it, e.g. `command|b64decode Contains "Invoke-Mimikatz"`
+- `|b64extract` - Will attempt to find base64 encoded data in a string and extract it for comparison later in the query e.g. and event contains a command `powershell -encodedCommand SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` would extract and decode `SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` to `Invoke-WebRequest https://www.reflexsoar.com`.  An analyst could then use a query like `command|b64extract Contains "reflexsoar.com"`
 - `|urldecode` - Unescapes an escaped URL so that direct comparisons can be made
 - `|any` - Force the following condition to match on any item in the array (Can only be used on `Contains` and `In` expressions)
 - `|all` - Force the condition to match on all items in the array (Can only be used on `Contains` and `In` expressions)
 - `|avg` - Calculates the average value given a list of values e.g. `observables.risk_score|avg > 7`
 - `|max` - Finds the max value given a list of values e.g. `vulnerablities.cvss_score|max > 7`
 - `|min` - Finds the minimum value given a list of values
+- `|sum` - Add up all the values in a list of integer or float values
 
 ## Future Additions
 
 - Support for IP ranges not using CIDR example `ip between "192.168.0.1-10"`
 - `|semver` - Semantic Versioning, will convert a string to a tuple so it can be compared e.g. `process.version|semver < 3.1.0` so you can exclude events from a process with a known bug in it
-- `|b64extract` - Will attempt to find base64 encoded data in a string and extract it for comparison later in the query e.g. and event contains a command `powershell -encodedCommand SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` would extract and decode `SW52b2tlLVdlYlJlcXVlc3QgaHR0cHM6Ly93d3cucmVmbGV4c29hci5jb20=` to `Invoke-WebRequest https://www.reflexsoar.com`.  An analyst could then use a query like `command|b64extract Contains "reflexsoar.com"`
+- Comparisons for dates (`between`,`=`,`before (<)`,`after (>)`) e.g. `whois.last_updated before "2021-11-08 00:00:00"` or `whois.last_updated after "7d"` or `whois.registration_date after "14d`
+- `Now` term to calculate the current date for previous date comparisons e.g. `event.created_at before Now`
 
 
 ## Example Queries
