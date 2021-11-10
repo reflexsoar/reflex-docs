@@ -3,6 +3,31 @@
 ## What is it?
 RQL is a query language designed to ask Reflex questions about Event.s. RQL is used when creating certain items in Reflex, such as Event Rules to query the Event data and match certain criteria.
 
+## Supported Search Fields
+The following fields are supported as part of a search.
+
+### Event Fields
+
+- `observables|observables.*`
+  - `value`
+  - `tlp`
+  - `tags`
+  - `spotted`
+  - `safe`
+  - `source_field`
+  - `data_type`
+  - `ioc`
+  - `original_source_field`
+- `title`
+- `tlp`
+- `severity`
+- `status`,
+- `reference`
+- `source`
+- `signature`
+- `tags`
+- `raw_log`
+
 ## Supported Expressions
 The following Expressions are used to compare target field data to intended data.
 
@@ -23,6 +48,7 @@ The following Expressions are used to compare target field data to intended data
 - `EndsWith` - The item has a value that ends with a certain string e.g. `domain EndsWith ".tk"`
 - `Not` - The expression within this block should not match e.g. `title Not Eq "Suspicious DNS Query"` (Can only be used on `eq`, `in`, `InCIDR`, `contains`, `between` AND `regexp`)
   - Items that don't have a specified field may match a `Not` expression e.g. `ip NOT InCIDR "192.168.0.0/16"` may match on an event not having an `ip` field, pair this with `ip exists AND ip NOT InCIDR "192.168.0.0/16"`
+- 'Expand' - When you want two conditions on a nested object to be true use an each statement. Example, the observable `127.0.0.1` should have a value of `127.0.0.1` and `safe` is True, query would look like `Expand observables (value = "127.0.0.1" and safe Is True)`.
 
 ## Mutators
 Mutators take a field and perform an extra operation on it to make it digestible by the down stream comparison.  Assume you want to find any Event with a domain observable where the length of the domain is longer than 20 characters
@@ -33,8 +59,11 @@ Mutators take a field and perform an extra operation on it to make it digestible
 - `|refang` - If for some reason the target value has been defanged, think `hXXps[:]//` instead of `https://` this will refang the value to perform a proper comparison e.g. `url.full|refang eq "https://www.google.com"`
 - `|b64decode` - If the target value is base64 encoded and you want to write rules using the terms with in it, first base64 decode it, e.g. `command|b64decode Contains "Invoke-Mimikatz"`
 - `|urldecode` - Unescapes an escaped URL so that direct comparisons can be made
-  - `|any` - Force the following condition to match on any item in the array (Can only be used on `Contains` and `In` expressions)
+- `|any` - Force the following condition to match on any item in the array (Can only be used on `Contains` and `In` expressions)
 - `|all` - Force the condition to match on all items in the array (Can only be used on `Contains` and `In` expressions)
+- `|avg` - Calculates the average value given a list of values e.g. `observables.risk_score|avg > 7`
+- `|max` - Finds the max value given a list of values e.g. `vulnerablities.cvss_score|max > 7`
+- `|min` - Finds the minimum value given a list of values
 
 ## Future Additions
 
