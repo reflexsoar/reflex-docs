@@ -35,7 +35,8 @@ The following Expressions are used to compare target field data to intended data
 - `In` - The item has a value in a list of values e.g. `observables.tags.name in ["malware"]`
 - `Contains` - The target value contains a specific string e.g. `description Contains "malware"`
 - `ConaintsCIS` - Same as `Contains` but will make the target value and checked value the same case
-- `=|eq|Eq` - Equal to (= or eq)
+- `=|eq|Eq` - Equal to (strings or numbers)
+- `!=|ne|Ne|NE` - Not equal to (strings or numbers)
 - `>|gt` - Greater than (> or gt)
 - `>=|gte` - Greater than or equal to (>= or gte)
 - `<|lt` - Less than (< or lt)
