@@ -26,7 +26,7 @@ The following fields are supported as part of a search.
 - `source`
 - `signature`
 - `tags`
-- `raw_log`
+- `raw_log|raw_log.*`
 
 ## Supported Expressions
 The following Expressions are used to compare target field data to intended data.
