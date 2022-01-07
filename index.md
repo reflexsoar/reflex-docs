@@ -10,6 +10,7 @@
 - [Inputs](inputs.md)
 - [Events](events.md)
 - [Reflex Query Language (RQL)](rql.md)
+- [Backup & Restore](backup-and-restore.md)
 
 ## Versioning
 
