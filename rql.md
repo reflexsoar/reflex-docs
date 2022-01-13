@@ -50,7 +50,8 @@ The following Expressions are used to compare target field data to intended data
 - `EndsWith` - The item has a value that ends with a certain string e.g. `domain EndsWith ".tk"`
 - `Not` - The expression within this block should not match e.g. `title Not Eq "Suspicious DNS Query"` (Can only be used on `eq`, `in`, `InCIDR`, `contains`, `between` AND `regexp`)
   - Items that don't have a specified field may match a `Not` expression e.g. `ip NOT InCIDR "192.168.0.0/16"` may match on an event not having an `ip` field, pair this with `ip exists AND ip NOT InCIDR "192.168.0.0/16"`
-- 'Expand' - When you want two conditions on a nested object to be true use an each statement. Example, the observable `127.0.0.1` should have a value of `127.0.0.1` and `safe` is True, query would look like `Expand observables (value = "127.0.0.1" and safe Is True)`.
+- `Expand` - When you want two conditions on a nested object to be true use an each statement. Example, the observable `127.0.0.1` should have a value of `127.0.0.1` and `safe` is True, query would look like `Expand observables (value = "127.0.0.1" and safe Is True)`.
+- `Intel|Threat` - Allows RQL to check the value of a field against a Reflex Intel List (threat lists)
 
 ## Mutators
 Mutators take a field and perform an extra operation on it to make it digestible by the down stream comparison.  Assume you want to find any Event with a domain observable where the length of the domain is longer than 20 characters
@@ -121,4 +122,9 @@ and expand observables (value = "netwars-support.slack.com" and source_field|low
 
 # And should originate from Slack
 and raw_log.process.executable EndsWith "slack.exe"
+```
+
+```python
+# Check to see if the user in the event is in the Allowed Users intel list
+expand observables ( data_type = "user" and intel(value|uppercase, 'Allowed Users'))
 ```
