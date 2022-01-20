@@ -5,11 +5,11 @@
 ## Topics
 
 - [Getting Started](getting-started.md)
-- [Agents](agents.md)
-- [Credentials](credentials.md)
-- [Inputs](inputs.md)
-- [Events](events.md)
-- [Reflex Query Language (RQL)](rql.md)
+- [Agents](agents/index.md)
+- [Credentials](credentials/index.md)
+- [Inputs](inputs/index.md)
+- [Events](events/index.md)
+- [Reflex Query Language (RQL)](rql/index.md)
 - [Backup & Restore](backup-and-restore.md)
 
 ## Versioning
