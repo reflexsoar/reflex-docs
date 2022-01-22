@@ -70,6 +70,19 @@ Mutators take a field and perform an extra operation on it to make it digestible
 - `|min` - Finds the minimum value given a list of values
 - `|sum` - Add up all the values in a list of integer or float values
 - `|split` - Splits a string that contains spaces in to an array
+- `|geo_country` - Returns the ISO Code for the country an IP resides in
+- `|geo_continent` - Returns the ISO Code for the contient an IP resides in
+- `|geo_timezone` - Returns the timezone an IP resides in
+- `|reverse_lookup` - Takes an IP and attempts to return the associated host name
+- `|nslookup_a` - Fetches the A record for a domain name
+- `|nslookup_aaaa` - Fetches the AAAA record for a domain name
+- `|nslookup_mx` - Fetches the MX records for a domain name
+- `|nslookup_ns` - Fetches the NS records for a domain name
+- `|nslookup_ptr`- Fetches the PTR records for a domain
+- `|is_private` - Returns True if an IP is RFC1918
+- `|is_global` - Returns True if an IP is routable on the internet
+- `|is_multicast` - Returns True if an IP is multicast
+- `|is_ipv6` - Returns True if an IP is IPv6
 
 ## Future Additions
 
