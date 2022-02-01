@@ -1,2 +1,2 @@
-theme:
-    name: readthedocs
+site_name: Reflex Documentation
+theme: material
