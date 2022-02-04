@@ -1,3 +1,14 @@
 site_name: Reflex Documentation
 theme:
   name: material
+extra_css:
+  - 'css/style.css'
+markdown_extensions:
+  - attr_list
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      linenums :true
