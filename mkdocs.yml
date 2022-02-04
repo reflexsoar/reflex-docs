@@ -11,4 +11,4 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.highlight:
-      linenums :true
+      linenums: true
