@@ -1,7 +1,8 @@
 site_name: Reflex Documentation
 theme:
   name: material
-  logo: img/symbol.png
+  logo: img/white-logo-color-symbol-no-background.png
+  favicon: img/symbol.png
   palette: 
     - scheme: default
       toggle:
