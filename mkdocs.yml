@@ -1,6 +1,16 @@
 site_name: Reflex Documentation
 theme:
   name: material
+  logo: img/symbol.png
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 extra_css:
   - 'css/style.css'
 markdown_extensions:
@@ -13,4 +23,4 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       linenums: true
-  - pymdownx.superfences
+  - pymdownx.superfences  
