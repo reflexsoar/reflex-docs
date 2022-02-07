@@ -44,11 +44,12 @@ More information can be found on services [here](../services/overview.md)
 
 - REFLEX_DISABLE_SCHEDULER
 
-## Housekeep Service
+## Housekeeper Service
 
 - REFLEX_HOUSEKEEPER_DISABLED
 - REFLEX_HOUSEKEEPER_LOG_LEVEL
-- REFLEX_AGENT_PRUNE_INTERVAL
+- **REFLEX_AGENT_PRUNE_INTERVAL**: How often Housekeeper should run the agent pruning job
+- **REFLEX_AGENT_PRUNE_LIFETIME**: Tells Housekeeper how long an agent should be offline in `days` before Housekeeper should delete it from the system.
 
 ## Event Processing
 - REFLEX_EVENT_PROCESSING_THREADS
