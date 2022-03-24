@@ -56,6 +56,7 @@ The use of **raw_log** allows accessing anything in fields within the raw log to
 ```
 
   <summary>**raw_log** allows accessing any field from a raw log. Click for more details.</summary>
+  
   RQL could access any field above using **raw_log**. Below are a couple examples.
 
   ```python
