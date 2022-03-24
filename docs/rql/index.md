@@ -1,7 +1,7 @@
 # Reflex Query Language (RQL)
 
 ## What is it?
-RQL is a query language designed to ask Reflex questions about Event.s. RQL is used when creating certain items in Reflex, such as Event Rules to query the Event data and match certain criteria.
+RQL is a query language designed to ask Reflex questions about Events. RQL is used when creating certain items in Reflex, such as Event Rules to query the Event data and match certain criteria.
 
 ## Supported Search Fields
 The following fields are supported as part of a search.
@@ -28,6 +28,46 @@ The following fields are supported as part of a search.
 - `signature`
 - `tags`
 - `raw_log|raw_log.*`
+
+The use of **raw_log** allows accessing anything in fields in the raw log to use with RQL. Consider the below event JSON.
+
+```javascript
+
+"agent": {
+  "hostname": "TESTPC",
+  "name": "TESTPC",
+  "id": "0a27616f-4464-4bd6-b5a0-034b87dc0931",
+  "type": "winlogbeat",
+  "ephemeral_id": "732cabda-454a-43ea-b548-16b2bede37b5",
+  "version": "7.16.1"
+}
+"winlog": {
+  "record_id": 2515101,
+  "computer_name": "TESTPC.test.int",
+  "process": {
+    "pid": 4,
+    "thread": {
+      "id": 18124
+    }
+  }
+  "event_id": "5038",
+  "task":"System Integrity"
+}
+```
+
+RQL could access any field above using **raw_log**. Below are a couple examples.
+
+```python
+raw_log.winlog.event_id = "5038"
+raw_log.agent.name |lowercase = 'testpc'
+raw_log.agent.name |lowercase = 'testpc'
+```
+
+Note: In the example above **"5038"** requires double quotes around it as it is a string. Also, the use of **|lowercase** in the second example would allow matching a Windows hostname requires of it being uppercase or mixed case as some agents do not consistently enforce an all uppercase or lowercase computer name. If you had an issue where hostnames sometimes included a fully-qualified domain name (FQDN) and other times did not, you could use RQL similar to below.
+
+```python
+raw_log.winlog.comptuer_name |lowercase = 'testpc' or raw_log.winlog.comptuer_name |lowercase = "testpc.test.int"
+```
 
 ## Supported Expressions
 The following Expressions are used to compare target field data to intended data.
