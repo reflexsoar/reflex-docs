@@ -29,34 +29,34 @@ The following fields are supported as part of a search.
 - `tags`
 - `raw_log|raw_log.*`
 
-The use of **raw_log** allows accessing anything in fields within the raw log to use with RQL. Consider the below event JSON.
+<summary>raw_log allows accessing any field from a raw log. Click for more details.</summary>
 
-```javascript
+  The use of **raw_log** allows accessing anything in fields within the raw log to use with RQL. Consider the below event JSON.
 
-"agent": {
-  "hostname": "TESTPC",
-  "name": "TESTPC",
-  "id": "0a27616f-4464-4bd6-b5a0-034b87dc0931",
-  "type": "winlogbeat",
-  "ephemeral_id": "732cabda-454a-43ea-b548-16b2bede37b5",
-  "version": "7.16.1"
-}
-"winlog": {
-  "record_id": 2515101,
-  "computer_name": "TESTPC.test.int",
-  "process": {
-    "pid": 4,
-    "thread": {
-      "id": 18124
-    }
+  ```javascript
+
+  "agent": {
+    "hostname": "TESTPC",
+    "name": "TESTPC",
+    "id": "0a27616f-4464-4bd6-b5a0-034b87dc0931",
+    "type": "winlogbeat",
+    "ephemeral_id": "732cabda-454a-43ea-b548-16b2bede37b5",
+    "version": "7.16.1"
   }
-  "event_id": "5038",
-  "task":"System Integrity"
-}
-```
+  "winlog": {
+    "record_id": 2515101,
+    "computer_name": "TESTPC.test.int",
+    "process": {
+      "pid": 4,
+      "thread": {
+        "id": 18124
+      }
+    }
+    "event_id": "5038",
+    "task":"System Integrity"
+  }
+  ```
 
-  <summary>**raw_log** allows accessing any field from a raw log. Click for more details.</summary>
-  
   RQL could access any field above using **raw_log**. Below are a couple examples.
 
   ```python
