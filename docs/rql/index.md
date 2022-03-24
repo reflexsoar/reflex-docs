@@ -29,7 +29,7 @@ The following fields are supported as part of a search.
 - `tags`
 - `raw_log|raw_log.*`
 
-The use of **raw_log** allows accessing anything in fields within the raw log to use with RQL. Consider the below event JSON.
+The use of **raw_log** allows accessing anything in fields within the raw log to use with RQL. Consider the below event JSON.a
 
 ```javascript
 
