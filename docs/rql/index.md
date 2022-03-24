@@ -63,7 +63,7 @@ raw_log.agent.name |lowercase = 'testpc'
 ```
 
 !!! Note
-In the example above **"5038"** requires double quotes around it as it is a string. Also, the use of **|lowercase** in the second example would allow matching a Windows hostname requires of it being uppercase or mixed case as some agents do not consistently enforce an all uppercase or lowercase computer name. If you had an issue where hostnames sometimes included a fully-qualified domain name (FQDN) and other times did not, you could use RQL similar to below.
+    In the example above **"5038"** requires double quotes around it as it is a string. Also, the use of **|lowercase** in the second example would allow matching a Windows hostname requires of it being uppercase or mixed case as some agents do not consistently enforce an all uppercase or lowercase computer name. If you had an issue where hostnames sometimes included a fully-qualified domain name (FQDN) and other times did not, you could use RQL similar to below.
 
 ```python
 raw_log.winlog.comptuer_name |lowercase = 'testpc' or raw_log.winlog.comptuer_name |lowercase = "testpc.test.int"
