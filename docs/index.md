@@ -15,7 +15,7 @@ ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and 
 |                      | Open-Source     |   Standard Support      | Premium Support            |
 | :------------------- | :-------------: | :---------------------: | :------------------------: |
 | Price                | Zero            | Starts at 15k           | Starts at   22.5k          |
-| Professional Support | No              | :material-check: 8 x 5  | :material-check: 8 x 5     |
+| Professional Support | No              | 8 x 5                   | 8 x 5                      |
 
 **Standard Support**
 
