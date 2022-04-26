@@ -1,6 +1,6 @@
 # Reflex Documentation
-Note:
-ReflexSOAR goes live on May 2nd, 2022. We advise against installing it until then unless you are using one of our commercially supported avenues.
+!!! note
+    ReflexSOAR goes live on May 2nd, 2022. We advise against installing it until then unless you are using one of our commercially supported offerings.
 ## What is it?
 ReflexSOAR is a open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The end result is streamlined efficiency and focus on alerts or events that matter.
 
