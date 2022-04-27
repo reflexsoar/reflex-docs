@@ -29,6 +29,9 @@ The following fields are supported as part of a search.
 - `tags`
 - `raw_log|raw_log.*`
 
+<details>
+<summary>raw_log allows accessing any field from a raw log. Click for more details.</summary>
+
 The use of **raw_log** allows accessing anything in fields within the raw log to use with RQL. Consider the below event JSON.
 
 ```javascript
@@ -62,8 +65,7 @@ raw_log.winlog.event_id = "5038"
 raw_log.agent.name|lowercase = 'testpc'
 ```
 
-!!! Note
-    In the example above **"5038"** requires double quotes around it as it is a string. Also, the use of **|lowercase** in the second example would allow matching a Windows hostname requires of it being uppercase or mixed case as some agents do not consistently enforce an all uppercase or lowercase computer name. If you had an issue where hostnames sometimes included a fully-qualified domain name (FQDN) and other times did not, you could use RQL similar to below.
+In the example above <strong>"5038"</strong> requires double quotes around it as it is a string. Also, the use of **|lowercase** in the second example would allow matching a Windows hostname requires of it being uppercase or mixed case as some agents do not consistently enforce an all uppercase or lowercase computer name. If you had an issue where hostnames sometimes included a fully-qualified domain name (FQDN) and other times did not, you could use RQL similar to below.
 
 ```python
 raw_log.winlog.comptuer_name|lowercase = 'testpc' or raw_log.winlog.comptuer_name|lowercase = "testpc.test.int"
@@ -76,6 +78,7 @@ raw_log.winlog.comptuer_name|lowercase In ['testpc','testpc.test.int']
 ```
 
 This RQL processes faster because it only has one RQL step. Every time you use **and** or **or**, RQL breaks each part into a separate step. The former example would require running the **lowercase** mutator twice and an **=** value comparison twice and then process an **or** statement to try to find one or more matches.
+</details>
 
 ## Supported Expressions
 The following Expressions are used to compare target field data to intended data.
