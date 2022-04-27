@@ -12,17 +12,17 @@ ReflexSOAR is open-source under a GNU General Public License v3.0. Enjoy all fea
 ### Commercial Support
 ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and is offered under the following commercial support offerings.
 
-|                                     | Open-Source     |   Standard Support      | Premium Support               |
-| :---------------------------------- | :-------------: | :---------------------: | :---------------------------: |
-| **Price**                           | Zero            | Starts at $15k US       | Starts at $25k US             |
-| **Professional Support**            | No              | 8 x 5                   | 8 x 5                         |
-| **Number of supported users**       | 0               | 5 Named Users           | 5 Named Users                 |
-| **Cloud Hosted**                    | No              | Included                | Included                      |
-| **Default Case Templates**          | No              | Included                | Included                      |
-| **Custom Case Templates**           | Not included    | Not included            | Included                      |
-| **Custom Event Rule Creation**      | 0               | 25                      | 100 - Implementation included |
-| **Intel list capacity**             | You hardware    | 10 GB                   | 25 GB - Includes H & A lists  |
-| **Organization custom intel lists** | Not included    | Not included            | Included with implementation  |
+|                                     | Open-Source     |   Standard Support           | Premium Support               |
+| :---------------------------------- | :-------------: | :--------------------------: | :---------------------------: |
+| **Price**                           | Zero            | Starts at $15k US            | Starts at $25k US             |
+| **Professional Support**            | No              | 8 x 5                        | 8 x 5                         |
+| **Number of supported users**       | 0               | 5 Named Users                | 5 Named Users                 |
+| **Cloud Hosted**                    | No              | Included **                  | Included **                   |
+| **Default Case Templates**          | No              | Included                     | Included                      |
+| **Custom Case Templates**           | Not included    | Not included                 | 5 Included                    |
+| **Custom Event Rule Creation**      | 0               | 25 - Implementation included | 100 - Implementation included |
+| **Intel list capacity**             | You hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
+| **Organization custom intel lists** | Not included    | Not included                 | Included with implementation  |
 
 **Standard Support**
 
