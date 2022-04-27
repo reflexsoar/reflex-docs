@@ -12,10 +12,17 @@ ReflexSOAR is open-source under a GNU General Public License v3.0. Enjoy all fea
 ### Commercial Support
 ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and is offered under the following commercial support offerings.
 
-|                          | Open-Source     |   Standard Support      | Premium Support            |
-| :----------------------- | :-------------: | :---------------------: | :------------------------: |
-| **Price**                | Zero            | Starts at 15k           | Starts at   22.5k          |
-| **Professional Support** | No              | 8 x 5                   | 8 x 5                      |
+|                                     | Open-Source     |   Standard Support      | Premium Support               |
+| :---------------------------------- | :-------------: | :---------------------: | :---------------------------: |
+| **Price**                           | Zero            | Starts at $15k US       | Starts at $25k US             |
+| **Professional Support**            | No              | 8 x 5                   | 8 x 5                         |
+| **Number of supported users**       | 0               | 5 Named Users           | 5 Named Users                 |
+| **Cloud Hosted**                    | No              | Included                | Included                      |
+| **Default Case Templates**          | No              | Included                | Included                      |
+| **Custom Case Templates**           | Not included    | Not included            | Included                      |
+| **Custom Event Rule Creation**      | 0               | 25                      | 100 - Implementation included |
+| **Intel list capacity**             | You hardware    | 10 GB                   | 25 GB - Includes H & A lists  |
+| **Organization custom intel lists** | Not included    | Not included            | Included with implementation  |
 
 **Standard Support**
 
@@ -29,7 +36,7 @@ ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and 
 - Initial Training - Jumpstart your implementation with training on how to use ReflexSOAR such as using event rule automation, case templates, and more
 - 10 GB capacity for Intel Lists - Includes support for up to 10 GB of memory integrated, high-speed threat lists
 
-** On-premise support contracts for ReflexSOAR are available at a minor additional cost. Additional costs are due to overhead of managing ReflexSOAR within a client environment
+** On-premise support contracts for ReflexSOAR are available at an additional cost. Additional costs are due to overhead of managing ReflexSOAR within a client environment
 
 ## Topics
 
