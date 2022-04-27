@@ -24,18 +24,6 @@ ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and 
 | **Intel list capacity**             | You hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
 | **Organization custom intel lists** | Not included    | Not included                 | Included with implementation  |
 
-**Standard Support**
-
-- SaaS Solution - Enjoy the benefits of ReflexSOAR without maintenance or hardware. Our SaaS offering is hosted within the United States. Datacenter compliance documents available upon request (SOC2, PCI, HIPAA, ISO 27001)
-- Initial Training - Jumpstart your implementation with training on how to use ReflexSOAR such as using event rule automation, case templates, and more
-- 10 GB capacity for Intel Lists - Includes support for up to 10 GB of memory integrated, high-speed threat lists
-
-**Premium Support/Managed Service**
-
-- SaaS Solution - Enjoy the benefits of ReflexSOAR without maintenance or hardware. Our SaaS offering is hosted within the United States. Datacenter compliance documents available upon request (SOC2, PCI, HIPAA, ISO 27001)
-- Initial Training - Jumpstart your implementation with training on how to use ReflexSOAR such as using event rule automation, case templates, and more
-- 10 GB capacity for Intel Lists - Includes support for up to 10 GB of memory integrated, high-speed threat lists
-
 ** On-premise support contracts for ReflexSOAR are available at an additional cost. Additional costs are due to overhead of managing ReflexSOAR within a client environment
 
 ## Topics
