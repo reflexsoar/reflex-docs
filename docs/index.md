@@ -24,7 +24,7 @@ ReflexSOAR commercial support is faciliated by H & A Security Solutions LLC and 
 | **Intel list capacity**             | You hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
 | **Organization custom intel lists** | Not included    | Not included                 | Included with implementation  |
 
-** On-premise support contracts for ReflexSOAR are available at an additional cost. Additional costs are due to overhead of managing ReflexSOAR within a client environment
+** On-premise support contracts for ReflexSOAR are available at an additional cost
 
 ## Topics
 
