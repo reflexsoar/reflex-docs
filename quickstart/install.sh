@@ -144,6 +144,12 @@ function pull_down_reflex_files {
   pull_file_if_missing "opensearch_dashboards.key"
   pull_file_if_missing "reflex-ui.crt"
   pull_file_if_missing "reflex-ui.key"
+  pull_file_if_missing "internal_users.yml"
+  pull_file_if_missing "roles.yml"
+  pull_file_if_missing "roles_mapping.yml"
+}
+function generate_random_password {
+  PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1)
 }
 
 # Create application.conf if it does not exist
@@ -156,6 +162,11 @@ function build_application_conf {
     echo "SECRET_KEY = \"$SECRET_KEY\"" >> $INSTALLDIR/application.conf
     echo "SECURITY_PASSWORD_SALT = \"$SECURITY_PASSWORD_SALT\"" >> $INSTALLDIR/application.conf
   fi
+}
+function change_storage_password {
+  generate_random_password
+  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
 }
 
 DEFAULTDIR=$(pwd)"/reflexsoar"
@@ -268,6 +279,14 @@ do
 done
 
 build_application_conf
+
+# Change passwords
+change_storage_password "ADMINHASHCHANGEME"
+change_storage_password "KIBANAHASHCHANGEME"
+change_storage_password "KIBANAROHASHCHANGEME"
+change_storage_password "LOGSTASHHASHCHANGEME"
+change_storage_password "READALLHASHCHANGEME"
+change_storage_password "SNAPSHOTRESTORECHANGEME"
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
