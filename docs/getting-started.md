@@ -1,5 +1,28 @@
 # Getting Started
 
+ReflexSOAR is composed of the following components:
+
+- **Storage** - A back-end component for storing persistent data. Supported back-ends are OpenSearch or Elasticsearch
+- **Memcached** - A blazing fast memory cache for use with intel data
+- **Reflex API** - A web API for all requests. The core functionality of Reflex comes from Reflex API
+- **Reflex UI** - A web application for presenting a friendly user interface to analysts
+- **Optional Storage Reporting** - For additional reporting capabilities, supports OpenSearch Dashboards or Kibana
+
+To simplify getting started, a installation script has been created that will automatically install of the components listed above. The installation script requires a machine with at least 4 GB of RAM, two CPU cores, and 50 GB of free disk space. The script has been tested on the below operating systems.
+
+- AlmaLinux
+- Amazon Linux
+- CentOS 7
+- CentOS 8
+- Ubuntu 20.04
+- Ubuntu 22.04
+
+The script to install all the components can be ran using the command below:
+
+```bash
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/reflexsoar/reflex-docs/main/quickstart/install.sh)"
+```
+
 ## Docker
 
 ### Docker Compose

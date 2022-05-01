@@ -6,7 +6,17 @@
     This documentation site will not be complete until the go-live date of May 2nd, 2022.
 
 ## What is it?
-ReflexSOAR is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter.
+ReflexSOAR is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter. ReflexSOAR provides the following capabilities:
+
+- **Event Rules** - Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity.
+- **Cases** - Create cases and leverage case templates to track the investigation of alerts by your analyst.
+- **Intel Lists** - Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations.
+- **Inputs** - Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review.
+- **Reflex Query Language** - Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions.
+- **Agents** - Deploy agents within your environment to pull the alerts and alarms from your on-premise systems.
+- **Coming soon: Playbooks** - Automation and orchestration playbooks**
+
+** Automation is available today in the form of event rules. Playbook support is on the roadmap to be released sometime in the 3rd quarter of 2022.
 
 ## Pricing
 ### Open-Source
