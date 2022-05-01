@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  opensearch:
+    container_name: opensearch
+    image: opensearchproject/opensearch:1.3.1
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g
+    networks:
+      - reflex
+    volumes:
+      - opensearch-data1:/usr/share/opensearch/data
+  opensearch-dashboards:
+    container_name: opensearch-dashboards
+    image: opensearchproject/opensearch-dashboards:1.3.1
+    ports:
+      - 5601:5601
+    volumes:
+      - ./custom-opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+      - ./opensearch_dashboards.key:/usr/share/opensearch-dashboards/config/opensearch-dashboards.key
+      - ./opensearch_dashboards.crt:/usr/share/opensearch-dashboards/config/opensearch-dashboards.crt
+    networks:
+      - reflex
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
+volumes:
+  opensearch-data1:
+
+networks:
+  reflex:

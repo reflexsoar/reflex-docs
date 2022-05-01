@@ -1,0 +1,24 @@
+---
+
+opensearch.hosts: https://opensearch:9200
+opensearch.username: "admin"
+opensearch.password: "admin"
+opensearch.requestHeadersWhitelist: ["securitytenant","Authorization"]
+opensearch.ssl.verificationMode: none
+server.ssl.enabled: true
+server.ssl.key: /usr/share/opensearch-dashboards/config/opensearch-dashboards.key
+server.ssl.certificate: /usr/share/opensearch-dashboards/config/opensearch-dashboards.crt
+server.ssl.supportedProtocols: ["TLSv1.2"]
+server.name: opensearch-dashboards
+server.host: "0.0.0.0"
+opensearch.requestTimeout: 30000
+opensearch_security.multitenancy.tenants.preferred: ["Global", "Private"]
+opensearch_security.auth.anonymous_auth_enabled: false
+opensearch_security.cookie.secure: true # set to true when using HTTPS
+opensearch_security.cookie.ttl: 3600000
+opensearch_security.session.ttl: 3600000
+opensearch_security.session.keepalive: true
+opensearch_security.multitenancy.enabled: true
+opensearch_security.multitenancy.tenants.enable_global: true
+opensearch_security.multitenancy.tenants.enable_private: true
+opensearch_security.multitenancy.enable_filter: false
