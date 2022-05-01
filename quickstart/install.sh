@@ -65,12 +65,12 @@ function set_limits_conf {
 }
 function check_if_file_missing {
   if [ ! -f "$INSTALLDIR/$1" ]; then
-    echo "Will download https://github.com/reflexsoar/reflex-docs/raw/$BUILDMODE/quickstart/$1 into $INSTALLDIR"
+    echo "Will download https://raw.githubusercontent.com/reflexsoar/reflex-docs/$BUILDMODE/quickstart/$1 into $INSTALLDIR"
   fi
 }
 function pull_file_if_missing {
   if [ ! -f "$INSTALLDIR/$1" ]; then
-    curl https://github.com/reflexsoar/reflex-docs/raw/$BUILDMODE/quickstart/$1  --output $INSTALLDIR/$1
+    curl https://raw.githubusercontent.com/reflexsoar/reflex-docs/$BUILDMODE/quickstart/$1  --output $INSTALLDIR/$1
   fi
 }
 function pull_down_reflex_files {
