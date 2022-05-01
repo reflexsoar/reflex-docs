@@ -6,7 +6,22 @@
     This documentation site will not be complete until the go-live date of May 2nd, 2022.
 
 ## What is it?
-ReflexSOAR is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter.
+ReflexSOAR is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter. ReflexSOAR provides the following capabilities:
+
+- **Event Rules** - Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity.
+- **Cases** - Create cases and leverage case templates to track the investigation of alerts by your analyst.
+- **Intel Lists** - Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations.
+- **Inputs** - Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review.
+- **Reflex Query Language** - Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions.
+- **Agents** - Deploy agents within your environment to pull the alerts and alarms from your onpremise systems.
+
+ReflexSOAR is composed of the following components:
+
+- **Storage** - A back-end component for storing persistent data. Supported back-ends are OpenSearch or Elasticsearch
+- **Memcached** - A blazing fast memory cache for use with intel data
+- **Reflex API** - A web API for all requests. The core functionality of Reflex comes from Reflex API
+- **Reflex UI** - A web application for presenting a friendly user interface to analysts
+- **Optional Storage Reporting** - For additional reporting capabilities, supports OpenSearch Dashboards or Kibana
 
 ## Pricing
 ### Open-Source

@@ -11,32 +11,89 @@ MISSINGSYSCTLSETTINGS=()
 MISSINGLIMITSSETTINGS=()
 SUDOUSER=`logname`
 
+FILE=/etc/os-release
+if [ -f "$FILE" ]; then
+    FILECHECK=/etc/os-release
+    OSNAME=`cat $FILECHECK | grep ^NAME= | cut -d"=" -f2 | tr -d '"'`
+fi
+if [ "$OSNAME" == "CentOS Stream" ]; then
+  OSNAME="CentOS Linux"
+fi
+echo $OSNAME
+
+if [ "$OSNAME" != "AlmaLinux" ] && [ "$OSNAME" != "Amazon Linux" ] && [ "$OSNAME" != "CentOS Linux" ] && [ "$OSNAME" != "Ubuntu" ]; then
+  echo "Unsupported operating system"
+  exit 0
+fi
+
 function check_if_software_installed {
-  if [ $(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-    MISSINGSOFTWARE+=("$1")
+  if [ "$OSNAME" == "Ubuntu" ]; then
+    if [ $(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+      MISSINGSOFTWARE+=("$1")
+    fi
+  else
+    if [ $(yum list installed | cut -d " " -f1 | grep -i "$1" | wc -c) -eq 0 ]; then
+      MISSINGSOFTWARE+=("$1")
+    fi
   fi
 }
+
 function check_if_sysctl_setting_exists {
-  if ! grep -q "$1" /etc/sysctl.conf; then
+  if ! grep -q "$1" /etc/sysctl.conf ; then
     MISSINGSYSCTLSETTINGS+=("$1=$2")
   fi
 }
 function check_if_security_limits_setting_exists {
-  if ! grep -q "$1" /etc/security/limits.conf; then
+  if ! grep -q "$1" /etc/security/limits.conf ; then
     MISSINGLIMITSSETTINGS+=("$1")
   fi
 }
 function check_if_docker_repository_installed {
-  if [ $(ls /etc/apt/sources.list.d/ | wc -c) -eq 0 ]; then
-    DOCKERREPOINSTALLED=0
-  else
-    DOCKERREPOINSTALLED=1
-  fi
+  case $OSNAME in
+    "AlmaLinux")
+      if [ $(yum repolist | grep -i docker | wc -c) -eq 0 ]; then
+        DOCKERREPOINSTALLED=0
+      else
+        DOCKERREPOINSTALLED=1
+      fi
+      ;;
+    "Amazon Linux")
+      if [ $(yum repolist | grep -i docker | wc -c) -eq 0 ]; then
+        DOCKERREPOINSTALLED=0
+      else
+        DOCKERREPOINSTALLED=1
+      fi
+      ;;
+    "CentOS Linux")
+      if [ $(yum repolist | grep -i docker | wc -c) -eq 0 ]; then
+        DOCKERREPOINSTALLED=0
+      else
+        DOCKERREPOINSTALLED=1
+      fi
+      ;;
+    "Ubuntu")
+      if [ $(ls /etc/apt/sources.list.d/ | grep -i docker | wc -c) -eq 0 ]; then
+        DOCKERREPOINSTALLED=0
+      else
+        DOCKERREPOINSTALLED=1
+      fi
+      ;;
+  esac
 }
 function install_docker_repository {
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" --yes
-  sudo apt-get update
+  case $OSNAME in
+    "AlmaLinux")
+      dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      ;;
+    "CentOS Linux")
+      yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      ;;
+    "Ubuntu")
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" --yes
+      sudo apt-get update
+      ;;
+  esac
 }
 function install_docker_components {
   if grep docker /etc/group | grep -q ${SUDOUSER}; then
@@ -52,9 +109,15 @@ function install_docker_components {
     sudo curl -L https://github.com/docker/compose/releases/download/v2.4.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
   fi
+  systemctl enable docker
+  systemctl start docker
 }
 function install_software {
-  apt install -y $1
+  if [ "$OSNAME" == "Ubuntu" ]; then
+    apt install -y $1
+  else
+    yum install -y $1
+  fi
 }
 function set_sysctl_setting {
   sudo sysctl -w "$1"
@@ -104,9 +167,17 @@ fi
 mkdir -p $INSTALLDIR
 
 check_if_docker_repository_installed
+
 check_if_software_installed "git"
 check_if_software_installed "curl"
-check_if_software_installed "docker-ce"
+if [ "$OSNAME" == "Amazon Linux" ]; then
+  check_if_software_installed "docker"
+else
+  check_if_software_installed "docker-ce"
+fi
+if [ ! "$OSNAME" == "Ubuntu" ]; then
+  check_if_software_installed "yum-utils"
+fi
 
 check_if_sysctl_setting_exists "vm.max_map_count" "262144"
 
@@ -167,14 +238,21 @@ fi
 
 pull_down_reflex_files
 
+if [ ! "$OSNAME" == "Ubuntu" ]; then
+  install_software "yum-utils"
+fi
+
 if [ $DOCKERREPOINSTALLED == 0 ]; then
   install_docker_repository
 fi
 
 for value in "${MISSINGSOFTWARE[@]}"
 do
+  if [ "$value" == "docker-ce" ] && [ "$OSNAME" == "CentOS Linux" ]; then
+    yum remove -y buildah cockpit-podman podman podman-catatonit podman-docker
+  fi
   install_software "$value"
-  if [ "$value" == "docker-ce" ]; then
+  if [ "$value" == "docker-ce" ] || [ "$value" == "docker" ]; then
     install_docker_components
   fi
 done
@@ -191,6 +269,6 @@ done
 
 build_application_conf
 
-cd $INSTALLDIR && docker-compose up -d
+cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 echo "Reflex install complete"
