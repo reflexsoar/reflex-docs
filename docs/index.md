@@ -13,7 +13,10 @@ ReflexSOAR is an open-source event triage, investigation, and automation platfor
 - **Intel Lists** - Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations.
 - **Inputs** - Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review.
 - **Reflex Query Language** - Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions.
-- **Agents** - Deploy agents within your environment to pull the alerts and alarms from your onpremise systems.
+- **Agents** - Deploy agents within your environment to pull the alerts and alarms from your on-premise systems.
+- **Coming soon: Playbooks** - Automation and orchestration playbooks**
+
+** Automation is available today in the form of event rules. Playbook support is on the roadmap to be released sometime in the 3rd quarter of 2022.
 
 ReflexSOAR is composed of the following components:
 
