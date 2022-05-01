@@ -35,7 +35,7 @@ function check_if_docker_repository_installed {
 }
 function install_docker_repository {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" --yes
   sudo apt-get update
 }
 function install_docker_components {
@@ -63,27 +63,45 @@ function set_sysctl_setting {
 function set_limits_conf {
   echo "$1" | sudo tee -a /etc/security/limits.conf
 }
+function check_if_file_missing {
+  if [ ! -f "$INSTALLDIR/$1" ]; then
+    echo "Will download https://github.com/reflexsoar/reflex-docs/raw/$BUILDMODE/quickstart/$1 into $INSTALLDIR"
+  fi
+}
+function pull_file_if_missing {
+  if [ ! -f "$INSTALLDIR/$1" ]; then
+    curl https://github.com/reflexsoar/reflex-docs/raw/$BUILDMODE/quickstart/$1  --output $INSTALLDIR/$1
+  fi
+}
 function pull_down_reflex_files {
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/custom-opensearch_dashboards.yml --output $INSTALLDIR/custom-opensearch_dashboards.yml
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/docker-compose.yml --output $INSTALLDIR/docker-compose.yml
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/nginx.conf --output $INSTALLDIR/nginx.conf
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/opensearch_dashboards.crt --output $INSTALLDIR/opensearch_dashboards.crt
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/opensearch_dashboards.key --output $INSTALLDIR/opensearch_dashboards.key
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/reflex-ui.crt --output $INSTALLDIR/reflex-ui.crt
-  curl https://github.com/reflexsoar/reflex-docs/raw/dev/quickstart/reflex-ui.key --output $INSTALLDIR/reflex-ui.key
+  pull_file_if_missing "custom-opensearch_dashboards.yml"
+  pull_file_if_missing "docker-compose.yml"
+  pull_file_if_missing "nginx.conf"
+  pull_file_if_missing "opensearch_dashboards.crt"
+  pull_file_if_missing "opensearch_dashboards.key"
+  pull_file_if_missing "reflex-ui.crt"
+  pull_file_if_missing "reflex-ui.key"
 }
 
 # Create application.conf if it does not exist
 function build_application_conf {
-  if [ ! -f application.conf ]; then
+  if [ ! -f $INSTALLDIR/application.conf ]; then
     MASTER=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-512} | head -n 1)
     SECRET_KEY=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-256} | head -n 1)
     SECURITY_PASSWORD_SALT=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-256} | head -n 1)
-    echo "MASTER_PASSWORD = \"$MASTER\"" > application.conf
-    echo "SECRET_KEY = \"$SECRET_KEY\"" >> application.conf
-    echo "SECURITY_PASSWORD_SALT = \"$SECURITY_PASSWORD_SALT\"" >> application.conf
+    echo "MASTER_PASSWORD = \"$MASTER\"" > $INSTALLDIR/application.conf
+    echo "SECRET_KEY = \"$SECRET_KEY\"" >> $INSTALLDIR/application.conf
+    echo "SECURITY_PASSWORD_SALT = \"$SECURITY_PASSWORD_SALT\"" >> $INSTALLDIR/application.conf
   fi
 }
+
+DEFAULTDIR=$(pwd)"/reflexsoar"
+echo "Which directory would you like to be your install dir ($DEFAULTDIR): "
+read INSTALLDIR
+if [ "$INSTALLDIR" == "" ]; then
+  INSTALLDIR=$DEFAULTDIR
+fi
+mkdir -p $INSTALLDIR
 
 check_if_docker_repository_installed
 check_if_software_installed "git"
@@ -120,6 +138,15 @@ do
      echo "Will add $value to /etc/security/limits.conf"
 done
 
+check_if_file_missing "custom-opensearch_dashboards.yml"
+check_if_file_missing "docker-compose.yml"
+check_if_file_missing "nginx.conf"
+check_if_file_missing "opensearch_dashboards.crt"
+check_if_file_missing "opensearch_dashboards.key"
+check_if_file_missing "reflex-ui.crt"
+check_if_file_missing "reflex-ui.key"
+
+echo ""
 echo "This installation script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."
 echo ""
 echo "For help with professional installation, please contact H & A Security Solutions LLC at info@hasecuritysolutions.com. Also, consider our cloud-hosted SaaS offering with commercial support and services."
@@ -131,13 +158,6 @@ echo "Would you like to proceed (y/n): "
 read USERINPUT
 USERINPUT=$(echo "$USERINPUT" | tr '[:upper:]' '[:lower:]')
 
-DEFAULTDIR=$(pwd) + "/reflexsoar"
-echo "Which directory would you like to be your install dir ($DEFAULTDIR): "
-read INSTALLDIR
-if [ "$INSTALLDIR" == "" ]; then
-  INSTALLDIR=$DEFAULTDIR
-fi
-
 if [ "$USERINPUT" == "y" ] || [ "$USERINPUT" == "yes" ]; then
   echo "Proceeding with installation"
 else
@@ -145,16 +165,18 @@ else
   exit 0
 fi
 
+pull_down_reflex_files
+
 if [ $DOCKERREPOINSTALLED == 0 ]; then
   install_docker_repository
 fi
 
 for value in "${MISSINGSOFTWARE[@]}"
 do
+  install_software "$value"
   if [ "$value" == "docker-ce" ]; then
     install_docker_components
   fi
-  install_software "$value"
 done
 
 for value in "${MISSINGSYSCTLSETTINGS[@]}"
@@ -168,5 +190,7 @@ do
 done
 
 build_application_conf
+
+cd $INSTALLDIR && docker-compose up -d
 
 echo "Reflex install complete"
