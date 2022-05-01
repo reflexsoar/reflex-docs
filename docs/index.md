@@ -18,14 +18,6 @@ ReflexSOAR is an open-source event triage, investigation, and automation platfor
 
 ** Automation is available today in the form of event rules. Playbook support is on the roadmap to be released sometime in the 3rd quarter of 2022.
 
-ReflexSOAR is composed of the following components:
-
-- **Storage** - A back-end component for storing persistent data. Supported back-ends are OpenSearch or Elasticsearch
-- **Memcached** - A blazing fast memory cache for use with intel data
-- **Reflex API** - A web API for all requests. The core functionality of Reflex comes from Reflex API
-- **Reflex UI** - A web application for presenting a friendly user interface to analysts
-- **Optional Storage Reporting** - For additional reporting capabilities, supports OpenSearch Dashboards or Kibana
-
 ## Pricing
 ### Open-Source
 ReflexSOAR is an open-source under a GNU General Public License v3.0. Enjoy all features with zero limitations outside your own hardware or training. Our model is to provide commercial support and services but provide ReflexSOAR free to the community now and always.
