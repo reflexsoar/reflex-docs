@@ -405,6 +405,7 @@ PERSISTENTTOKEN=$(curl -X 'GET' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
 curl -X 'POST' \
+  --insecure \
   'https://localhost/api/v2.0/agent_group' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN"
