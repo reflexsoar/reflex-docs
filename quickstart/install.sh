@@ -310,7 +310,13 @@ change_storage_password "LOGSTASHHASHCHANGEME"
 change_storage_password "READALLHASHCHANGEME"
 change_storage_password "SNAPSHOTRESTORECHANGEME"
 
+REPLACEMENT=$(echo $INSTALLDIR | sed "s@/@\\\/@g")
+
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
+
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
 
 echo "Reflex install complete"
 
