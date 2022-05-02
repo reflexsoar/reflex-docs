@@ -150,7 +150,6 @@ function pull_down_reflex_files {
 }
 function generate_random_password {
   PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1 | head -c -1)
-  PASSWORD=$(echo $PASSWORD | tr -d '\n')
 }
 
 # Create application.conf if it does not exist
@@ -187,7 +186,7 @@ function change_storage_password {
       ;;
   esac
 
-  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD | head -c -1)
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
   sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
 }
