@@ -168,9 +168,11 @@ function change_storage_password {
   case $1 in
     "ADMINHASHCHANGEME")
       STORAGEPASSWORDS+=("admin:$PASSWORD")
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose.yml
       ;;
     "KIBANAHASHCHANGEME")
       STORAGEPASSWORDS+=("kibanaserver:$PASSWORD")
+      sed -i "s/KIBANAPASSWORDCHANGEME/$PASSWORD/g" $INSTALLDIR/custom-opensearch_dashboards.yml
       ;;
     "KIBANAROHASHCHANGEME")
       STORAGEPASSWORDS+=("kibanaro:$PASSWORD")

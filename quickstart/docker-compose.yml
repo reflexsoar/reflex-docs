@@ -65,7 +65,7 @@ services:
       - REFLEX_ES_URL=opensearch:9200
       - REFLEX_DISABLE_SLAMONITOR=true
       - REFLEX_ES_USERNAME=admin
-      - REFLEX_ES_PASSWORD=admin
+      - REFLEX_ES_PASSWORD=STORAGEADMINPASSWORD
       #- REFLEX_ES_CA=/ca.crt
       #- REFLEX_ES_CERT_VERIFY=none
       - REFLEX_ES_AUTH_SCHEMA=http
