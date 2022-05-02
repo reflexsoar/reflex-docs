@@ -6,6 +6,7 @@ ReflexSOAR is composed of the following components:
 - **Memcached** - A blazing fast memory cache for use with intel data
 - **Reflex API** - A web API for all requests. The core functionality of Reflex comes from the Reflex API
 - **Reflex UI** - A web application for presenting a friendly user interface to analysts
+- **Reflex Agent** - An agent used to get agents into ReflexSOAR
 - **Optional Storage Reporting** - For additional reporting capabilities, supports OpenSearch Dashboards or Kibana
 
 ## Quickstart Installation
