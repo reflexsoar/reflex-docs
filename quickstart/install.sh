@@ -355,6 +355,8 @@ if [ $TIMER -eq $TIMEOUT ]; then
   exit 0
 fi
 
+sleep 5
+
 docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
 
 cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
@@ -392,6 +394,8 @@ if [ $TIMER -eq $TIMEOUT ]; then
   echo "Timed out waiting for Reflex UI to start. There is an issue with the install."
   exit 0
 fi
+
+sleep 5
 
 RESULT=$(curl -X 'POST' \
   --insecure \
@@ -442,6 +446,8 @@ curl -X 'PUT' \
 STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
 
 cp -f $INSTALLDIR/docker-compose3.yml $INSTALLDIR/docker-compose.yml
+
+sleep 5
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
