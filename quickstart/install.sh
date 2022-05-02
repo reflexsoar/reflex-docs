@@ -9,6 +9,7 @@ fi
 MISSINGSOFTWARE=()
 MISSINGSYSCTLSETTINGS=()
 MISSINGLIMITSSETTINGS=()
+STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
 FILE=/etc/os-release
@@ -164,10 +165,29 @@ function build_application_conf {
 }
 function change_storage_password {
   generate_random_password
+  case $1 in
+    "ADMINHASHCHANGEME")
+      STORAGEPASSWORDS+=("admin:$PASSWORD")
+      ;;
+    "KIBANAHASHCHANGEME")
+      STORAGEPASSWORDS+=("kibanaserver:$PASSWORD")
+      ;;
+    "KIBANAROHASHCHANGEME")
+      STORAGEPASSWORDS+=("kibanaro:$PASSWORD")
+      ;;
+    "LOGSTASHHASHCHANGEME")
+      STORAGEPASSWORDS+=("logstash:$PASSWORD")
+      ;;
+    "READALLHASHCHANGEME")
+      STORAGEPASSWORDS+=("readall:$PASSWORD")
+      ;;
+    "SNAPSHOTRESTORECHANGEME")
+      STORAGEPASSWORDS+=("snapshotrestore:$PASSWORD")
+      ;;
+  esac
+
   STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
-  echo $1
-  echo $STORAGEPASSWORD
   sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
 }
 
@@ -293,3 +313,10 @@ change_storage_password "SNAPSHOTRESTORECHANGEME"
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 echo "Reflex install complete"
+
+echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
+echo ""
+for value in "${STORAGEPASSWORDS[@]}"
+do
+     echo "$value"
+done
