@@ -171,6 +171,8 @@ function change_storage_password {
     "ADMINHASHCHANGEME")
       STORAGEPASSWORDS+=("admin:$PASSWORD")
       sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose.yml
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose2.yml
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose3.yml
       ;;
     "KIBANAHASHCHANGEME")
       STORAGEPASSWORDS+=("kibanaserver:$PASSWORD")
@@ -321,12 +323,47 @@ change_storage_password "SNAPSHOTRESTORECHANGEME"
 REPLACEMENT=$(echo $INSTALLDIR | sed "s@/@\\\/@g")
 
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose2.yml
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose3.yml
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+TIMEOUT=300
+TIMER=0
+CONTINUE="no"
+while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=opensearch | grep opensearch | wc -c) -eq 0 ]; then
+    echo "Waiting on OpenSearch to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for OpenSearch to start. There is an issue with the install."
+  exit 0
+fi
 
 docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
 
 cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
+
+TIMER=0
+CONTINUE="no"
+while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=reflex-api | grep reflex-api | wc -c) -eq 0 ]; then
+    echo "Waiting on Reflex API to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for Reflex-API to start. There is an issue with the install."
+  exit 0
+fi
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
@@ -345,7 +382,7 @@ PERSISTENTTOKEN=$(curl -X 'GET' \
   'https://localhost/api/v2.0/settings/generate_persistent_pairing_token' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
-sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose.yml
+sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
 curl -X 'POST' \
   'https://localhost/api/v2.0/agent_group' \
   -H 'accept: application/json' \
