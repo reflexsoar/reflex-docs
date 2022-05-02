@@ -6,7 +6,7 @@ A Case provides analyst the ability to group events together that may be linked 
 
 There are two ways to create a Case in Reflex. The first option is to click on Cases in the left hand menu and then Click New Case. This will open the Create Case wizard.
 
-![image](img/create_case_wizard.png)
+![image](../../img/create_case_wizard.png)
 
 
 
@@ -17,5 +17,5 @@ There are two ways to create a Case in Reflex. The first option is to click on C
 
 The other option is to create a Case from an Event Card by clicking on the brief case icon located in the bottom left. This option does provide the ability
 
-![image](img/create_case_event_card.png)
+![image](../../img/create_case_event_card.png)
 
