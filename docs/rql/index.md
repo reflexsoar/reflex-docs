@@ -1,7 +1,7 @@
 # Reflex Query Language (RQL)
 
 ## What is it?
-RQL is a query language designed to ask Reflex questions about Event.s. RQL is used when creating certain items in Reflex, such as Event Rules to query the Event data and match certain criteria.
+RQL is a query language designed to ask Reflex questions about Events. RQL is used when creating certain items in Reflex, such as Event Rules to query the Event data and match certain criteria.
 
 ## Supported Search Fields
 The following fields are supported as part of a search.
