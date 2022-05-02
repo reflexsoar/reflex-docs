@@ -252,11 +252,16 @@ done
 
 check_if_file_missing "custom-opensearch_dashboards.yml"
 check_if_file_missing "docker-compose.yml"
+check_if_file_missing "docker-compose2.yml"
+check_if_file_missing "docker-compose3.yml"
 check_if_file_missing "nginx.conf"
 check_if_file_missing "opensearch_dashboards.crt"
 check_if_file_missing "opensearch_dashboards.key"
 check_if_file_missing "reflex-ui.crt"
 check_if_file_missing "reflex-ui.key"
+check_if_file_missing "internal_users.yml"
+check_if_file_missing "roles.yml"
+check_if_file_missing "roles_mapping.yml"
 
 echo ""
 echo "This installation script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."
@@ -366,6 +371,22 @@ if [ $TIMER -eq $TIMEOUT ]; then
 fi
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+TIMER=0
+CONTINUE="no"
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=reflex-ui | grep reflex-ui | wc -c) -eq 0 ]; then
+    echo "Waiting on Reflex UI to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ $TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for Reflex UI to start. There is an issue with the install."
+  exit 0
+fi
 
 RESULT=$(curl -X 'POST' \
   --insecure \
