@@ -139,6 +139,8 @@ function pull_file_if_missing {
 function pull_down_reflex_files {
   pull_file_if_missing "custom-opensearch_dashboards.yml"
   pull_file_if_missing "docker-compose.yml"
+  pull_file_if_missing "docker-compose2.yml"
+  pull_file_if_missing "docker-compose3.yml"
   pull_file_if_missing "nginx.conf"
   pull_file_if_missing "opensearch_dashboards.crt"
   pull_file_if_missing "opensearch_dashboards.key"
@@ -274,6 +276,8 @@ else
 fi
 
 pull_down_reflex_files
+mkdir $INSTALLDIR/agent -p
+touch $INSTALLDIR/agent/config.txt
 
 if [ ! "$OSNAME" == "Ubuntu" ]; then
   install_software "yum-utils"
@@ -322,7 +326,7 @@ cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
 
-sleep 1
+cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
@@ -336,6 +340,22 @@ RESULT=$(curl -X 'POST' \
   "password": "reflex"
 }')
 ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
+PERSISTENTTOKEN=$(curl -X 'GET' \
+  --insecure \
+  'https://localhost/api/v2.0/settings/generate_persistent_pairing_token' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN")
+sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose.yml
+curl -X 'POST' \
+  'https://localhost/api/v2.0/agent_group' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN"
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "DefaultAgentGroup",
+  "description": "A default agent group created by the quickstart install.sh script",
+  "inputs": []
+}'
 ADMINUUID=$(curl -X 'GET' \
   --insecure \
   'https://localhost/api/v2.0/user/me' \
@@ -353,6 +373,8 @@ curl -X 'PUT' \
   \"password\": \"$PASSWORD\"
 }"
 STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
+
+cp -f $INSTALLDIR/docker-compose3.yml $INSTALLDIR/docker-compose.yml
 
 echo "Reflex install complete. You may now access reflex at https://localhost and make custom reports using OpenSearch Dashboards at https://localhost:5601"
 
