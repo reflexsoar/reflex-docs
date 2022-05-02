@@ -403,12 +403,13 @@ PERSISTENTTOKEN=$(curl -X 'GET' \
   'https://localhost/api/v2.0/settings/generate_persistent_pairing_token' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
+PERSISTENTTOKEN=$(echo $PERSISTENTTOKEN | jq .token)
 sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
 curl -X 'POST' \
   --insecure \
   'https://localhost/api/v2.0/agent_group' \
   -H 'accept: application/json' \
-  -H "Authorization: Bearer $ACCESSTOKEN"
+  -H "Authorization: Bearer $ACCESSTOKEN" \
   -H 'Content-Type: application/json' \
   -d '{
   "name": "DefaultAgentGroup",

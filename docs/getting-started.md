@@ -47,6 +47,14 @@ You can access ReflexSOAR by connecting to your host operating system using http
 
 The default username and password for ReflexSOAR is **admin@reflexsoar.com** with a password of **reflex**. The default username and password for OpenSearch is **admin** with a password of **admin**. We highly recommend changing these. The installation video walks through how to change these passwords.
 
+### Uninstall Quickstart Installation
+
+If you wish to remove the containers and data volumes created by the quickstart install.sh script, run this command below.
+
+```bash
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/reflexsoar/reflex-docs/main/quickstart/uninstall.sh)"
+```
+
 ## Docker
 
 ### Docker Compose

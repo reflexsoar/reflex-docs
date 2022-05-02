@@ -1,13 +1,13 @@
 #!/bin/bash
 DEFAULTDIR=$(pwd)"/reflexsoar"
-echo "Which directory would you like to be your install dir ($DEFAULTDIR): "
+echo "Which directory is your current install dir ($DEFAULTDIR): "
 read INSTALLDIR
 if [ "$INSTALLDIR" == "" ]; then
   INSTALLDIR=$DEFAULTDIR
 fi
 
 echo ""
-echo "This installation script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."
+echo "This uninstall script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."
 echo ""
 echo "For help with professional installation, please contact H & A Security Solutions LLC at info@hasecuritysolutions.com. Also, consider our cloud-hosted SaaS offering with commercial support and services."
 echo ""
@@ -19,9 +19,9 @@ read USERINPUT
 USERINPUT=$(echo "$USERINPUT" | tr '[:upper:]' '[:lower:]')
 
 if [ "$USERINPUT" == "y" ] || [ "$USERINPUT" == "yes" ]; then
-  echo "Proceeding with installation"
+  echo "Proceeding with uninstall"
 else
-  echo "Installation aborted"
+  echo "Uninstall aborted"
   exit 0
 fi
 
@@ -33,3 +33,5 @@ docker rm -f reflex-agent
 docker rm -f reflex-api
 docker rm -f reflex-ui
 docker volume rm reflexsoar_opensearch-data1
+
+echo "Uninstall complete"
