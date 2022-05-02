@@ -206,6 +206,7 @@ check_if_docker_repository_installed
 
 check_if_software_installed "git"
 check_if_software_installed "curl"
+check_if_software_installed "jq"
 if [ "$OSNAME" == "Amazon Linux" ]; then
   check_if_software_installed "docker"
 else
@@ -324,6 +325,37 @@ docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-se
 sleep 1
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+RESULT=$(curl -X 'POST' \
+  --insecure \
+  'https://localhost/api/v2.0/auth/login' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "admin@reflexsoar.com",
+  "password": "reflex"
+}')
+echo $RESULT
+ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
+echo $ACCESSTOKEN
+ADMINUUID=$(curl -X 'GET' \
+  --insecure \
+  'https://localhost/api/v2.0/user/me' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN")
+ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
+echo $ADMINUUID
+generate_random_password
+curl -X 'PUT' \
+  --insecure \
+  "https://localhost/api/v2.0/user/$ADMINUUID" \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN" \
+  -H 'Content-Type: application/json' \
+  -d "{
+  \"password\": \"$PASSWORD\"
+}"
+STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
 
 echo "Reflex install complete"
 
