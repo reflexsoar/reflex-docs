@@ -335,16 +335,13 @@ RESULT=$(curl -X 'POST' \
   "email": "admin@reflexsoar.com",
   "password": "reflex"
 }')
-echo $RESULT
 ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
-echo $ACCESSTOKEN
 ADMINUUID=$(curl -X 'GET' \
   --insecure \
   'https://localhost/api/v2.0/user/me' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
-echo $ADMINUUID
 generate_random_password
 curl -X 'PUT' \
   --insecure \
