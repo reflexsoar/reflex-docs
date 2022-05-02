@@ -8,7 +8,7 @@ Next click on New Case Template and the following Case Template Wizard will open
 
 ## Template Details
 
-![image](https://github.com/reflexsoar/reflex-docs/blob/dev/docs/img/create_case_template.png)
+![image](/img/create_case_template.png)
 
 Select the Organization from the drop-down list. You may only have one option in the list unless you are leveraging the multitenancy function of Reflex.
 
@@ -24,7 +24,7 @@ Click Next
 
 ## Tasks
 
-![image](https://github.com/reflexsoar/reflex-docs/blob/dev/docs/img/case_template_tasks.png)
+![image](/img/case_template_tasks.png)
 
 As part of the case templates, tasks can be created for each step the analyst is suppose to complete as part of the investigation.
 
@@ -42,7 +42,7 @@ Once you have added all tasks click Next.
 
 The final step is to review the information provided to create the Case Template. 
 
-![image](https://github.com/reflexsoar/reflex-docs/blob/dev/docs/img/case_template_review.png)
+![image](/img/case_template_review.png)
 
 If everything looks good press Create. 
 
