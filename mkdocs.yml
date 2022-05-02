@@ -26,4 +26,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       linenums: true
-  - pymdownx.superfences  
+  - pymdownx.superfences 
+plugins:
+  - swagger-ui:
+    spec_url: "swagger.json"
+    outfile: "docs/api.md"
