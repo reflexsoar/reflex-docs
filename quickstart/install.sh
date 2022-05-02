@@ -408,7 +408,9 @@ PERSISTENTTOKEN=$(curl -X 'GET' \
   'https://localhost/api/v2.0/settings/generate_persistent_pairing_token' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
+echo $PERSISTENTTOKEN
 PERSISTENTTOKEN=$(echo $PERSISTENTTOKEN | jq .token)
+echo $PERSISTENTTOKEN
 sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
 curl -X 'POST' \
   --insecure \
@@ -440,6 +442,8 @@ curl -X 'PUT' \
 STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
 
 cp -f $INSTALLDIR/docker-compose3.yml $INSTALLDIR/docker-compose.yml
+
+cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 echo "Reflex install complete. You may now access reflex at https://localhost and make custom reports using OpenSearch Dashboards at https://localhost:5601"
 
