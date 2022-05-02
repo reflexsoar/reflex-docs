@@ -9,17 +9,18 @@ fi
 MISSINGSOFTWARE=()
 MISSINGSYSCTLSETTINGS=()
 MISSINGLIMITSSETTINGS=()
+STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
 FILE=/etc/os-release
 if [ -f "$FILE" ]; then
     FILECHECK=/etc/os-release
     OSNAME=`cat $FILECHECK | grep ^NAME= | cut -d"=" -f2 | tr -d '"'`
+    VERSIONRELEASE=`cat $FILECHECK | grep ^VERSION_ID= | cut -d"=" -f2 | tr -d '"'`
 fi
 if [ "$OSNAME" == "CentOS Stream" ]; then
   OSNAME="CentOS Linux"
 fi
-echo $OSNAME
 
 if [ "$OSNAME" != "AlmaLinux" ] && [ "$OSNAME" != "Amazon Linux" ] && [ "$OSNAME" != "CentOS Linux" ] && [ "$OSNAME" != "Ubuntu" ]; then
   echo "Unsupported operating system"
@@ -139,11 +140,19 @@ function pull_file_if_missing {
 function pull_down_reflex_files {
   pull_file_if_missing "custom-opensearch_dashboards.yml"
   pull_file_if_missing "docker-compose.yml"
+  pull_file_if_missing "docker-compose2.yml"
+  pull_file_if_missing "docker-compose3.yml"
   pull_file_if_missing "nginx.conf"
   pull_file_if_missing "opensearch_dashboards.crt"
   pull_file_if_missing "opensearch_dashboards.key"
   pull_file_if_missing "reflex-ui.crt"
   pull_file_if_missing "reflex-ui.key"
+  pull_file_if_missing "internal_users.yml"
+  pull_file_if_missing "roles.yml"
+  pull_file_if_missing "roles_mapping.yml"
+}
+function generate_random_password {
+  PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1 | head -c -1)
 }
 
 # Create application.conf if it does not exist
@@ -156,6 +165,38 @@ function build_application_conf {
     echo "SECRET_KEY = \"$SECRET_KEY\"" >> $INSTALLDIR/application.conf
     echo "SECURITY_PASSWORD_SALT = \"$SECURITY_PASSWORD_SALT\"" >> $INSTALLDIR/application.conf
   fi
+}
+function change_storage_password {
+  generate_random_password
+  case $1 in
+    "ADMINHASHCHANGEME")
+      STORAGEPASSWORDS+=("admin:$PASSWORD")
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose.yml
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose2.yml
+      sed -i "s/STORAGEADMINPASSWORD/$PASSWORD/g" $INSTALLDIR/docker-compose3.yml
+      ;;
+    "KIBANAHASHCHANGEME")
+      STORAGEPASSWORDS+=("kibanaserver:$PASSWORD")
+      sed -i "s/KIBANAPASSWORDCHANGEME/$PASSWORD/g" $INSTALLDIR/custom-opensearch_dashboards.yml
+      ;;
+    "KIBANAROHASHCHANGEME")
+      STORAGEPASSWORDS+=("kibanaro:$PASSWORD")
+      ;;
+    "LOGSTASHHASHCHANGEME")
+      STORAGEPASSWORDS+=("logstash:$PASSWORD")
+      ;;
+    "READALLHASHCHANGEME")
+      STORAGEPASSWORDS+=("readall:$PASSWORD")
+      ;;
+    "SNAPSHOTRESTORECHANGEME")
+      STORAGEPASSWORDS+=("snapshotrestore:$PASSWORD")
+      ;;
+  esac
+
+  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
+  sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
+  sed -i 's/\r//g' $INSTALLDIR/internal_users.yml
 }
 
 DEFAULTDIR=$(pwd)"/reflexsoar"
@@ -170,6 +211,7 @@ check_if_docker_repository_installed
 
 check_if_software_installed "git"
 check_if_software_installed "curl"
+check_if_software_installed "jq"
 if [ "$OSNAME" == "Amazon Linux" ]; then
   check_if_software_installed "docker"
 else
@@ -211,11 +253,16 @@ done
 
 check_if_file_missing "custom-opensearch_dashboards.yml"
 check_if_file_missing "docker-compose.yml"
+check_if_file_missing "docker-compose2.yml"
+check_if_file_missing "docker-compose3.yml"
 check_if_file_missing "nginx.conf"
 check_if_file_missing "opensearch_dashboards.crt"
 check_if_file_missing "opensearch_dashboards.key"
 check_if_file_missing "reflex-ui.crt"
 check_if_file_missing "reflex-ui.key"
+check_if_file_missing "internal_users.yml"
+check_if_file_missing "roles.yml"
+check_if_file_missing "roles_mapping.yml"
 
 echo ""
 echo "This installation script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."
@@ -237,9 +284,15 @@ else
 fi
 
 pull_down_reflex_files
+mkdir $INSTALLDIR/agent -p
+touch $INSTALLDIR/agent/config.txt
 
 if [ ! "$OSNAME" == "Ubuntu" ]; then
   install_software "yum-utils"
+fi
+
+if [ "$VERSIONRELEASE" == "7" ] && [ "$OSNAME" == "CentOS Linux" ]; then
+  install_software "epel-release"
 fi
 
 if [ $DOCKERREPOINSTALLED == 0 ]; then
@@ -269,6 +322,134 @@ done
 
 build_application_conf
 
+# Change passwords
+change_storage_password "ADMINHASHCHANGEME"
+change_storage_password "KIBANAHASHCHANGEME"
+change_storage_password "KIBANAROHASHCHANGEME"
+change_storage_password "LOGSTASHHASHCHANGEME"
+change_storage_password "READALLHASHCHANGEME"
+change_storage_password "SNAPSHOTRESTORECHANGEME"
+
+REPLACEMENT=$(echo $INSTALLDIR | sed "s@/@\\\/@g")
+
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose2.yml
+sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose3.yml
+
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
-echo "Reflex install complete"
+TIMEOUT=300
+TIMER=0
+CONTINUE="no"
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=opensearch | grep opensearch | wc -c) -eq 0 ]; then
+    echo "Waiting on OpenSearch to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ $TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for OpenSearch to start. There is an issue with the install."
+  exit 0
+fi
+
+docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
+
+cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
+
+TIMER=0
+CONTINUE="no"
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=reflex-api | grep reflex-api | wc -c) -eq 0 ]; then
+    echo "Waiting on Reflex API to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ $TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for Reflex API to start. There is an issue with the install."
+  exit 0
+fi
+
+cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+TIMER=0
+CONTINUE="no"
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
+  if [ $(docker ps -f health=healthy -f name=reflex-ui | grep reflex-ui | wc -c) -eq 0 ]; then
+    echo "Waiting on Reflex UI to start"
+    sleep 5
+    TIMER+=5
+  else
+    CONTINUE="yes"
+  fi
+done
+if [ $TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for Reflex UI to start. There is an issue with the install."
+  exit 0
+fi
+
+RESULT=$(curl -X 'POST' \
+  --insecure \
+  'https://localhost/api/v2.0/auth/login' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "email": "admin@reflexsoar.com",
+  "password": "reflex"
+}')
+ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
+PERSISTENTTOKEN=$(curl -X 'GET' \
+  --insecure \
+  'https://localhost/api/v2.0/settings/generate_persistent_pairing_token' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN")
+echo $PERSISTENTTOKEN
+PERSISTENTTOKEN=$(echo $PERSISTENTTOKEN | jq .token | tr -d '"')
+echo $PERSISTENTTOKEN
+sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
+curl -X 'POST' \
+  --insecure \
+  'https://localhost/api/v2.0/agent_group' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "DefaultAgentGroup",
+  "description": "A default agent group created by the quickstart install.sh script",
+  "inputs": []
+}'
+ADMINUUID=$(curl -X 'GET' \
+  --insecure \
+  'https://localhost/api/v2.0/user/me' \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN")
+ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
+generate_random_password
+curl -X 'PUT' \
+  --insecure \
+  "https://localhost/api/v2.0/user/$ADMINUUID" \
+  -H 'accept: application/json' \
+  -H "Authorization: Bearer $ACCESSTOKEN" \
+  -H 'Content-Type: application/json' \
+  -d "{
+  \"password\": \"$PASSWORD\"
+}"
+STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
+
+cp -f $INSTALLDIR/docker-compose3.yml $INSTALLDIR/docker-compose.yml
+
+cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
+
+echo "Reflex install complete. You may now access reflex at https://localhost and make custom reports using OpenSearch Dashboards at https://localhost:5601"
+
+echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
+echo ""
+for value in "${STORAGEPASSWORDS[@]}"
+do
+     echo "$value"
+done

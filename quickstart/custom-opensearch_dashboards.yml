@@ -1,8 +1,8 @@
 ---
 
 opensearch.hosts: https://opensearch:9200
-opensearch.username: "admin"
-opensearch.password: "admin"
+opensearch.username: "kibanaserver"
+opensearch.password: "KIBANAPASSWORDCHANGEME"
 opensearch.requestHeadersWhitelist: ["securitytenant","Authorization"]
 opensearch.ssl.verificationMode: none
 server.ssl.enabled: true
