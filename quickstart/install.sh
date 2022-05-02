@@ -188,7 +188,7 @@ function change_storage_password {
 
   STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g' | head -c -1 | tr -d '\n')
-  CHANGEME=$($1 | tr -d '\n')
+  CHANGEME=$(echo $1 | tr -d '\n' | tr -d '\r\n')
   sed -i "s/$CHANGEME/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
 }
 
