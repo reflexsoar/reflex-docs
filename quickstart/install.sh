@@ -409,7 +409,7 @@ PERSISTENTTOKEN=$(curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 echo $PERSISTENTTOKEN
-PERSISTENTTOKEN=$(echo $PERSISTENTTOKEN | jq .token)
+PERSISTENTTOKEN=$(echo $PERSISTENTTOKEN | jq .token | tr -d '"')
 echo $PERSISTENTTOKEN
 sed -i "s/PERSISTENTTOKENGOESHERE/$PERSISTENTTOKEN/g" $INSTALLDIR/docker-compose3.yml
 curl -X 'POST' \
