@@ -105,7 +105,7 @@ services:
       reflex-api:
         condition: service_healthy
     healthcheck:
-        test: [ "CMD", "curl", "--silent", "--fail", "https://localhost" ]
+        test: [ "CMD", "curl", "--silent", "--fail", "--insecure", "https://localhost" ]
         interval: 10s
         timeout: 10s
         retries: 10

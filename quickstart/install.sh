@@ -16,6 +16,7 @@ FILE=/etc/os-release
 if [ -f "$FILE" ]; then
     FILECHECK=/etc/os-release
     OSNAME=`cat $FILECHECK | grep ^NAME= | cut -d"=" -f2 | tr -d '"'`
+    VERSIONRELEASE=`cat $FILECHECK | grep ^VERSION_ID= | cut -d"=" -f2 | tr -d '"'`
 fi
 if [ "$OSNAME" == "CentOS Stream" ]; then
   OSNAME="CentOS Linux"
@@ -288,6 +289,10 @@ touch $INSTALLDIR/agent/config.txt
 
 if [ ! "$OSNAME" == "Ubuntu" ]; then
   install_software "yum-utils"
+fi
+
+if [ ! "$VERSIONRELEASE" == "7" ]; then
+  install_software "epel-release"
 fi
 
 if [ $DOCKERREPOINSTALLED == 0 ]; then
