@@ -8,7 +8,7 @@ Next click on New Case Template and the following Case Template Wizard will open
 
 ## Template Details
 
-![image](reflex-docs/docs/img/create_case_template.png)
+![image](../../img/create_case_template.png)
 
 Select the Organization from the drop-down list. You may only have one option in the list unless you are leveraging the multitenancy function of Reflex.
 
