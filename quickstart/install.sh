@@ -331,7 +331,7 @@ cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 TIMEOUT=300
 TIMER=0
 CONTINUE="no"
-while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
   if [ $(docker ps -f health=healthy -f name=opensearch | grep opensearch | wc -c) -eq 0 ]; then
     echo "Waiting on OpenSearch to start"
     sleep 5
@@ -340,7 +340,7 @@ while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
     CONTINUE="yes"
   fi
 done
-if [ TIMER -eq $TIMEOUT ]; then
+if [ $TIMER -eq $TIMEOUT ]; then
   echo "Timed out waiting for OpenSearch to start. There is an issue with the install."
   exit 0
 fi
@@ -351,7 +351,7 @@ cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
 
 TIMER=0
 CONTINUE="no"
-while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
+while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
   if [ $(docker ps -f health=healthy -f name=reflex-api | grep reflex-api | wc -c) -eq 0 ]; then
     echo "Waiting on Reflex API to start"
     sleep 5
@@ -360,8 +360,8 @@ while [ TIMER <= $TIMEOUT ] && [ "$CONTINUE" == "no" ]; do
     CONTINUE="yes"
   fi
 done
-if [ TIMER -eq $TIMEOUT ]; then
-  echo "Timed out waiting for Reflex-API to start. There is an issue with the install."
+if [ $TIMER -eq $TIMEOUT ]; then
+  echo "Timed out waiting for Reflex API to start. There is an issue with the install."
   exit 0
 fi
 
