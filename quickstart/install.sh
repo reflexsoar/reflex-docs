@@ -354,7 +354,7 @@ curl -X 'PUT' \
 }"
 STORAGEPASSWORDS+=("admin@reflexsoar.com:$PASSWORD")
 
-echo "Reflex install complete"
+echo "Reflex install complete. You may now access reflex at https://localhost and make custom reports using OpenSearch Dashboards at https://localhost:5601"
 
 echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
 echo ""
