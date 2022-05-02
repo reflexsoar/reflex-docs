@@ -291,7 +291,7 @@ if [ ! "$OSNAME" == "Ubuntu" ]; then
   install_software "yum-utils"
 fi
 
-if [ "$VERSIONRELEASE" == "7" ]; then
+if [ "$VERSIONRELEASE" == "7" ] && [ "$OSNAME" == "CentOS Linux" ]; then
   install_software "epel-release"
 fi
 
