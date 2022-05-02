@@ -1,5 +1,4 @@
-# Case Management
+# Overview 
 
-## Cases
 
 ## Case Templates
