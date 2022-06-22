@@ -15,6 +15,8 @@
 ### Enhancements
 
 - Event Bulk Ingest now uses a pool of Memcached clients instead of spawning a new client per bulk ingest request.  This is a performance enhancement and a bug fix, the previous method was exhausting available TCP ports.
+- Added documentation for Organizations
+- Added documentation for Detections
 
 ## 2022.06.00
 
