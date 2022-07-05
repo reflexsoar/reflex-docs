@@ -193,7 +193,7 @@ function change_storage_password {
       ;;
   esac
 
-  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:2.0.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
   sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
   sed -i 's/\r//g' $INSTALLDIR/internal_users.yml
