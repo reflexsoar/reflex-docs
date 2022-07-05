@@ -1,12 +1,3 @@
-_meta:
-  type: "nodesdn"
-  config_version: 2
-
-# Define nodesdn mapping name and corresponding values
-# cluster1:
-#   nodes_dn:
-#       - CN=*.example.com
-[opensearch@d168c5874d7c opensearch-security]$ cat whitelist.yml
 ---
 _meta:
   type: "whitelist"
