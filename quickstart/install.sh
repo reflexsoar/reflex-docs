@@ -150,6 +150,9 @@ function pull_down_reflex_files {
   pull_file_if_missing "internal_users.yml"
   pull_file_if_missing "roles.yml"
   pull_file_if_missing "roles_mapping.yml"
+  pull_file_if_missing "action_groups.yml"
+  pull_file_if_missing "nodes_dn.yml"
+  pull_file_if_missing "whitelist.yml"
 }
 function generate_random_password {
   PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1 | head -c -1)
