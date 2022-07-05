@@ -24,6 +24,7 @@ services:
       - INSTALLDIR/action_groups.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/action_groups.yml
       - INSTALLDIR/nodes_dn.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/nodes_dn.yml
       - INSTALLDIR/whitelist.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/whitelist.yml
+      - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
   opensearch-dashboards:
     container_name: opensearch-dashboards
     image: opensearchproject/opensearch-dashboards:2.0.1

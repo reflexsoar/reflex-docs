@@ -24,6 +24,7 @@ services:
       - INSTALLDIR/action_groups.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/action_groups.yml
       - INSTALLDIR/nodes_dn.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/nodes_dn.yml
       - INSTALLDIR/whitelist.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/whitelist.yml
+      - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
   memcached:
     container_name: memcached
     image: hasecuritysolutions/memcached:latest
