@@ -150,6 +150,10 @@ function pull_down_reflex_files {
   pull_file_if_missing "internal_users.yml"
   pull_file_if_missing "roles.yml"
   pull_file_if_missing "roles_mapping.yml"
+  pull_file_if_missing "action_groups.yml"
+  pull_file_if_missing "nodes_dn.yml"
+  pull_file_if_missing "whitelist.yml"
+  pull_file_if_missing "config.yml"
 }
 function generate_random_password {
   PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1 | head -c -1)
@@ -193,7 +197,7 @@ function change_storage_password {
       ;;
   esac
 
-  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:1.3.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:2.0.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
   sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
   sed -i 's/\r//g' $INSTALLDIR/internal_users.yml
@@ -263,6 +267,10 @@ check_if_file_missing "reflex-ui.key"
 check_if_file_missing "internal_users.yml"
 check_if_file_missing "roles.yml"
 check_if_file_missing "roles_mapping.yml"
+check_if_file_missing "action_groups.yml"
+check_if_file_missing "nodes_dn.yml"
+check_if_file_missing "whitelist.yml"
+check_if_file_missing "config.yml"
 
 echo ""
 echo "This installation script is to be used at your own discretion. H & A Security Solutions LLC is not responsible for any damages and expresses no warranties for anything related to the use of this installation script. ReflexSOAR comes with no guarantees or warranties of any sorts, either written or implied. All liabilities are assumed by the individual and their respective organization that is using this script. This installation script does not establish highly-available services. No redundancy is provided. Services are provided as-is."

@@ -8,17 +8,19 @@ _meta:
 
 # Define your internal users here
 
+## Demo users
+
 admin:
   hash: "ADMINHASHCHANGEME"
-  reserved: false
+  reserved: true
   backend_roles:
   - "admin"
-  description: "admin user"
+  description: "Demo admin user"
 
 kibanaserver:
   hash: "KIBANAHASHCHANGEME"
-  reserved: false
-  description: "OpenSearch Dashboards user"
+  reserved: true
+  description: "Demo OpenSearch Dashboards user"
 
 kibanaro:
   hash: "KIBANAROHASHCHANGEME"
@@ -30,25 +32,25 @@ kibanaro:
     attribute1: "value1"
     attribute2: "value2"
     attribute3: "value3"
-  description: "OpenSearch Dashboards read only user"
+  description: "Demo OpenSearch Dashboards read only user"
 
 logstash:
   hash: "LOGSTASHHASHCHANGEME"
   reserved: false
   backend_roles:
   - "logstash"
-  description: "logstash user"
+  description: "Demo logstash user"
 
 readall:
   hash: "READALLHASHCHANGEME"
   reserved: false
   backend_roles:
   - "readall"
-  description: "readall user"
+  description: "Demo readall user"
 
 snapshotrestore:
   hash: "SNAPSHOTRESTORECHANGEME"
   reserved: false
   backend_roles:
   - "snapshotrestore"
-  description: "snapshotrestore user"
+  description: "Demo snapshotrestore user"
