@@ -349,6 +349,13 @@ sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose2.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose3.yml
 
+echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
+echo ""
+for value in "${STORAGEPASSWORDS[@]}"
+do
+     echo "$value"
+done
+
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 TIMEOUT=300
