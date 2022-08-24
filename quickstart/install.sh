@@ -454,7 +454,9 @@ ADMINUUID=$(curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
+
 generate_random_password
+
 curl -X 'PUT' \
   --insecure \
   "https://localhost/api/v2.0/user/$ADMINUUID" \
