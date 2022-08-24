@@ -2,7 +2,7 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.0.1
+    image: hasecuritysolutions/opensearch:2.2.0
     ports:
       - 9200:9200
     environment:
@@ -27,7 +27,7 @@ services:
       - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
   opensearch-dashboards:
     container_name: opensearch-dashboards
-    image: opensearchproject/opensearch-dashboards:2.0.1
+    image: opensearchproject/opensearch-dashboards:2.2.0
     depends_on:
       opensearch:
         condition: service_healthy
@@ -82,7 +82,7 @@ services:
       - REFLEX_THREAT_POLLER_MEMCACHED_HOST=memcached
       - REFLEX_THREAT_POLLER_MEMCACHED_PORT=11211
       - REFLEX_THREAT_POLLER_MEMCACHED_TTL=60
-    image: hasecuritysolutions/reflex-api:version-2022.06.00
+    image: hasecuritysolutions/reflex-api:v2022.06.00-hf1
     depends_on:
       opensearch:
         condition: service_healthy
