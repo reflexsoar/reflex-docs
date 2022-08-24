@@ -426,6 +426,7 @@ RESULT=$(curl -X 'POST' \
   "email": "admin@reflexsoar.com",
   "password": "reflex"
 }')
+
 ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
 PERSISTENTTOKEN=$(curl -X 'GET' \
   --insecure \
