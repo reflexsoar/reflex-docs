@@ -6,8 +6,4 @@
 
 ## Metric Change Rule
 
-## Field Mismatch
-
-## Spike Rule
-
-## Flatline Rule
+## New Term Rule
