@@ -2,7 +2,7 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.0.1
+    image: hasecuritysolutions/opensearch:2.2.0
     ports:
       - 9200:9200
     environment:
@@ -27,7 +27,7 @@ services:
       - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
   opensearch-dashboards:
     container_name: opensearch-dashboards
-    image: opensearchproject/opensearch-dashboards:2.0.1
+    image: opensearchproject/opensearch-dashboards:2.2.0
     depends_on:
       opensearch:
         condition: service_healthy
@@ -82,7 +82,7 @@ services:
       - REFLEX_THREAT_POLLER_MEMCACHED_HOST=memcached
       - REFLEX_THREAT_POLLER_MEMCACHED_PORT=11211
       - REFLEX_THREAT_POLLER_MEMCACHED_TTL=60
-    image: hasecuritysolutions/reflex-api:version-2022.06.00
+    image: hasecuritysolutions/reflex-api:dev
     depends_on:
       opensearch:
         condition: service_healthy
@@ -104,7 +104,7 @@ services:
         max-file: "10"
   reflex-ui:
     container_name: reflex-ui
-    image: hasecuritysolutions/reflex-ui:version-2022.06.00
+    image: hasecuritysolutions/reflex-ui:dev
     depends_on:
       reflex-api:
         condition: service_healthy
@@ -128,7 +128,7 @@ services:
         max-file: "10"
   reflex-agent:
     container_name: reflex-agent
-    image: hasecuritysolutions/reflex-agent:version-2022.06.00
+    image: hasecuritysolutions/reflex-agent:dev
     environment:
       - REFLEX_AGENT_PAIR_MODE=true
       - REFLEX_API_HOST=https://reflex-ui

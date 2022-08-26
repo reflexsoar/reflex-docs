@@ -170,6 +170,11 @@ function build_application_conf {
     echo "SECURITY_PASSWORD_SALT = \"$SECURITY_PASSWORD_SALT\"" >> $INSTALLDIR/application.conf
   fi
 }
+
+echo "Installing htpasswd tool. Trying apache2-utils and httpd-tools. One of these will error"
+check_if_software_installed "apache2-utils"
+check_if_software_installed "httpd-tools"
+
 function change_storage_password {
   generate_random_password
   case $1 in
@@ -197,7 +202,7 @@ function change_storage_password {
       ;;
   esac
 
-  STORAGEPASSWORD=$(docker run -it --rm -e JAVA_HOME=/usr/share/opensearch/jdk opensearchproject/opensearch:2.0.1 /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p $PASSWORD)
+  STORAGEPASSWORD=$(htpasswd -bnBC 10 "" $PASSWORD | tr -d ':\n')
   STORAGEPASSWORD=$(echo $STORAGEPASSWORD | sed 's/\//\\\//g')
   sed -i "s/$1/$STORAGEPASSWORD/g" $INSTALLDIR/internal_users.yml
   sed -i 's/\r//g' $INSTALLDIR/internal_users.yml
@@ -344,6 +349,13 @@ sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose2.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose3.yml
 
+echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
+echo ""
+for value in "${STORAGEPASSWORDS[@]}"
+do
+     echo "$value"
+done
+
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
 TIMEOUT=300
@@ -414,6 +426,7 @@ RESULT=$(curl -X 'POST' \
   "email": "admin@reflexsoar.com",
   "password": "reflex"
 }')
+
 ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
 PERSISTENTTOKEN=$(curl -X 'GET' \
   --insecure \
@@ -441,7 +454,9 @@ ADMINUUID=$(curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
+
 generate_random_password
+
 curl -X 'PUT' \
   --insecure \
   "https://localhost/api/v2.0/user/$ADMINUUID" \
