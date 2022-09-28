@@ -380,9 +380,9 @@ OPENSEARCH_ONLINE=0
 
 while [ $OPENSEARCH_ONLINE -eq 0 ]
 do
-  OSHEALTH=`curl --insecure -u admin:$OSPASSWORD https://localhost:9200/_cat/health?h=status`
+  OSHEALTH=`curl --insecure -u admin:admin https://localhost:9200/_cat/health?h=status`
   if [ "$OSHEALTH" = "green" ] || [ "$OSHEALTH" = "yellow" ]; then
-    $OPENSEARCH_ONLINE=1
+    OPENSEARCH_ONLINE=1
   else
     sleep 1
   fi
