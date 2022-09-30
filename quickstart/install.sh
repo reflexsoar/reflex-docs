@@ -337,6 +337,7 @@ build_application_conf
 
 # Change passwords
 change_storage_password "ADMINHASHCHANGEME"
+OSPASSWORD=$PASSWORD
 change_storage_password "KIBANAHASHCHANGEME"
 change_storage_password "KIBANAROHASHCHANGEME"
 change_storage_password "LOGSTASHHASHCHANGEME"
@@ -348,6 +349,13 @@ REPLACEMENT=$(echo $INSTALLDIR | sed "s@/@\\\/@g")
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose2.yml
 sed -i "s/INSTALLDIR/$REPLACEMENT/g" $INSTALLDIR/docker-compose3.yml
+
+echo "Passwords generated during installation. Please record these. Also, please securely backup $INSTALLDIR. Especially the file $INSTALLDIR\application.conf"
+echo ""
+for value in "${STORAGEPASSWORDS[@]}"
+do
+     echo "$value"
+done
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
 
@@ -368,7 +376,17 @@ if [ $TIMER -eq $TIMEOUT ]; then
   exit 0
 fi
 
-sleep 5
+OPENSEARCH_ONLINE=0
+
+while [ $OPENSEARCH_ONLINE -eq 0 ]
+do
+  OSHEALTH=`curl --insecure -u admin:admin https://localhost:9200/_cat/health?h=status`
+  if [ "$OSHEALTH" = "green" ] || [ "$OSHEALTH" = "yellow" ]; then
+    OPENSEARCH_ONLINE=1
+  else
+    sleep 1
+  fi
+done
 
 docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
 
@@ -419,6 +437,7 @@ RESULT=$(curl -X 'POST' \
   "email": "admin@reflexsoar.com",
   "password": "reflex"
 }')
+
 ACCESSTOKEN=$(echo $RESULT | jq .access_token | tr -d '"')
 PERSISTENTTOKEN=$(curl -X 'GET' \
   --insecure \
@@ -446,7 +465,9 @@ ADMINUUID=$(curl -X 'GET' \
   -H 'accept: application/json' \
   -H "Authorization: Bearer $ACCESSTOKEN")
 ADMINUUID=$(echo $ADMINUUID | jq .uuid | tr -d '"')
+
 generate_random_password
+
 curl -X 'PUT' \
   --insecure \
   "https://localhost/api/v2.0/user/$ADMINUUID" \
