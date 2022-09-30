@@ -37,7 +37,7 @@ parser.add_argument(
     help="OpenSearch port to connect to"
 )
 args = parser.parse_args()
-admin = args.admin
+admin = args.user
 password = args.password
 host = args.host
 port = args.port
