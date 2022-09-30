@@ -8,6 +8,25 @@ The below guide is the exact steps to replicate the ReflexSOAR tour/workshop fro
 
 For the sake of the Workshop and time see [Getting Started](../getting-started.md)
 
+## Setting up the VM
+
+1. Extract the contents of reflex-sans-blue-2022.zip
+2. When opening the VM if you are prompted with `I moved it` or `I copied it` select `I copied it`
+3. Log in to the VM using the username `reflexsys` and password `sansblue2022`
+4. Get the IP of the machine by typing `ip a`, you will need this later
+5. Confirm all services are started by running `docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports }}'` it should look like below
+
+```
+NAMES                   STATUS                            PORTS
+reflex-agent            Up 3 minutes
+reflex-ui               Up 3 minutes (healthy)            80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp
+reflex-api              Up About a minute (healthy)
+memcached               Up 3 minutes (health: starting)   11211/tcp
+opensearch-dashboards   Up 3 minutes                      0.0.0.0:5601->5601/tcp, :::5601->5601/tcp
+opensearch              Up 3 minutes (healthy)            9300/tcp, 9600/tcp, 0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9650/tcp
+```
+6. Log out of the VM
+
 ## Logging in to ReflexSOAR
 
 !!! note Default Credentials
@@ -24,7 +43,7 @@ For the sake of the Workshop and time see [Getting Started](../getting-started.m
 2. Click `New Credential`
 3. Select the `Default Organization`
 4. Provide a friendly name for the credential, e.g. `OpenSearch`
-5. Enter the credentials to connect to OpenSearch, username `opensearch` and password `sansblue2022`
+5. Enter the credentials to connect to OpenSearch, username `admin` and password `YCEUpbZ5hxwEHcywjUwSqUkC8`
 6. Add a description to the credential e.g. `Used to connect to OpenSearch indices`
 7. Save the credential
 8. Navigate to Settings > Inputs
@@ -46,7 +65,7 @@ Setting | Value
 --- | ---
 Elasticsearch Hosts | https://opensearch:9200
 Distro | opensearch
-Alert Index | 
+Alert Index | suricata-ids
 
 ## Working the Event Queue
 
