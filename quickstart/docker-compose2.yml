@@ -82,7 +82,7 @@ services:
       - REFLEX_THREAT_POLLER_MEMCACHED_HOST=memcached
       - REFLEX_THREAT_POLLER_MEMCACHED_PORT=11211
       - REFLEX_THREAT_POLLER_MEMCACHED_TTL=60
-    image: hasecuritysolutions/reflex-api:dev
+    image: hasecuritysolutions/reflex-api:v2022.06.00
     depends_on:
       opensearch:
         condition: service_healthy
@@ -104,7 +104,7 @@ services:
         max-file: "10"
   reflex-ui:
     container_name: reflex-ui
-    image: hasecuritysolutions/reflex-ui:dev
+    image: hasecuritysolutions/reflex-ui:v2022.06.00
     depends_on:
       reflex-api:
         condition: service_healthy
