@@ -72,7 +72,7 @@ def get_data_from_file(ndjson_file):
         list: List of JSON contents
     """
     data = []
-    with open(ndjson_file, encoding=utf_8) as file:
+    with open(ndjson_file, encoding='utf-8') as file:
         for line in file.readlines():
             record = {}
             record['_index'] = 'suricata-ids'
