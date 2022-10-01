@@ -171,7 +171,7 @@ and expand observables (
   # Should be an IP but not RFC1918 and be the destination_ip
   data_type eq "ip"
   and value not incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0./12"]
-  and tags ="destination_ip"
+  and tags = "destination_ip"
 )
 ```
 
