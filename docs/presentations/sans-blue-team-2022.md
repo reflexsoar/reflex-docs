@@ -134,11 +134,9 @@ source.port | source_port | port | 3 | source_port
 
 ```python
 observables exists and expand observables (
-     data_type eq "ip" and (
-        value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"] and tags = "source_ip"
-    ) and (
-        value not incidr ["10.0.0.0/8"]
-    )
+     data_type eq "ip"
+     and value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"]
+     and tags = "source_ip"
 )
 ```
 
