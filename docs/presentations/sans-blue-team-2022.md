@@ -109,7 +109,71 @@ source.port | source_port | port | 3 | source_port
 
 ## Working the Event Queue
 
-## Tagging/Routing Events with Event Rules
+1. Navigate to Events > Queue
+2. Explore the Event Filter Bar
+    a. Can filter by status, title, observable, date, tags, etc.
+3. Explort the Event Card
+    a. View details about the event using the Magnifying Glass Icon
+    b. Create a case from the event using the Briefcase Icon
+    c. Leave a comment on the evnet using the Comment Bubble Icon
+    d. Dismiss the event using the Ear Icon (red)
+    e. Create a new Event Rule using the Graph Icon (blue)
+
+## Tagging Events with Event Rules
+
+1. Navigate to Events > Event Rules
+2. Click New Event Rule
+3. Select the `Default Organization`
+4. Name the rule `Tag all RFC1918 sourced events`
+5. Description `Tag all events that originate from an RFC1918 IP address`
+6. Rule Active to `Yes`
+7. Run Rule Retroactively to `Yes`
+8. Priority `1`
+9. Click next, skip expiration settings
+10. On the Event Query page enter the following RQL query
+
+```python
+observables exists and expand observables (
+     data_type eq "ip" and (
+        value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"] and tags = "source_ip"
+    ) and (
+        value not incidr ["10.0.0.0/8"]
+    )
+)
+```
+
+11. Select `Include Events`
+12. Select `Test Rule`
+    a. If the rule returns 0 hits, the timeframe may need to be expanded or you have a syntax error
+13. Click `Next`
+14. Toggle `Add Tags`
+15. Enter the tags you wish to add to the event e.g. `inside-source`
+16. Click next until you hit the `Review` page
+17. Click Create
+
+### Advanced Query
+Tag events that come from an RFC1918 address to a non-RF1918 address as `direction: outbound`
+
+```python
+# Make sure the event has observables
+observables exists
+
+# Expand the observables field so we can evaluate all properties on each observable
+and expand observables (
+     # The data type should be an ip and not be RFC1918 and be the source_ip
+     data_type eq "ip"
+     and value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"]
+     and tags = "source_ip"
+)
+
+# Expand the observables field again to check the destination_ip
+and expand observables (
+  # Should be an IP but not RFC1918 and be the destination_ip
+  data_type eq "ip"
+  and value not incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0./12"]
+  and tags ="destination_ip"
+)
+```
 
 ## Tuning the Noise with Event Rules
 
