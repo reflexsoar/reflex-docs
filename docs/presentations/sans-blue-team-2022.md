@@ -8,6 +8,13 @@ The below guide is the exact steps to replicate the ReflexSOAR tour/workshop fro
 
 For the sake of the Workshop and time see [Getting Started](../getting-started.md)
 
+## Credentials for the Demo
+
+```
+admin:cxYh51XvmZqQF2LPm6DD8UWsc  # Opensearch Admin
+admin@reflexsoar.com:HFfKGsBauuuW0LkEd238AMDMC  # ReflexSOAR Admin
+```
+
 ## Setting up the VM
 
 1. Extract the contents of reflex-sans-blue-2022.zip
@@ -66,6 +73,39 @@ Setting | Value
 Elasticsearch Hosts | https://opensearch:9200
 Distro | opensearch
 Alert Index | suricata-ids
+Lucene Filter | *
+HTTP Scheme | https
+Auth Method | http_auth
+Verify Hostname | no
+TLS Verification Mode| none
+Event Title Field | signature
+Description Field | alert.rule
+Reference Field | _id
+Severity Field | severity
+Original Date Field | @timestamp
+Tag Fields | category, in_iface, host.hostname, proto
+Signature Fields | source.ip, destination.ip, destination.port, signature, proto, rev
+Search Size | 200
+Search Period | 30d
+
+18. Create the following field mappings
+
+Field | Alias | Data Type | TLP | Tags
+--- | --- | --- | --- | ---
+source.ip | source_ip | ip | 3 | source_ip
+destination.ip | destination_ip | ip | 3 | destination_ip
+destination.port | destination_port | port | 3 | destination_port
+source.port | source_port | port | 3 | source_port
+
+19. Review the configuration
+20. Click Create
+
+## Assign an Input to an Agent
+
+1. Navigate to Settings > Agents > Agent Groups
+2. Select the edit button on DefaultAgentGroup
+3. Under inputs select `Suricata Alerts`
+4. Click Edit
 
 ## Working the Event Queue
 
