@@ -11,8 +11,8 @@ For the sake of the Workshop and time see [Getting Started](../getting-started.m
 ## Credentials for the Demo
 
 ```
-admin:cxYh51XvmZqQF2LPm6DD8UWsc  # Opensearch Admin
-admin@reflexsoar.com:HFfKGsBauuuW0LkEd238AMDMC  # ReflexSOAR Admin
+admin:AnC95oyJo7MkF4VChjbaHCppP  # Opensearch Admin
+admin@reflexsoar.com:VQHwWFc9stjLWnWW7LqW2tguX  # ReflexSOAR Admin
 ```
 
 ## Setting up the VM
@@ -41,7 +41,7 @@ opensearch              Up 3 minutes (healthy)            9300/tcp, 9600/tcp, 0.
 
 1. Launch your browser
 2. Point your browser to https://you.rvm.ipa.ddr/
-3. Log in with `admin@reflexsoar.com` and password `sansblue2022`
+3. Log in with `admin@reflexsoar.com` and password `VQHwWFc9stjLWnWW7LqW2tguX`
 4. You should land on the Dashboard page
    
 ## Creating an Input
@@ -50,7 +50,7 @@ opensearch              Up 3 minutes (healthy)            9300/tcp, 9600/tcp, 0.
 2. Click `New Credential`
 3. Select the `Default Organization`
 4. Provide a friendly name for the credential, e.g. `OpenSearch`
-5. Enter the credentials to connect to OpenSearch, username `admin` and password `YCEUpbZ5hxwEHcywjUwSqUkC8`
+5. Enter the credentials to connect to OpenSearch, username `admin` and password `AnC95oyJo7MkF4VChjbaHCppP`
 6. Add a description to the credential e.g. `Used to connect to OpenSearch indices`
 7. Save the credential
 8. Navigate to Settings > Inputs
@@ -115,7 +115,7 @@ source.port | source_port | port | 3 | source_port
 3. Explort the Event Card
     a. View details about the event using the Magnifying Glass Icon
     b. Create a case from the event using the Briefcase Icon
-    c. Leave a comment on the evnet using the Comment Bubble Icon
+    c. Leave a comment on the event using the Comment Bubble Icon
     d. Dismiss the event using the Ear Icon (red)
     e. Create a new Event Rule using the Graph Icon (blue)
 
@@ -175,6 +175,20 @@ and expand observables (
 
 ## Tuning the Noise with Event Rules
 
+Filter out the vulnerability scanner
+
+```python
+observables exists and expand observables ( data_type eq "ip" AND value eq "10.100.0.59")
+```
+
+## Create a Case Template
+
 ## Working a Case 
 
 ## Leveraging Case Templates
+
+# Notes
+
+## Interesting Systems
+
+- 10.100.0.59 is a Nessus vulnerability scanner
