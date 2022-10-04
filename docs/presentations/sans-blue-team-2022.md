@@ -174,6 +174,26 @@ Filter out the vulnerability scanner
 observables exists and expand observables ( data_type eq "ip" AND value eq "10.100.0.59")
 ```
 
+## Tuning the Noise with Intel Lists
+
+1. Navigate to Intel > List Manager
+2. Click `New List`
+3. Select the `Default Organization`
+4. Name the list `Vulnerability Scanner`
+5. Select the List Type `values` and a data type of `ip`
+6. Skip to the Values section, enter `10.100.0.59`
+7. Skip to Review
+8. Click Create
+10. Follow previous steps for Event Rule creation with the following query
+
+```python
+observables exists
+and expand observables (
+  data_type = "ip"
+  and intel(value, "Vulnerability Scanner")
+)
+```
+
 ## Create a Case Template
 
 ## Working a Case 
