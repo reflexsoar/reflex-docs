@@ -133,10 +133,11 @@ source.port | source_port | port | 3 | source_port
 10. On the Event Query page enter the following RQL query
 
 ```python
-observables exists and expand observables (
-     data_type eq "ip"
-     and value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"]
-     and tags = "source_ip"
+observables exists
+and expand observables (
+    data_type eq "ip" 
+    and value|is_private is true
+    and tags = "source_ip"
 )
 ```
 
@@ -145,7 +146,7 @@ observables exists and expand observables (
     a. If the rule returns 0 hits, the timeframe may need to be expanded or you have a syntax error
 13. Click `Next`
 14. Toggle `Add Tags`
-15. Enter the tags you wish to add to the event e.g. `inside-source`
+15. Enter the tags you wish to add to the event e.g. `source: internal`
 16. Click next until you hit the `Review` page
 17. Click Create
 
@@ -153,23 +154,15 @@ observables exists and expand observables (
 Tag events that come from an RFC1918 address to a non-RF1918 address as `direction: outbound`
 
 ```python
-# Make sure the event has observables
 observables exists
-
-# Expand the observables field so we can evaluate all properties on each observable
 and expand observables (
-     # The data type should be an ip and not be RFC1918 and be the source_ip
-     data_type eq "ip"
-     and value incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0/12"]
-     and tags = "source_ip"
-)
-
-# Expand the observables field again to check the destination_ip
-and expand observables (
-  # Should be an IP but not RFC1918 and be the destination_ip
-  data_type eq "ip"
-  and value not incidr ["10.0.0.0/8","192.168.0.0/16","172.16.0.0./12"]
-  and tags = "destination_ip"
+    data_type eq "ip" 
+    and value|is_private is true
+    and tags = "source_ip"
+) and expand observables (
+    data_type eq "ip"
+    and value|is_private is false
+    and tags = "destination_ip"
 )
 ```
 
