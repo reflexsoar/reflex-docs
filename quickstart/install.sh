@@ -493,3 +493,5 @@ for value in "${STORAGEPASSWORDS[@]}"
 do
      echo "$value"
 done
+
+sed -i '/REFLEX_AGENT_PAIR_MODE=true/d' docker-compose.yml
