@@ -12,13 +12,12 @@ MISSINGLIMITSSETTINGS=()
 STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
-FILE=/etc/os-release
-if [ -f "$FILE" ]; then
     FILECHECK=/etc/os-release
+if [ -f "$FILECHECK" ]; then
     OSNAME=`cat $FILECHECK | grep ^NAME= | cut -d"=" -f2 | tr -d '"'`
     VERSIONRELEASE=`cat $FILECHECK | grep ^VERSION_ID= | cut -d"=" -f2 | tr -d '"'`
 fi
-if [ "$OSNAME" == "CentOS Stream" ]; then
+if [ "$OSNAME" == "CentOS Stream" ] || [ "$OSNAME" == "Rocky Linux" ] ; then
   OSNAME="CentOS Linux"
 fi
 
