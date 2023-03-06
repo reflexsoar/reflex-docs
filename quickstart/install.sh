@@ -12,19 +12,18 @@ MISSINGLIMITSSETTINGS=()
 STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
-FILE=/etc/os-release
-if [ -f "$FILE" ]; then
-    FILECHECK=/etc/os-release
+FILECHECK=/etc/os-release
+if [ -f "$FILECHECK" ]; then
     OSNAME=`cat $FILECHECK | grep ^NAME= | cut -d"=" -f2 | tr -d '"'`
     VERSIONRELEASE=`cat $FILECHECK | grep ^VERSION_ID= | cut -d"=" -f2 | tr -d '"'`
 fi
-if [ "$OSNAME" == "CentOS Stream" ]; then
+if [ "$OSNAME" == "CentOS Stream" ] || [ "$OSNAME" == "Rocky Linux" ] ; then
   OSNAME="CentOS Linux"
 fi
 
 if [ "$OSNAME" != "AlmaLinux" ] && [ "$OSNAME" != "Amazon Linux" ] && [ "$OSNAME" != "CentOS Linux" ] && [ "$OSNAME" != "Ubuntu" ]; then
   echo "Unsupported operating system"
-  exit 0
+  exit 1
 fi
 
 function check_if_software_installed {
@@ -293,7 +292,7 @@ if [ "$USERINPUT" == "y" ] || [ "$USERINPUT" == "yes" ]; then
   echo "Proceeding with installation"
 else
   echo "Installation aborted"
-  exit 0
+  exit 1
 fi
 
 pull_down_reflex_files
@@ -373,7 +372,7 @@ while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
 done
 if [ $TIMER -eq $TIMEOUT ]; then
   echo "Timed out waiting for OpenSearch to start. There is an issue with the install."
-  exit 0
+  exit 1
 fi
 
 OPENSEARCH_ONLINE=0
@@ -405,7 +404,7 @@ while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
 done
 if [ $TIMER -eq $TIMEOUT ]; then
   echo "Timed out waiting for Reflex API to start. There is an issue with the install."
-  exit 0
+  exit 1
 fi
 
 cd $INSTALLDIR && /usr/local/bin/docker-compose up -d
@@ -423,7 +422,7 @@ while [[ $TIMER -le $TIMEOUT ]] && [ "$CONTINUE" == "no" ]; do
 done
 if [ $TIMER -eq $TIMEOUT ]; then
   echo "Timed out waiting for Reflex UI to start. There is an issue with the install."
-  exit 0
+  exit 1
 fi
 
 sleep 5
