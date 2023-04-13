@@ -2,7 +2,7 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.2.0
+    image: hasecuritysolutions/opensearch:2.6.0
     ports:
       - 9200:9200
     environment:
@@ -27,7 +27,7 @@ services:
       - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
   opensearch-dashboards:
     container_name: opensearch-dashboards
-    image: opensearchproject/opensearch-dashboards:2.2.0
+    image: opensearchproject/opensearch-dashboards:2.6.0
     depends_on:
       opensearch:
         condition: service_healthy

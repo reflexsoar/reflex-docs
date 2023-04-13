@@ -2,7 +2,7 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.2.0
+    image: hasecuritysolutions/opensearch:2.6.0
     ports:
       - 9200:9200
     environment:
