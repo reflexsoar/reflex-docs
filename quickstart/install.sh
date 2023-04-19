@@ -1,9 +1,9 @@
 #!/bin/bash
 if [ "$1" == "dev" ]; then
   echo "Dev build set"
-  BUILDMODE="dev"
+  BUILDMODE="sec555"
 else
-  BUILDMODE="main"
+  BUILDMODE="sec555"
 fi
 
 MISSINGSOFTWARE=()
