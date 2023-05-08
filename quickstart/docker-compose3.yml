@@ -7,7 +7,7 @@ services:
       - 9200:9200
     environment:
       - discovery.type=single-node
-      - OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g
+      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
     healthcheck:
         test: [ "CMD", "nc", "-z", "-v", "127.0.0.1", "9300" ]
         interval: 30s
