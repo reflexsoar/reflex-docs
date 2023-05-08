@@ -2,12 +2,12 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.6.0
+    image: hasecuritysolutions/opensearch:2.7.0
     ports:
       - 9200:9200
     environment:
       - discovery.type=single-node
-      - OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g
+      - OPENSEARCH_JAVA_OPTS=-Xms2g -Xmx2g
     healthcheck:
         test: [ "CMD", "nc", "-z", "-v", "127.0.0.1", "9300" ]
         interval: 30s
