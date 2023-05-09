@@ -23,8 +23,8 @@ Agent Groups allow you to group Agents into collections that plugins can use to 
 8. (Optional) Select Agent policies if necessary
 
 ## Agent Health Checks
-The Housekeeper service will periodically run health checks against Agents to ensure they are functioning properly. If, for example, a `poller` Agent has reported no events in X amount of time, Housekeeper will flag the Agent as `Unhealthy` due to `Events Silent`.
+The Housekeeper service will periodically run health checks against Agents to ensure they are functioning properly. If, for example, a `poller` Agent has reported no events in `x` amount of time, Housekeeper will flag the Agent as `Unhealthy` due to `Events Silent`. This could indicate an issue with the Agent itself or could be due to a general lack of alerts.
 
-Housekeeper can also prune/delete Agents that have been inactive for the defined amount of time in the `REFLEX_AGENT_PRUNE_LIFETIME` variable. By default, this is set to `7` days after the last heartbeat.
+Housekeeper can also prune/delete Agents that have been inactive for the defined amount of time in the `REFLEX_AGENT_PRUNE_LIFETIME` variable. By default, this is set to `7` days after the last heartbeat was detected.
 
 More information about the Housekeeper service can be found here: [Housekeeper Service](docs/services/housekeeper.md).
