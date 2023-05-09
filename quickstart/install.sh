@@ -154,6 +154,7 @@ function pull_down_reflex_files {
   pull_file_if_missing "nodes_dn.yml"
   pull_file_if_missing "whitelist.yml"
   pull_file_if_missing "config.yml"
+  pull_file_if_missing "tenants.yml"
 }
 function generate_random_password {
   PASSWORD=$(cat /dev/urandom | tr -dc '[:alnum:]' | fold -w ${1:-25} | head -n 1 | head -c -1)
