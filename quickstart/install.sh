@@ -12,13 +12,6 @@ MISSINGLIMITSSETTINGS=()
 STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
-if [[ $OPENSEARCH_JAVA_HEAP && $OPENSEARCH_JAVA_HEAP -ge 4 ]]; then
-  echo "OPENSEARCH_JAVA_HEAP=$OPENSEARCH_JAVA_HEAP" > reflexsoar/.env
-else
-  echo "OPENSEARCH_JAVA_HEAP=4" > reflexsoar/.env
-fi
-echo "OPENSEARCH_STACK_VERSION=2.7.0" >> reflexsoar/.env
-
 FILE=/etc/os-release
 if [ -f "$FILE" ]; then
     FILECHECK=/etc/os-release
@@ -222,6 +215,13 @@ if [ "$INSTALLDIR" == "" ]; then
   INSTALLDIR=$DEFAULTDIR
 fi
 mkdir -p $INSTALLDIR
+
+if [[ $OPENSEARCH_JAVA_HEAP && $OPENSEARCH_JAVA_HEAP -ge 4 ]]; then
+  echo "OPENSEARCH_JAVA_HEAP=$OPENSEARCH_JAVA_HEAP" > $INSTALLDIR/.env
+else
+  echo "OPENSEARCH_JAVA_HEAP=4" > $INSTALLDIR/.env
+fi
+echo "OPENSEARCH_STACK_VERSION=2.7.0" >> $INSTALLDIR/.env
 
 check_if_docker_repository_installed
 
