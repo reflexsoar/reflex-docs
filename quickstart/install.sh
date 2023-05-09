@@ -1,10 +1,19 @@
 #!/bin/bash
-if [ "$1" == "dev" ]; then
-  echo "Dev build set"
-  BUILDMODE="sec555"
-else
-  BUILDMODE="sec555"
-fi
+
+case "$1" in
+  sec555)
+    echo "Prod build set"
+    BUILDMODE="sec555"
+    ;;
+  dev)
+    echo "Dev build set"
+    BUILDMODE="dev"
+    ;;
+  *)
+    echo "Defaulting to main build"
+    BUILDMODE="main"
+    ;;
+esac
 
 MISSINGSOFTWARE=()
 MISSINGSYSCTLSETTINGS=()
