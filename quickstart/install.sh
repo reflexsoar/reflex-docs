@@ -1,8 +1,8 @@
 #!/bin/bash
 case "$1" in
   sec555)
-    echo "Prod build set"
-    BUILDMODE="prod"
+    echo "sec555 build set"
+    BUILDMODE="sec555"
     ;;
   dev)
     echo "Dev build set"
