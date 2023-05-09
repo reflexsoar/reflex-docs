@@ -1,4 +1,5 @@
 #!/bin/bash
+
 case "$1" in
   sec555)
     echo "sec555 build set"
