@@ -28,7 +28,7 @@ services:
       - INSTALLDIR/tenants.yml:/usr/share/opensearch/config/opensearch-security/tenants.yml
   memcached:
     container_name: memcached
-    image: hasecuritysolutions/memcached:latest
+    image: hasecuritysolutions/memcached:6.21.2022
     command: ["-m", "1024"]
     networks:
       - reflex

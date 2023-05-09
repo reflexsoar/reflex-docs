@@ -385,6 +385,8 @@ if [ $TIMER -eq $TIMEOUT ]; then
   exit 0
 fi
 
+sleep 30
+
 OPENSEARCH_ONLINE=0
 
 while [ $OPENSEARCH_ONLINE -eq 0 ]
