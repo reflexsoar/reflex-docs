@@ -389,7 +389,7 @@ OPENSEARCH_ONLINE=0
 
 while [ $OPENSEARCH_ONLINE -eq 0 ]
 do
-  OSHEALTH=`curl --insecure -u admin:admin https://localhost:9200/_cat/health?h=status`
+  OSHEALTH=`curl --insecure -u admin:$OSPASSWORD https://localhost:9200/_cat/health?h=status`
   if [ "$OSHEALTH" = "green" ] || [ "$OSHEALTH" = "yellow" ]; then
     OPENSEARCH_ONLINE=1
   else
@@ -397,7 +397,11 @@ do
   fi
 done
 
+echo "OpenSearch phase 1 is complete. Pushing update to security configuration"
+
 docker exec -it opensearch /bin/bash /usr/share/opensearch/plugins/opensearch-security/tools/securityadmin.sh -cd /usr/share/opensearch/plugins/opensearch-security/securityconfig/ -icl -arc -nhnv -cacert /usr/share/opensearch/config/root-ca.pem -cert /usr/share/opensearch/config/kirk.pem -key /usr/share/opensearch/config/kirk-key.pem
+
+echo "Moving to phase 2"
 
 cp -f $INSTALLDIR/docker-compose2.yml $INSTALLDIR/docker-compose.yml
 
