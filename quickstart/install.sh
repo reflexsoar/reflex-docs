@@ -1,5 +1,4 @@
 #!/bin/bash
-
 case "$1" in
   sec555)
     echo "Prod build set"
