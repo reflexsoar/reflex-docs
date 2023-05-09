@@ -12,6 +12,13 @@ MISSINGLIMITSSETTINGS=()
 STORAGEPASSWORDS=()
 SUDOUSER=`logname`
 
+if [[ $OPENSEARCH_JAVA_HEAP && $OPENSEARCH_JAVA_HEAP -ge 4 ]]; then
+  echo "OPENSEARCH_JAVA_HEAP=$OPENSEARCH_JAVA_HEAP" > reflexsoar/.env
+else
+  echo "OPENSEARCH_JAVA_HEAP=4" > reflexsoar/.env
+fi
+echo "OPENSEARCH_STACK_VERSION=2.7.0" >> reflexsoar/.env
+
 FILE=/etc/os-release
 if [ -f "$FILE" ]; then
     FILECHECK=/etc/os-release

@@ -12,14 +12,14 @@ _meta:
 
 admin:
   hash: "ADMINHASHCHANGEME"
-  reserved: true
+  reserved: false
   backend_roles:
   - "admin"
   description: "Demo admin user"
 
 kibanaserver:
   hash: "KIBANAHASHCHANGEME"
-  reserved: true
+  reserved: false
   description: "Demo OpenSearch Dashboards user"
 
 kibanaro:

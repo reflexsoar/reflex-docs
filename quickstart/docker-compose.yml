@@ -2,12 +2,12 @@ version: '3.7'
 services:
   opensearch:
     container_name: opensearch
-    image: hasecuritysolutions/opensearch:2.6.0
+    image: hasecuritysolutions/opensearch:${OPENSEARCH_STACK_VERSION}
     ports:
       - 9200:9200
     environment:
       - discovery.type=single-node
-      - OPENSEARCH_JAVA_OPTS=-Xms4g -Xmx4g
+      - OPENSEARCH_JAVA_OPTS=-Xms${OPENSEARCH_JAVA_HEAP}g -Xmx${OPENSEARCH_JAVA_HEAP}g
     healthcheck:
         test: [ "CMD", "nc", "-z", "-v", "127.0.0.1", "9300" ]
         interval: 30s
@@ -18,13 +18,14 @@ services:
     restart: always
     volumes:
       - opensearch-data1:/usr/share/opensearch/data
-      - INSTALLDIR/internal_users.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/internal_users.yml
-      - INSTALLDIR/roles.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/roles.yml
-      - INSTALLDIR/roles_mapping.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/roles_mapping.yml
-      - INSTALLDIR/action_groups.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/action_groups.yml
-      - INSTALLDIR/nodes_dn.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/nodes_dn.yml
-      - INSTALLDIR/whitelist.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/whitelist.yml
-      - INSTALLDIR/config.yml:/usr/share/opensearch/plugins/opensearch-security/securityconfig/config.yml
+      - INSTALLDIR/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
+      - INSTALLDIR/roles.yml:/usr/share/opensearch/config/opensearch-security/roles.yml
+      - INSTALLDIR/roles_mapping.yml:/usr/share/opensearch/config/opensearch-security/roles_mapping.yml
+      - INSTALLDIR/action_groups.yml:/usr/share/opensearch/config/opensearch-security/action_groups.yml
+      - INSTALLDIR/nodes_dn.yml:/usr/share/opensearch/config/opensearch-security/nodes_dn.yml
+      - INSTALLDIR/whitelist.yml:/usr/share/opensearch/config/opensearch-security/whitelist.yml
+      - INSTALLDIR/config.yml:/usr/share/opensearch/config/opensearch-security/config.yml
+      - INSTALLDIR/tenants.yml:/usr/share/opensearch/config/opensearch-security/tenants.yml
   memcached:
     container_name: memcached
     image: hasecuritysolutions/memcached:latest
