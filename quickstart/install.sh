@@ -2,7 +2,7 @@
 case "$1" in
   sec555)
     echo "Prod build set"
-    BUILDMODE="sec555"
+    BUILDMODE="prod"
     ;;
   dev)
     echo "Dev build set"
