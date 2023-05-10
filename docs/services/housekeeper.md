@@ -5,7 +5,7 @@ The Housekeeper service is responsible for keeping Reflex healthy.  Housekeeper 
 ## Actions
 
 ### Flag Agents
-* By default, `poller` Agents will be flagged as `Unhealthy` for `Events Silent` if it has reported no events in 30 minutes. This can be modified by changing the value of the `REFLEX_AGENT_HEALTH_INPUT_TTL` variable.
+* By default, a `poller` Agent will be flagged as `Unhealthy` for `Events Silent` if it has reported no events in 30 minutes. This can be modified by changing the value of the `REFLEX_AGENT_HEALTH_INPUT_TTL` variable.
 
 * Agents are checked every `5` minutes by default to determine the Agent's health status. This can be modified by changing the value of the `REFLEX_AGENT_HEALTH_INPUT_INTERVAL` variable. 
 

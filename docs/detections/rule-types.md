@@ -1,9 +1,32 @@
 # Rule Types
+There are currently four available options for detection rules in Reflex: **Match**, **Threshold**, **Field Comparison**, and **New Terms**. Each rule type requires a valid base query to utilize if their own ways.
 
-## Match Rule
+This page will describe these detection rule types in depth as well as provide examples for usage.
 
-## Threshold Rule
+## Match
+This rule type is the simplest such that it alerts on events where a particular field (or fields) matches a particular value (or doesn't match).  
 
-## Metric Change Rule
+```
+# This rule will alert when a user successfully logs in remotely
 
-## New Term Rule
+event.code:4624 AND winlog.event_data.LogonType:10
+```
+
+## Threshold
+Description
+```
+Example
+```
+
+## Field Comparison
+Description
+```
+Example
+```
+
+## New Terms
+Description
+```
+Example
+```
+
