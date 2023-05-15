@@ -19,7 +19,8 @@ There are two ways to create a Case in Reflex:
 3. Enter the necessary Case details
 4. Click `Create`
 
-This method requires you to merge the relevant Events into the case after its creation.
+!!! note "Merging Events into a Case"
+    This method requires you to merge the relevant Events into the case after its creation.
 
 ### *Merging Events into a Previously Created Case*
 1. Navigate to the Events page

@@ -39,7 +39,7 @@ Tasks can be created as part of the Case Template to define what steps an analys
 
 ### *Creating and ModifyingTasks*
 1. Click the `+` next to Tasks
-2. Enter a title and description of the Task
+2. Enter the title and description of the Task
 3. Click `Save`
 4. Click `Edit` to edit the Task after saving
 5. Click `Remove` to delete a Task
