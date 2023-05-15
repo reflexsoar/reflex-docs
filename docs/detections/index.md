@@ -15,7 +15,7 @@ There are several pieces of information required to create successful detection 
 ### _Details_
    * **Import from Sigma?**: allows you to paste in previous Sigma queries and convert them to Reflex
    * **Organization**: the organization to apply the rule to
-   * **Name**: a relevent name to describe the detection
+   * **Name**: a relevant name to describe the detection
    * **Description**: a brief description of what the detection does (optional)
    * **Input**: what input the detection rule will use
    * **Tags**: relevant tags to apply to events triggered by the rule
@@ -52,11 +52,9 @@ Note: the Run Interval and Lookbehind should equal the same number of minutes to
 
 ### _Field Settings_
 * **Signature Fields**: create unique signatures on this detection that will stack duplicates into one card for easier identification
-
-<!-- DON'T FORGET THESE-->
-* **Field Templates**: 
-* **Additional Fields**: 
-
+   * Click `Clone From Input` to automatically generate these signatures from the Input
+* **[Field Templates](../field-templates/index.md)**: define fields used to map values to an Observable when consuming data from an Input or creating an Event from a Detection
+* **Additional Fields**: individually provide any other additional relevant fields
 
 ### _Meta Information_
 * **MITRE Tactics**: identify the specific MITRE ATT&CK Tactic(s) to tag to alerts of this detection
@@ -80,6 +78,8 @@ Note: entering a CVE number as a reference will automatically pull the top five 
 * The final step to creating a detection rule: review it then click `Create`.
 
 <!--## How to leverage Detections?-->
+## Leveraging Detections
+See [Repositories](repositories.md) for how to leverage detections effectively with your customers.
 
 
 

@@ -13,7 +13,7 @@ To create new Agents in Reflex, the following procedures can be used:
 
 ## Creating Agent Groups
 Agent Groups allow you to group Agents into collections that plugins can use to specifically target certain Inputs. With Agent Groups, each time a new Agent needs to be created, simply assign them to the appropriate Agent Group and they will inherit the necessary requirements for the specified organization. To create a new Agent Group, the following steps can be used:
-1. Navigate to the `Agents` page
+1. Navigate to the Agents page
 2. Click `Agent Groups`
 3. Click `New Agent Group`
 4. Select the desired organization
