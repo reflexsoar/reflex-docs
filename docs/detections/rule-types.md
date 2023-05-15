@@ -60,22 +60,24 @@ Field Comparison detection types are similar to Match detections, but provide mo
 New Terms detection types will look for new field values based on a predetermined baseline. 
 
 ### Example
-* Alert when a scheduled task is created with a name that has not been previously observed in the environment during a specific time period.
-    ```
-    Base Query: (event.code: 4698 AND _exists_:"winlog.event_data.TaskName")
-    Terms Field: winlog.event_data.TaskName
-    Windows Size: 30
-    Max Terms: 2000
-    ```
+```
+# Alert when a scheduled task is created with a name that has not been previously observed in the environment during a specific time period
+Base Query: (event.code: 4698 AND _exists_:"winlog.event_data.TaskName")
+Terms Field: winlog.event_data.TaskName
+Windows Size: 30
+Max Terms: 2000
+```
 
 ---
 
-## ! ***COMING SOON*** !
-## Intel Match 
-Intel Match detection types are triggered when a base query matches field value information provided in an Intel List. 
+## Indicator Match 
+Indicator Match detection types are triggered when a base query matches field value information provided in an Intel List. 
 
 ### Example
-* Alert on activity by a user in an Intel List of terminated employees.
+
 ```
-This feature is not yet in production
+# Alert on successful logins by users in a `Domain Admins` Intel List
+Base Query: (event.code: 4624)
+Indicator Field: user.name
+Intel List: Domain Admins
 ```

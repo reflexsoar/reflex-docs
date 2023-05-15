@@ -9,9 +9,8 @@ To create a new Field Template, the following steps can be used:
 4. Input the necessary information in the *Overview* and *Field Settings* sections
 5. Click `Create Template`
 
-```
-Note: When a field has it's data type set to `none` it will not be extracted as an observable on to an Event.
-```
+!!! note "Data Type `none`"
+    When a field has it's data type set to `none` it will not be extracted as an observable on to an Event.
 
 ## For Inputs
 When using a Field Template for an Input that is polled by an [Agent](../agents/index.md), the Field Template will tell the Agent to extract the values of the defined fields as Observables and place them on the Event for easier analysis.
@@ -21,6 +20,5 @@ Much like Field Templates for Inputs, when a Detection rule runs against source 
 
 Unlike Inputs however, Field Templates also define how Sigma formatted rules should convert and what field names they should use.  For example, a Sigma Rule that uses the field `Image` may conver to `process.executable` but the source data is not mapped to Elastic Common Schema and actually expects `winlog.event_data.Image`. 
 
-```
-Note: The Sigma Field is only used when converting a Sigma rule to a Detection Rule. 
-```
+!!! note "Sigma Field"
+    The Sigma Field is only used when converting a Sigma rule to a Detection Rule. 

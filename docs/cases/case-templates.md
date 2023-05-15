@@ -19,7 +19,7 @@ To create a new Case Template, the following steps can be used:
 * Provide a title and description for your Case Template to make it easier to locate and utilize. For example, the Case Template title of `Phishing` could have a description of `This Case Template can be used for investigating potential phishing attacks.`
 
 ### *TLP*
-* Define the [Traffic Light Protocol](https://www.cisa.gov/tlp) (TLP) to identify the sensetivity level of information contained in these types of cases.
+* Define the [Traffic Light Protocol (TLP)](https://www.cisa.gov/tlp) to identify the sensetivity level of information contained in these types of cases.
     * **RED**: Not for disclosure, restricted to participants only
     * **AMBER STRICT**: Limited disclosure, restricted to participants’ organization
     * **AMBER**: Limited disclosure, restricted to participants’ organization and its clients

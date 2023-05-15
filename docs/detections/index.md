@@ -20,30 +20,28 @@ There are several pieces of information required to create successful detection 
    * **Input**: what input the detection rule will use
    * **Tags**: relevant tags to apply to events triggered by the rule
 
-```
-Note: don't avoid this section. Do yourself a favor and document in detail the purpose of this detection so you don't forget it.
-```
+!!! note "Always Document"
+   Don't avoid this section. Do yourself a favor and document in detail the purpose of this detection so you don't forget it.
 
 ### _Configuration_
 * **Rule Status**: the state the rule is in for easier identification
 * **[Rule Type](rule-types.md)**: the type of detection rule
 * **Severity**: determines the severity of the events the rule with detect
 
-```
-Note: changing the severity will automatically update the risk score; however, it can still be manually changed.
-```
+!!! note "Severity"
+   Changing the severity will automatically update the risk score; however, it can still be manually changed.
 
 ### _Schedule_
 * **Run Interval**: how often the detection will run in minutes
 
-```
-Note: the Run Interval will automatically adjust itself and the Lookbehind time if the detection is ran late under any circumstance.
-```
+!!! note "Run Interval"
+   The Run Interval will automatically adjust itself and the Lookbehind time if the detection is ran late under any circumstance.
+
 * **Lookbehind**: how far back the detection should look in minutes
 
-```
-Note: the Run Interval and Lookbehind should equal the same number of minutes to avoid overlap, which could result in duplicate events.
-```
+!!! note "Lookbehind"
+   The Run Interval and Lookbehind should equal the same number of minutes to avoid overlap, which could result in duplicate events.
+
 * **Mute Period**: how long in minutes all future hits of the detection should be silenced
 * **Daily Schedule**: specific days and hours to run detection from
 
@@ -61,9 +59,9 @@ Note: the Run Interval and Lookbehind should equal the same number of minutes to
 * **MITRE Techniques**: identify the specific MITRE ATT&CK Technique(s) to tag to alerts of this detection
 * **References**: link additional resources to help analysts understand the detection
 
-```
-Note: entering a CVE number as a reference will automatically pull the top five CVE reference URLs.
-```
+!!! note "CVE References"
+   Entering a CVE number as a reference will automatically pull the top five CVE reference URLs.
+
 ### _Triage Guide_
 * **Triage Guide**: provide a guide for analysts to reference that will allow them to determine the legitimacy of the event and how/when to alert the customer
 * **False Positives**: identify any false positives that can occur with the detection to help analysts quickly rule out false positive activity
