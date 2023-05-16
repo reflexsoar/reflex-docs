@@ -1,53 +1,59 @@
 # Case Templates
+Case Templates serve as a valuable tool for adding structure to your investigations. They provide a quick and easy way to ensure that each time a [Case](cases.md) is opened, it adheres to a predefined process.
 
-Case Templates are a great way to provide structure to your investigations. It is a quick and easy method for making sure a case will conform to a defined process each time it is opened. 
-
-To create a Case Template click on Cases from the left menu within Reflex and then click on Case Templates. This will bring up a list of all current Case Templates within Reflex.
-
-Next click on New Case Template and the following Case Template Wizard will open. 
+## Creating Case Templates
+To create a new Case Template, the following steps can be used:
+1. Navigate to the Cases page
+2. Click `Case Templates`
+3. Click `New Case Template`
+4. Enter the Case Template Details and Tasks
+5. Click `Create`
 
 ## Template Details
-
 ![Create case template screenshot](../img/create_case_template.png)
 
-Select the Organization from the drop-down list. You may only have one option in the list unless you are leveraging the multitenancy function of Reflex.
+### *Organization*
+* Select the appropriate Organization from the drop-down list. Unless you are leveraging the multitenancy function of Reflex, you may only have one option available here.
 
-Provide a Case Template Title as well as a brief description of the focus of the template. For example, Case Title - Phishing and Description - This can be used for investigating potential phishing events.
+### *Case Title and Description*
+* Provide a title and description for your Case Template to make it easier to locate and utilize. For example, the Case Template title of `Phishing` could have a description of `This Case Template can be used for investigating potential phishing attacks.`
 
-Next define the [Traffic Light Protocol ](https://www.cisa.gov/tlp) to define the sensitivity level of the information within the case.
+### *TLP*
+* Define the [Traffic Light Protocol (TLP)](https://www.cisa.gov/tlp) to identify the sensetivity level of information contained in these types of cases.
+    * **RED**: Not for disclosure, restricted to participants only
+    * **AMBER STRICT**: Limited disclosure, restricted to participants’ organization
+    * **AMBER**: Limited disclosure, restricted to participants’ organization and its clients
+    * **GREEN**: Limited disclosure, restricted to the community
+    * **CLEAR**: Disclosure is not limited
 
-Define the severity level you want associated with these types of cases.
+### *Severity*
+* Define the severity level you want associated with these types of cases/
 
-Lastly, provide any additional tagging you would like to have for the template.
-
-Click Next
+### *Tags*
+* Provide any additional tags that you would like to have included for the template.
 
 ## Tasks
+Tasks can be created as part of the Case Template to define what steps an analyst should complete in order to conduct a proper investigation.
 
 ![Create case template task screenshot](../img/case_template_tasks.png)
 
-As part of the case templates, tasks can be created for each step the analyst is suppose to complete as part of the investigation.
-
-Click the + sign next to Tasks to add one to the case template. Add as many tasks to the Case Template by clicking the + sign again.
-
-Enter a title for the Task as well as a description for what actions the analyst needs to complete. Then press Save.
-
-You can edit a task by clicking the Edit button to the right of the task. Once finished making the changes press Save. 
-
-Tasks can also be deleted from the template by pressing the Remove button to the right of each task.
-
-Once you have added all tasks click Next.
+### *Creating and ModifyingTasks*
+1. Click the `+` next to Tasks
+2. Enter the title and description of the Task
+3. Click `Save`
+4. Click `Edit` to edit the Task after saving
+5. Click `Remove` to delete a Task
+6. Repeat as many times as necessary
 
 ## Review
-
-The final step is to review the information provided to create the Case Template. 
+The final step is to review the information provided to create the Case Template. After you've finished reviewing the Case Template, click `Create`.
 
 ![Review case template screenshot](../img/case_template_review.png)
 
-If everything looks good press Create. 
-
-## Editing/Deleting
-
-At any time a Case Template can be modified or delete. Simply click Cases on the left hand menu and then click Case Templates.
-
-Find the Case Template you want to modify or delete and select the apporiate action to the right of the Case Template.
+## Modifying and Deleting Case Templates
+Case Templates can be modified or deleted at any point by using the following steps:
+1. Navigate to the Cases page
+2. Click `Case Templates`
+3. Locate the Case Template
+4. Click the appropriate action, either `Edit Template` or `Delete`
+5. If editing the Template, click `Update` once finished
