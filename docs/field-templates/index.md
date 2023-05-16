@@ -3,6 +3,7 @@ Field templates are a centralized method for informing [Inputs](../inputs/index.
 
 ## Creating Field Templates
 To create a new Field Template, the following steps can be used:
+
 1. Navigate to the `Inputs` page
 2. Click `Field Templates`
 3. Click `New Field Template`

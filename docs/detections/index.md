@@ -21,7 +21,7 @@ There are several pieces of information required to create successful detection 
    * **Input**: what input the detection rule will use
    * **Tags**: relevant tags to apply to events triggered by the rule
 
-!!! note "Always Document"
+!!! warning "Always Document"
     Don't avoid this section. Do yourself a favor and document in detail the purpose of this detection so you don't forget it.
 
 ### _Configuration_

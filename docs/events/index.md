@@ -22,6 +22,7 @@ md5(str(event_title, ...signature_fields))
 
 ## Event States
 Events can exist in four different states to signal where analysts are at in the triage process:
+
 - **New** - default state for all new events (unless acted on by an [Event Rule](../event-rules/index.md) that overrides this status)
 - **Dismissed** - state an event goes to when it has been automatically or manually dismissed
 - **Open** - signals that the event has been added to a case and it awaiting client input/review

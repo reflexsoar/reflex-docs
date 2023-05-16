@@ -15,14 +15,12 @@ The Housekeeper service is responsible for keeping Reflex healthy.  Housekeeper 
 * Agent pruning happens every `15` minutes by default and can be changed in the `REFLEX_AGENT_PRUNE_INTERVAL` variable. 
 
 ### Lock Old Users
-```
-!!! This feature is still in development
-```
+!!! info
+    This feature is still in development
 
 ### Flag Password Change
-```
-!!! This feature is still in development
-```
+!!! info
+    This feature is still in development
 
 ## Environment Variables
 * `REFLEX_HOUSEKEEPER_DISABLED` - boolean variable that determines if Housekeeper is disabled

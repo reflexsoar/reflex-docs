@@ -15,7 +15,7 @@ There are two types of repositories:
 - `local`: exist in the Reflex tenant and can be shared cross-organization
 - `remote`**: exist in the Reflex tenant and can be shared across other Reflex instances
 
-** *`remote` repositories are still in development and will be coming to production soon!*
+***`remote` repositories are still in development and will be coming to production soon!*
 
 ## Access Permissions
 There are two access permissions available per type:

@@ -14,6 +14,7 @@ To create a new Event Rule, the following steps can be used:
 
 ## Editing Event Rules
 To modify an Event Rule after creation, the following steps can be used:
+
 1. Navigate to the Event Rules page
 2. Locate the Event Rule you wish to edit
 3. Click `Manage`
@@ -24,6 +25,7 @@ To modify an Event Rule after creation, the following steps can be used:
 
 ## Configuring Event Rules
 ### *Rule Details*
+
 * **Organization**: select the appropriate Organization to apply the Rule to
 * **Rule Name**: give the Rule a relevant name
 * **Rule Description**: provide a description of the Rule and its purpose
@@ -46,7 +48,7 @@ To modify an Event Rule after creation, the following steps can be used:
 * **End Time**: end of the search period to test the Rule against
 * **Include Results**: will present all matched Events in a new window
 
-!!! note "Testing Queries"
+!!! info "Testing Queries"
     When testing RQL queries, Reflex will display one of three banners: `Query matched x Events`, `Invalid RQL query`, or `Query did not match target Event. Try increasing the number of test events or increasing your date range`.
 
 ### *Event Actions*

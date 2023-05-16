@@ -43,6 +43,7 @@ Threshold: 10
 Alarm per Field Value: YES
 Max Events: 10
 ```
+
 ---
 
 ## Field Comparison
@@ -69,6 +70,7 @@ Target Field: (winlog.event_data.OriginalFileName)
 New Terms detection types will look for new field values based on a predetermined baseline. 
 
 ### Example
+
 ```
 # Alert when a scheduled task is created with a name that has not been previously observed in the environment during a specific time period
 
