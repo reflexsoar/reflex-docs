@@ -1,5 +1,5 @@
 # Field Templates
-Field templates are a centralized method for informing [Inputs](../inputs/index.md) and [Detections](../detections/index.md) what to do with fields and their data from the event source. They can be used to define the field name, data type, and other settings for each relevant field in order to map a source field value to an Observable.
+**Field templates** are a centralized method for informing [Inputs](../inputs/index.md) and [Detections](../detections/index.md) what to do with fields and their data from the event source. They can be used to define the field name, data type, and other settings for each relevant field in order to map a source field value to an Observable.
 
 ## Creating Field Templates
 To create a new Field Template, the following steps can be used:

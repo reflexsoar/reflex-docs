@@ -1,8 +1,5 @@
 # Organizations
-
-## Overview
-
-Organizations create a logical separation in ReflexSOAR that can be useful when you have teams that perform similar security functions but operate independently or when you are Managed Security Service Provider that does Managed Detection & Response for many customers
+**Organizations** create a logical separation in ReflexSOAR that can be useful when you have teams that perform similar security functions but operate independently or when you are Managed Security Service Provider that does Managed Detection & Response for many customers
 
 ## Access Scope
 

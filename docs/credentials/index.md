@@ -1,5 +1,5 @@
 # Credentials
-The Credentials Manager is a central location to store secrets allowing ReflexSOAR and all it's components to authenticate to other systems.
+The **Credentials Manager** is a central location to store secrets allowing ReflexSOAR and all it's components to authenticate to other systems.
 
 ## Creating New Credentials
 To create new Credentials, the following steps can be used:

@@ -1,6 +1,5 @@
 # Overview
-
-Intel Lists are used by Reflex to provide operational or threat intelligence to the Reflex system.  This intel can come in the form of bad IP addresses, banned domain names, approved users, etc.  Intel lists can be reference in RQL or can be used to tag Events automatically as part of the Event ingest pipeline.
+**Intel Lists** are used by Reflex to provide operational or threat intelligence to the Reflex system.  This intel can come in the form of bad IP addresses, banned domain names, approved users, etc.  Intel lists can be reference in RQL or can be used to tag Events automatically as part of the Event ingest pipeline.
 
 ## Configuring an Intel List
 

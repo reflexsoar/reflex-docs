@@ -1,5 +1,5 @@
 # Event Rules
-Event Rules are a method for applying automation to new or old [Events](../events/index.md) in the system. Event Rules use [Reflex Query Language (RQL)](../rql/index.md) to match Rules in flight and then execute an action on matching events.
+**Event Rules** are a method for applying automation to new or old [Events](../events/index.md) in the system. Event Rules use [Reflex Query Language (RQL)](../rql/index.md) to match Rules in flight and then execute an action on matching events.
 
 ## Creating Event Rules
 To create a new Event Rule, the following steps can be used:

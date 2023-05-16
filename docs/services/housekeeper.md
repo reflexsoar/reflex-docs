@@ -1,6 +1,5 @@
 # Housekeeper Service
-
-The Housekeeper service is responsible for keeping Reflex healthy.  Housekeeper routinely runs tasks to sweep away stale information from the system or make time based changes to objects in the database.
+The **Housekeeper service** is responsible for keeping Reflex healthy.  Housekeeper routinely runs tasks to sweep away stale information from the system or make time based changes to objects in the database.
 
 ## Actions
 

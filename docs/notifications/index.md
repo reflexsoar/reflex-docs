@@ -1,8 +1,5 @@
 # Notifications
-
-## Overview
-
-Notifications and Notification Channels provide a mechanism for ReflexSOAR to communicate with security teams outside of the ReflexSOAR platform.  
+**Notifications** and **Notification Channels** provide a mechanism for ReflexSOAR to communicate with security teams outside of the ReflexSOAR platform.  
 
 ## Supported Channels
 

@@ -1,22 +1,21 @@
-# Overview
+# Users
+[ put a little description here ]
 
 ## User Types
+There are two types of users in the Reflex System: Users and Service Accounts.
 
-There are two types of users in the Reflex System.
+### *Users*
 
-### Users
+* Users are human operated accounts that are used to interact with the system via the User Interface.  Users can use their API Bearer token to interact with the API but they should note that User API keys expire much quicker than service account keys (default `6` hours).  User accounts are governed by other policies like Multi-Factor authentication.
 
-Users are human operated accounts that are used to interact with the system via the User Interface.  Users can use their API Bearer token to interact with the API but they should note that User API keys expire much quicker than service account keys (default `6` hours).  User accounts are governed by other policies like Multi-Factor authentication.
+### *Service Accounts*
 
-### Service Accounts
-
-Service Accounts are for the persistent programmatic access to the API.  Service Account API keys are issued upon creation and never stored by the API.  They expire by default after `365` days.
+* Service Accounts are for the persistent programmatic access to the API.  Service Account API keys are issued upon creation and never stored by the API.  They expire by default after `365` days.
 
 ## User Roles
+There are 3 default User roles that exist in the system upon install:
 
-There are 3 default user roles that exist in the system upon install.  The name of those roles and their default permissions are below:
-
-!!!note Default Organization Permissions
+!!! note "Default Organization Permissions"
     Some permissions may be different for the Admin and Analysts of the Default Organization due to multi-tenancy functionality.  Those permissions include `view_organizations`, `add_organization`, `update_organization`, `delete_organization`, `create_service_account`, `view_service_accounts`, `update_service_account`, `delete_service_account`
 
 

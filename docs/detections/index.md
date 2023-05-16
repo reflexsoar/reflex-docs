@@ -1,5 +1,5 @@
 # Detections
-Detections, or _detection rules_, are a collection of queries that look for particular behaviors in log sources/Inputs. Detections cannot be configured until a Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
+**Detections**, or _detection rules_, are a collection of queries that look for particular behaviors in log sources/Inputs. Detections cannot be configured until a Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
 
 ## Creating Detections
 To create new detection rules, the followings steps can be used:

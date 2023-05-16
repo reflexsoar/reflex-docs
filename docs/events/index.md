@@ -1,5 +1,5 @@
 # Events
-Events in ReflexSOAR are anything you want to act on in the Event Queue. Events do not have to strictly be security related; they could be network-related alerts, such as Orion/WhatsUpGold alerts.
+**Events** in ReflexSOAR are anything you want to act on in the Event Queue. Events do not have to strictly be security related; they could be network-related alerts, such as Orion/WhatsUpGold alerts.
 
 Events serve as the primary action item for [Analysts and Users](../users/index.md) of ReflexSOAR and will appear in the Event Queue as a card (as seen below).
 
