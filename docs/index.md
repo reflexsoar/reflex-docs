@@ -4,19 +4,19 @@
 ## Features
 ReflexSOAR offers the following capabilities:
 
-* *Event Rules*: Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity
+* **Event Rules**: Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity
 
-* *Cases*: Create cases and leverage case templates to track the investigation of alerts by your analyst
+* **Cases**: Create cases and leverage case templates to track the investigation of alerts by your analyst
 
-* *Intel Lists*: Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations
+* **Intel Lists**: Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations
 
-* *Inputs*: Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
+* **Inputs**: Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
 
-* *Reflex Query Language*: Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions
+* **Reflex Query Language**: Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions
 
-* *Agents*: Deploy agents within your environment to pull the alerts and alarms from your on-premise systems
+* **Agents**: Deploy agents within your environment to pull the alerts and alarms from your on-premise systems
 
-* *Playbooks***: Automation and orchestration playbooks
+* **Playbooks****: Automation and orchestration playbooks
 
 ***This feature is still in development; however, automation is available today in the form of [Event Rules](event-rules/index.md)*
 
