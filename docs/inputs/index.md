@@ -3,6 +3,7 @@ Inputs control where Reflex gets Alert/Alarm data for analysts to work with.  In
 
 ## Creating Inputs
 To create and configure a new input, the following steps can be used:
+
 1. Navigate to the Inputs page
 2. Click `New Input`
 3. Give your Input a friendly name and provide a description
