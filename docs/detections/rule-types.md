@@ -1,5 +1,5 @@
 # Rule Types
-There are currently four available options for detection rules in Reflex: **Match**, **Threshold**, **Field Comparison**, and **New Terms**. Each rule type requires a valid base query to utilize if their own ways.
+There are currently five available options for detection rules in Reflex: **Match**, **Threshold**, **Field Comparison**, **New Terms**, and **Indicator Match**. Each rule type requires a valid base query to utilize if their own ways.
 
 This page will describe these detection rule types in depth as well as provide examples for usage.
 

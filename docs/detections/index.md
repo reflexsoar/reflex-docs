@@ -53,7 +53,6 @@ There are several pieces of information required to create successful detection 
 * **Signature Fields**: create unique signatures on this detection that will stack duplicates into one card for easier identification
 
    * Click `Clone From Input` to automatically generate these signatures from the Input
-   
 * **[Field Templates](../field-templates/index.md)**: define fields used to map values to an Observable when consuming data from an Input or creating an Event from a Detection
 * **Additional Fields**: individually provide any other additional relevant fields
 
