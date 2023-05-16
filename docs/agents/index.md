@@ -1,6 +1,6 @@
-# Overview
+# Agents
 
-Reflex Agents are responsible for digesting the data produced by Inputs (see [Inputs](../inputs/index.md) if you have not yet configured these). Agents will poll your Input for the necessary data before processing it into a format the Reflex API understands.
+**Reflex Agents** are responsible for digesting the data produced by Inputs (see [Inputs](../inputs/index.md) if you have not yet configured these). Agents will poll your Input for the necessary data before processing it into a format the Reflex API understands.
 
 There are several roles that will allow Agents to perform a variety of different functions (see [Agent Roles](roles.md) for these roles and their functions).
 

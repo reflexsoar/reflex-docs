@@ -3,6 +3,7 @@ Detection Repositories allow you to become a global tenant to share detection ru
 
 ## Creating Detection Repositories
 To create new Detection repositories, the followings steps can be used:
+
 1. Navigate to the Detections page
 2. Click `Detection Repositories`
 3. Click `New Repository`
@@ -10,6 +11,7 @@ To create new Detection repositories, the followings steps can be used:
 
 ## Repository Types
 There are two types of repositories:
+
 - `local`: exist in the Reflex tenant and can be shared cross-organization
 - `remote`**: exist in the Reflex tenant and can be shared across other Reflex instances
 
