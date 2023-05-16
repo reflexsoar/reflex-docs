@@ -1,27 +1,25 @@
 # Event Processing
 
 ## Components
+There are two major components Reflex uses to process Events:
 
-### Event Processor
-
+### *Event Processor*
 The Event Processor process coordinates all Worker nodes and tells them when to start, stop and will attempt to heal workers that have crashed. 
 
-### Event Processor Worker
-
+### *Event Processor Worker*
 Event Workers are responsible for handling all Events on ingest, merging Events in to Cases, mutating events based on Event Rule hits, dismissing Events, etc.  They are a core component, if you are seeing issues with Event Ingest, there may be an issue with an Event Worker.
 
 ## Operational Modes
+There are currently two operational modes 
 
-### Dedicated
-
+### *Dedicated*
 ReflexSOAR as of `2022.08.00` has the ability to run Event Workers in dedicated mode.  This will provide event workers for each organization in the system.  This mode prevents organizations from impacting eachother when they have a high volume of events or write complex Event Rules.
 
 !!! warning
     This feature requires a Kafka node or cluster to support individual organization/tenant queues
 
-#### Configuration
-
-!!! Warning
+### *Configuration*
+!!! warning
     Max Workers per Organization is currently set on start-up.  In a future release ReflexSOAR Parent Organization Admins will be able to adjust the Max Workers for each organization on the fly via the UI (scale up or down)
 
 To configure Dedicated Workers, follow the below steps:
