@@ -1,5 +1,5 @@
 # Detection Repositories
-Detection Repositories allow you to become a global tenant to share detection rules with your sub tenants. This means your customers won't have to manually create their own detection rules, and that any new detection rules you create will automatically be applied to the respective customer(s).
+Detection Repositories allow you to become a global tenant to share Detection Rules with your sub tenants. This means your customers won't have to manually create their own Detection Rules, and that any new Detection Rules you create will automatically be applied to the respective customer(s).
 
 ## Creating Detection Repositories
 To create new Detection repositories, the followings steps can be used:
@@ -12,7 +12,7 @@ To create new Detection repositories, the followings steps can be used:
 ## Subscribing to a Repository
 Subscribing to a Repository will automatically sync all Detections from the target Repository to your own Detection library. When subscribing to a Detection Repository, you can define a field called `Synchronization Interval (minutes)` which will determine how often you wish to synchronize new and updated Detections from the subscribed Repository.
 
-!!! note
+!!! warning
     Any local changes that have been made to the Detection Repository will be overwritten during synchronization.
 
 However, you can also choose which updates you would like to synchronize. Looking at the image below, there are certain fields you can choose to sync or not sync with the subscribed Repository. For example, you can choose to disable the synchronization of the Risk Score if you are happy with the original.
@@ -20,7 +20,7 @@ However, you can also choose which updates you would like to synchronize. Lookin
 ![Synchronization settings](../img/sync-settings.png)
 
 !!! warning "Disabling Synchronization of the Base Query"
-    One thing you can NOT disable the synchronization of is the Detection's base query. 
+    One thing you can NOT disable is the synchronization of the Detection's base query. 
 
 !!! warning "Deleting Detections from a Repository"
     Detections from a currently subscribed Repository can NOT be deleted from your library of Detections. If you wish to delete a Detection, you must first unsubscribe from the Repository. Utilizing Exclusions is the best way to make Detection Repositories work best for your Organization.
@@ -45,15 +45,22 @@ There are two access permissions available per type:
 * `external-private`: accessible with an access key and URL
 * `external-public`: accessible by anyone with the URL
 
+***`remote` Repositories are still in development and will be coming to production soon!*
+
 ---
 
-## Common Questions
-1. What happens when access is revoked to a Repository?
-    * When access to a Detection Repository is revoked, all the previously synchronized rules are unlinked from the Repository and can now be directly edited.
+## Q & A
+Below are a few commonly asked questions in regards to Detection Repositories.
 
-2. What counts as access revocation?
-    * If the author of the Detection Repository removes your organization from the Repository's access scope
-    * If the author of the detection repository deletes the Repository
+*1. What happens when access is revoked to a Repository?*
 
-3. If I subscribe to a Detection Repository, can I pick and choose which detections to use?
-    * No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
+* When access to a Detection Repository is revoked, all the previously synchronized rules are unlinked from the Repository and can now be directly edited.
+
+*2. What counts as access revocation?*
+
+* If the author of the Detection Repository removes your organization from the Repository's access scope
+* If the author of the detection repository deletes the Repository
+
+*3. If I subscribe to a Detection Repository, can I pick and choose which detections to use?*
+
+* No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.

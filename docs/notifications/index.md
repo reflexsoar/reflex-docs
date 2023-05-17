@@ -28,18 +28,33 @@ To create a new Channel, the following steps can be used:
 ## Using Notification Channels
 To use Notification Channels to alert you of particular [Event](../events/index.md), an [Event Rule](../event-rules/index.md) must be created. By selecting the newly created Notification Channel for the Event Rule, you will be alerted via that Channel any time that Event Rule matches an Event.
 
+The [Notifier service](../services/notifier.md) is the service that handles Notifications and sends them out.
+
 ## Message Templates
-To create effective Notifications to send to your defined Channel, we recommend using [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/). 
+To create effective Notifications to send to your defined Channel, we recommend using [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) to create your message templates. 
 
 > Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax. Then the template is passed data to render the final document.
 
+By utilizing Jinja to create message templates, you can auto extract fields, such as the Event title or severity fields, and format them to send as a Notification. This allows you to be easily notified of important fields you wish to monitor in your Events.
 
+### *Example Jinja Template*
+Below is a brief example of a Jinja2-formatted message template to use when Notifications are sent.
 
+```
+# New Alert Created
+A New {{ severity }} severity alert was triggered.
 
-write tem in jinja will auto extract title field, severity, observables
+## {{title}}
+{{ description }}.
 
-spit out observables using markdown
+### Observables
+{% for observable in event_observables %}
+- {{ observable.value }}
 
-auto extract data into template format and send alert
+### Triage Steps
+- {{ guide }}
 
-use notif channels when creating a new event rule by choosing the notif channel
+## Meta Information
+Created At: {{ created_at }}
+Source: {{ source }}
+```
