@@ -29,20 +29,4 @@ Events can exist in four different states to signal where analysts are at in the
 - **Closed** - signals the Event was worked in a case that has now been closed
 
 ## Event Processing
-Event Processing involves several sequential steps. In a broad sense, the retrieval and processing of Events are executed through the following procedure:
-
-1. Agent polls an [Input](../inputs/index.md)
-2. Agent pushes data to the *Bulk Event Ingest API*
-3. API delivers all Events to the Event Processor service
-4. Event Processor service checks each Event against [Intel Lists](../intel-lists/index.md) and [Event Rules](../event-rules/)
-5. Event Processor service responds accordingly
-6. 
-
-
-1. A ReflexSOAR agent polls an input
-2. The ReflexSAOR agent pushes to the Bulk Event Ingest API
-3. The API hands all events off the the Event Processor service
-4. The Event Processor service checks each incoming event against Intel and Event Rules
-5. The Event Processor performs all indicated actions per Intel and Event Rules
-6. The Event Processor bulk inserts/updates documents in Elasticsearch/Opensearch for each event
-7. The Events show up in the Event Queue in the UI
+See [Event Processing](processing.md) for how Events are processed in Reflex.
