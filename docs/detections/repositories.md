@@ -23,15 +23,15 @@ However, you can also choose which updates you would like to synchronize. Lookin
     One thing you can NOT disable the synchronization of is the Detection's base query. 
 
 !!! warning "Deleting Detections from a Repository"
-    Detections from a currently subscribed Repository can NOT be deleted from your library of Detections. If you wish to delete a Detection, you must first unsubscribe from the Repository.
+    Detections from a currently subscribed Repository can NOT be deleted from your library of Detections. If you wish to delete a Detection, you must first unsubscribe from the Repository. Utilizing Exclusions is the best way to make Detection Repositories work best for your Organization.
 
 ## Repository Types
-There are two types of repositories:
+There are two types of Repositories:
 
 - `local`: exist in the Reflex tenant and can be shared cross-organization
 - `remote`**: exist in the Reflex tenant and can be shared across other Reflex instances
 
-***`remote` repositories are still in development and will be coming to production soon!*
+***`remote` Repositories are still in development and will be coming to production soon!*
 
 ## Access Permissions
 There are two access permissions available per type:
@@ -39,7 +39,7 @@ There are two access permissions available per type:
 ### `local`
 * `private`: only accessible by your organization
 * `local-shared`: accessible to all tenants in the Reflex instance
-    * *Access Scope*: defines what Organizations can access and synchronize the Detections in the repository. By default, this is left empty, meaning all tenants in the ReflexSOAR instance can access and synchronize the detection repository.
+    * *Access Scope*: defines what Organizations can access and synchronize the Detections in the Repository. By default, this is left empty, meaning all tenants in the ReflexSOAR instance can access and synchronize the Detection Repository.
 
 ### `remote`**
 * `external-private`: accessible with an access key and URL
@@ -48,15 +48,12 @@ There are two access permissions available per type:
 ---
 
 ## Common Questions
-1. What happens when access is revoked to a repository?
-    * When access to a detection repository is revoked, all the previously synchronized rules are unlinked from the repository and can now be directly edited.
+1. What happens when access is revoked to a Repository?
+    * When access to a Detection Repository is revoked, all the previously synchronized rules are unlinked from the Repository and can now be directly edited.
 
 2. What counts as access revocation?
-    * If the author of the detection repository removes your organization from the repository's access scope
-    * If the author of the detection repository deletes the repository
+    * If the author of the Detection Repository removes your organization from the Repository's access scope
+    * If the author of the detection repository deletes the Repository
 
 3. If I subscribe to a Detection Repository, can I pick and choose which detections to use?
-    * No; a Detection provide by a subscribed repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
-
-!!! note "Synchronization Settings"
-    Although you can choose to turn off specific settings from synchronizing with the repository, you can NOT turn the query off from synchronization. Utilizing Exclusions is the best way to make Detection repositories work best for your Organization.
+    * No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
