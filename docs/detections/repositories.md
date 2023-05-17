@@ -9,6 +9,22 @@ To create new Detection repositories, the followings steps can be used:
 3. Click `New Repository`
 3. Click `Create` after filling out the necessary information
 
+## Subscribing to a Repository
+Subscribing to a Repository will automatically sync all Detections from the target Repository to your own Detection library. When subscribing to a Detection Repository, you can define a field called `Synchronization Interval (minutes)` which will determine how often you wish to synchronize new and updated Detections from the subscribed Repository.
+
+!!! note
+    Any local changes that have been made to the Detection Repository will be overwritten during synchronization.
+
+However, you can also choose which updates you would like to synchronize. Looking at the image below, there are certain fields you can choose to sync or not sync with the subscribed Repository. For example, you can choose to disable the synchronization of the Risk Score if you are happy with the original.
+
+![Synchronization settings](../img/sync-settings.png)
+
+!!! warning "Disabling Synchronization of the Base Query"
+    One thing you can NOT disable the synchronization of is the Detection's base query. 
+
+!!! warning "Deleting Detections from a Repository"
+    Detections from a currently subscribed Repository can NOT be deleted from your library of Detections. If you wish to delete a Detection, you must first unsubscribe from the Repository.
+
 ## Repository Types
 There are two types of repositories:
 
