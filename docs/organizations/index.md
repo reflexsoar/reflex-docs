@@ -16,7 +16,7 @@ To create a new Organization, the following steps can be used:
 10. Click `Create` after reviewing the Organization and Admin User details
 
 !!! warning "Logon Domains"
-    When entering the email domains that can be associated with Reflex accounts, be sure to include only one per line. Admis can only create users with emails at the domains provided here.
+    When entering the email domains that can be associated with Reflex accounts, be sure to include only one per line. **Admins can only create users with emails at the domains provided here.**
 
 ## Access Scope
 
