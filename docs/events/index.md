@@ -6,7 +6,7 @@ Events serve as the primary action item for [Analysts and Users](../users/index.
 ![Example Event](../img/event-example.png)
 
 ## Event Signatures
-Event Signatures are the mechanism that ReflexSOAR uses to "*roll up*" or "*deduplicate*" similar events. By default, when using the ReflexSOAR [Agent](../agents/index.md), the Agent will compute the signature for the Event.
+**Event Signatures** are the mechanism that ReflexSOAR uses to "*roll up*" or "*deduplicate*" similar events. By default, when using the ReflexSOAR [Agent](../agents/index.md), the Agent will compute the signature for the Event.
 
 If you are using the API directly without an Agent, you will need to supply the signature logic yourself. Event Signatures use the following psuedo logic for computation:
 

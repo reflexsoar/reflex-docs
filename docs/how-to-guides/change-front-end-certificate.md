@@ -1,12 +1,11 @@
-# How to change the UI Certificate
-
-By default when running ReflexSOAR in a container, a self-signed certificate is generated during the container image build.  For some users they may want to replace this self-signed certificate with their own, CA signed certified (as is recommended by best practice).
+# How-To Change the UI Certificate
+By default, when ReflexSOAR is executed within a container, a self-signed certificate is generated during the image build process. However, certain users may prefer to replace this self-signed certificate with their own, CA-signed certificate, following best practices.
 
 ## Changing the UI Certificate (Docker)
 
-### Using docker-compose
+### *Using Docker-Compose*
 
-In your docker compose file add the following
+In your docker compose file, add the following lines:
 
 ```
 volumes:
@@ -14,9 +13,9 @@ volumes:
   - /path/to/your/cert.key:/opt/reflex/ssl/server.key
 ```
 
-### Using docker run
+### *Using Docker Run*
 
-If running your `reflex-ui` container using `docker run` add the following volume parameters
+If running your `reflex-ui` container using `docker run`, add the following volume parameters:
 
 ```
 -v /path/to/your/cert.crt:/opt/reflex/ssl/server.crt -v /path/to/your/cert.key:/opt/reflex/ssl/server.key
