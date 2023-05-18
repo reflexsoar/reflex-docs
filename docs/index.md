@@ -1,36 +1,27 @@
 # Reflex Documentation
+
+![ReflexSOAR logo](../img/white-logo-color-symbol-no-background.png)
+
 **ReflexSOAR** is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter.
 
 ## Features
 ReflexSOAR offers the following capabilities:
 
-* **Event Rules**: Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity
+* **Event Rules**: dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity
 
-* **Cases**: Create cases and leverage case templates to track the investigation of alerts by your analyst
+* **Cases**: create cases and leverage case templates to track the investigation of alerts by your analyst
 
-* **Intel Lists**: Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations
+* **Intel Lists**: develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations
 
-* **Inputs**: Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
+* **Inputs**: configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
 
-* **Reflex Query Language**: Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions
+* **Reflex Query Language**: leverage mutators and expressions against alerts to granularly tailor the automated responses and actions
 
-* **Agents**: Deploy agents within your environment to pull the alerts and alarms from your on-premise systems
+* **Agents**: deploy agents within your environment to pull the alerts and alarms from your on-premise systems
 
-* **Playbooks****: Automation and orchestration playbooks
+* **Playbooks****: automation and orchestration playbooks
 
 ***This feature is still in development; however, automation is available today in the form of [Event Rules](event-rules/index.md)*
-
-<!--
-- **Event Rules**: Dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity.
-- **Cases**: Create cases and leverage case templates to track the investigation of alerts by your analyst.
-- **Intel Lists**: Develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations.
-- **Inputs**: Configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review.
-- **Reflex Query Language**: Leverage mutators and expressions against alerts to granularly tailor the automated responses and actions.
-- **Agents**: Deploy agents within your environment to pull the alerts and alarms from your on-premise systems.
-- **Coming soon: Playbooks**: Automation and orchestration playbooks**
-
-** Automation is available today in the form of event rules. Playbook support is on the roadmap to be released sometime in the 3rd quarter of 2022.
--->
 
 ## Pricing
 
@@ -54,25 +45,24 @@ ReflexSOAR commercial support is facilitated by H & A Security Solutions LLC and
 
 ** *On-premises support contracts for ReflexSOAR are available at an additional cost*
 
-## Main Topics
+## Important Topics to Visit
 
 - [Getting Started](getting-started.md)
 - [Agents](agents/index.md)
 - [Cases](cases/index.md)
 - [Credentials](credentials/index.md)
 - [Detections](detections/index.md)
-- [Event Rules](event-rules/index.md)
 - [Events](events/index.md)
+- [Event Rules](event-rules/index.md)
 - [Field Templates](field-templates/index.md)
 - [Inputs](inputs/index.md)
 - [Intel Lists](intel-lists/index.md)
 - [Reflex Query Language (RQL)](rql/index.md)
-- [Backup & Restore](backup-and-restore.md)
 
 ## Versioning
 
-Reflex follows the following version convention
+Reflex follows the following version convention: 
 
-- YY.MM.000-tag
+* YY.MM.000-tag
 
-Broken down this `22.05.001` would be the first release for August 2022.  Tags can be things like `RC-0` for release candidates or `HF-01` for hotfixes
+For example, version `22.05.001` would be the first release for August of 2022. Tags could be things like `RC-0` for release candidates, or `HD-01` for hotfixes.
