@@ -4,10 +4,9 @@
 ![ReflexSOAR logo](img/color-logo-no-bg.svg#gh-light-mode-only)
 ![ReflexSOAR logo](img/white-logo-color-symbol-no-background.png#gh-dark-mode-only)
 
-**ReflexSOAR** is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The outcome is a streamlined workflow, enhanced productivity, and a heightened ability to prioritize and address security incidents that truly matter.
+**ReflexSOAR** is an open-source security orchestration, automation, and incident response platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The outcome is a streamlined workflow, enhanced productivity, and a heightened ability to prioritize and address security incidents that truly matter.
 
-!!! note "ReflexSOAR or Reflex?"
-    Throughout this documentation, the terms "ReflexSOAR" and "Reflex" are used interchangeably to refer to the same entity, providing a convenient and consistent way to refer to the software.
+As a team of security professionals, our primary objective in developing ReflexSOAR is to simplify Security Operations for all users. We strive to create a user-friendly and intuitive platform that empowers security teams to effectively manage and respond to security incidents. By leveraging automation, integration, and intelligent workflows, ReflexSOAR aims to streamline complex security processes, minimize manual effort, and enhance overall operational efficiency. Our goal is to provide a solution that enables security professionals of all levels to navigate the challenges of security operations with ease and confidence.
 
 ## Features
 ReflexSOAR offers a comprehensive range of capabilities, including but not limited to:
@@ -45,7 +44,7 @@ ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](
 | **Default Case Templates**          | No              | Included                     | Included                      |
 | **Custom Case Templates**           | Not included    | Not included                 | 5 Included                    |
 | **Custom Event Rule Creation**      | 0               | 25 - Implementation included | 100 - Implementation included |
-| **Intel list capacity**             | You hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
+| **Intel list capacity**             | Your hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
 | **Organization custom intel lists** | Not included    | Not included                 | Included with implementation  |
 
 ***On-premises support contracts for ReflexSOAR are available at an additional cost*
@@ -61,6 +60,9 @@ ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](
 - [Inputs](inputs/index.md)
 - [Intel Lists](intel-lists/index.md)
 - [Reflex Query Language (RQL)](rql/index.md)
+
+!!! note "ReflexSOAR or Reflex?"
+    Throughout this documentation, the terms "ReflexSOAR" and "Reflex" are used interchangeably to refer to the same entity, providing a convenient and consistent way to refer to the platform.
 
 ## Versioning
 ReflexSOAR adheres to a versioning convention that follows this format: `YY.MM.000-tag`.
