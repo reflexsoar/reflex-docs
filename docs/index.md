@@ -72,4 +72,4 @@ ReflexSOAR adheres to a versioning convention that follows this format: `YY.MM.0
 * `000`: version/build number
 * `tag`: additional information about the release
 
-For instance, a version like `22.05.001` would indicate the initial release for August of 2022, while versions with tags like `RC-0` (release candidates) or `HD-01` (hotfixes) signify specific release statuses or fixes.
+For instance, a version like `22.08.001` would indicate the initial release for August of 2022, while versions with tags like `RC-0` (release candidates) or `HD-01` (hotfixes) signify specific release statuses or fixes.
