@@ -1,5 +1,7 @@
 # Reflex Documentation
 
+<!-- LOGOS -->
+![ReflexSOAR logo](img/color-logo-no-bg.svg#gh-light-mode-only)
 ![ReflexSOAR logo](img/white-logo-color-symbol-no-background.png#gh-dark-mode-only)
 
 **ReflexSOAR** is an open-source event triage, investigation, and automation platform. It is designed by experts in the field to maximize SOC efficiency and orchestrate automation to abstract away mundane tasks. The result is streamlined efficiency and focus on alerts or events that matter.
