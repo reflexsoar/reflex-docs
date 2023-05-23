@@ -47,12 +47,17 @@ There are several pieces of information required to create successful detection 
 * **Daily Schedule**: specific days and hours to run detection from
 
 ### _Exclusions_
-* **New Exclusion**: define specific exclusions to the detection without modifying the base query
+* **New Exclusion**: define specific exclusions to the detection without modifying the base query to prevent a detection rule from firing on very specific criteria
+
+    * Click `New Exclusion` to add as many exclusions as required
+    * Exclusions are client-specific and enable you to effectively modify Detection Rules from a [Repository](repositories.md) without modifying the base query
+
 
 ### _Field Settings_
 * **Signature Fields**: create unique signatures on this detection that will stack duplicates into one card for easier identification
 
    * Click `Clone From Input` to automatically generate these signatures from the Input
+
 * **[Field Templates](../field-templates/index.md)**: define fields used to map values to an Observable when consuming data from an Input or creating an Event from a Detection
 * **Additional Fields**: individually provide any other additional relevant fields
 
@@ -66,7 +71,12 @@ There are several pieces of information required to create successful detection 
 
 ### _Triage Guide_
 * **Triage Guide**: provide a guide for analysts to reference that will allow them to determine the legitimacy of the event and how/when to alert the customer
+
+* **Email  Template****: provide an email template for analysts to quickly utilize when escalating these Events to [Cases](../cases/cases.md)
+
 * **False Positives**: identify any false positives that can occur with the detection to help analysts quickly rule out false positive activity
+
+***This feature is currently in development and will be coming to production soon*
 
 ### _Setup Guide_
 * **Setup Guide**: provide a description to your customers of prerequisite data and configuration needed for this detection rule to be implemented

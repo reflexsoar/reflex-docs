@@ -25,6 +25,15 @@ However, you can also choose which updates you would like to synchronize. Lookin
 !!! warning "Deleting Detections from a Repository"
     Detections from a currently subscribed Repository can NOT be deleted from your library of Detections. If you wish to delete a Detection, you must first unsubscribe from the Repository. Utilizing Exclusions is the best way to make Detection Repositories work best for your Organization.
 
+## Manual Synchronization
+Even though Reflex with *automatically* synchronize subscribed Detection Repositories based on the `Synchronization Interval (minutes)` field, you can also choose to manually sync them at any point. To do this, the following steps can be used when logged into Reflex as the [Admin](../users/index.md) user:
+
+1. Navigate to the Detections page
+2. Click `Detection Repositories`
+3. Click `Manage` on any of the Detections
+4. Select `Synchronize Now`
+
+
 ## Repository Types
 There are two types of Repositories:
 
@@ -47,10 +56,12 @@ There are two access permissions available per type:
 
 ***`remote` Repositories are still in development and will be coming to production soon!*
 
+## Adding Detections to a Repository
+When adding new Detections to the Default Organization, an [Agent](../agents/index.md) will automatically assess that Detection in a disabled state. This ensures the Detection is not going to trigger an excessive amount of Events when it is enabled. Additionally, if the base query of the Detection is modified, the assessment process will repeat. 
+
 ---
 
 ## Q & A
-Below are a few commonly asked questions in regards to Detection Repositories.
 
 *1. What happens when access is revoked to a Repository?*
 
@@ -64,3 +75,7 @@ Below are a few commonly asked questions in regards to Detection Repositories.
 *3. If I subscribe to a Detection Repository, can I pick and choose which detections to use?*
 
 * No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
+
+*4. How can modify a Detection in a Repository to make it work for me?*
+
+* The best way to leverage Detections derived from a Detection Repository is to utilize [Exclusions](index.md/#exclusions). To do this, locate the Detection Rule you wish to add an Exclusion to, click `Manage` | `Edit Detection`, select `Exclusions`, and click `New Exclusion`.

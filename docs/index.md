@@ -39,13 +39,13 @@ ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](
 | :---------------------------------- | :-------------: | :--------------------------: | :---------------------------: |
 | **Price**                           | Zero            | Starts at $15k US            | Starts at $25k US             |
 | **Professional Support**            | No              | 8 x 5                        | 8 x 5                         |
-| **Number of supported users**       | 0               | 5 Named Users                | 5 Named Users                 |
+| **Number of Supported Users**       | 0               | 5 Named Users                | 5 Named Users                 |
 | **Cloud Hosted**                    | No              | Included **                  | Included **                   |
 | **Default Case Templates**          | No              | Included                     | Included                      |
 | **Custom Case Templates**           | Not included    | Not included                 | 5 Included                    |
 | **Custom Event Rule Creation**      | 0               | 25 - Implementation included | 100 - Implementation included |
-| **Intel list capacity**             | Your hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
-| **Organization custom intel lists** | Not included    | Not included                 | Included with implementation  |
+| **Intel List Capacity**             | Your hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
+| **Organization Custom Intel Lists** | Not included    | Not included                 | Included with implementation  |
 
 ***On-premises support contracts for ReflexSOAR are available at an additional cost*
 

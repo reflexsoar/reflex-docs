@@ -22,6 +22,7 @@ The **Housekeeper service** is responsible for keeping Reflex healthy.  Housekee
     This feature is still in development
 
 ## Environment Variables
+
 * `REFLEX_HOUSEKEEPER_DISABLED` - boolean variable that determines if Housekeeper is disabled
     * *Default value: False*
 * `REFLEX_HOUSEKEEPER_LOG_LEVEL` - debug log levels for Housekeeper to use during log examination (DEBUG, INFO, WARNING, ERROR, CRITICAL)
