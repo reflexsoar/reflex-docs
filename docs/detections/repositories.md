@@ -1,5 +1,5 @@
 # Detection Repositories
-Detection Repositories allow you to become a global tenant to share Detection Rules with your sub tenants. This means your customers won't have to manually create their own Detection Rules, and that any new Detection Rules you create will automatically be applied to the respective customer(s).
+**Detection Repositories** allow you to become a global tenant to share Detection Rules with your sub tenants. This means your customers won't have to manually create their own Detection Rules, and that any new Detection Rules you create will automatically be applied to the respective customer(s).
 
 ## Creating Detection Repositories
 To create new Detection repositories, the followings steps can be used:
@@ -70,9 +70,9 @@ When adding new Detections to the Default Organization, an [Agent](../agents/ind
 *2. What counts as access revocation?*
 
 * If the author of the Detection Repository removes your organization from the Repository's access scope
-* If the author of the detection repository deletes the Repository
+* If the author of the Detection Repository deletes the Repository
 
-*3. If I subscribe to a Detection Repository, can I pick and choose which detections to use?*
+*3. If I subscribe to a Detection Repository, can I pick and choose which Detections to use?*
 
 * No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
 
