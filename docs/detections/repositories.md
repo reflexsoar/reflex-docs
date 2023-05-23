@@ -57,7 +57,7 @@ There are two access permissions available per type:
 ***`remote` Repositories are still in development and will be coming to production soon!*
 
 ## Adding Detections to a Repository
-When adding new Detections to the Default Organization, an [Agent](../agents/index.md) will automatically assess that Detection in a disabled state. This ensures the Detection is not going to trigger an excessive amount of Events when it is enabled. Additionally, if the base query of the Detection is modified, the assessment process will repeat. 
+When adding new Detections to the Default Organization, an [Agent](../agents/index.md) will automatically assess that Detection in a disabled state for 60 minutes. This ensures the Detection is not going to trigger an excessive amount of Events. Once the assessment is complete, if it is not flagged for high-volume, then it will automatically be enabled. Additionally, if the base query of the Detection is modified, the assessment process will repeat. 
 
 ---
 
@@ -76,6 +76,6 @@ When adding new Detections to the Default Organization, an [Agent](../agents/ind
 
 * No; a Detection provide by a subscribed Repository cannot be modified or deleted unless you unsubscribe from the Repository first. Then, a copy of the Detection will be made available for modification or deletion.
 
-*4. How can modify a Detection in a Repository to make it work for me?*
+*4. How can I modify a Detection in a Repository to make it work for me?*
 
 * The best way to leverage Detections derived from a Detection Repository is to utilize [Exclusions](index.md/#exclusions). To do this, locate the Detection Rule you wish to add an Exclusion to, click `Manage` | `Edit Detection`, select `Exclusions`, and click `New Exclusion`.

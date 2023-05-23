@@ -1,5 +1,5 @@
 # Detections
-**Detections**, or _Detection Rules_, are a collection of queries that look for particular behaviors in log sources/Inputs. Detections cannot be configured until a Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
+**Detections**, or _Detection Rules_, are a collection of queries that look for particular behaviors in log sources/Inputs. Detections cannot be configured until an Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
 
 ## Creating Detections
 To create new Detection Rules, the followings steps can be used:
@@ -47,7 +47,7 @@ There are several pieces of information required to create successful Detection 
 * **Daily Schedule**: specific days and hours to run Detection from
 
 ### _Exclusions_
-* **New Exclusion**: define specific exclusions to the Detection without modifying the base query to prevent a Detection Rule from firing on very specific criteria
+* **New Exclusion**: define specific exclusions to prevent a Detection Rule from firing on very specific criteria
 
     * Click `New Exclusion` to add as many exclusions as required
     * Exclusions are client-specific and enable you to effectively modify Detection Rules from a [Repository](repositories.md) without modifying the base query
