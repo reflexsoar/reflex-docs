@@ -1,5 +1,5 @@
 # Detection Repositories
-**Detection Repositories** allow you to become a global tenant to share Detection Rules with your sub tenants. This means your customers won't have to manually create their own Detection Rules, and that any new Detection Rules you create will automatically be applied to the respective customer(s).
+**Detection Repositories** allow you, as a global tenant, to share Detection Rules with your subtenants. This means your sub tenants won't have to manually create their own Detection Rules, and that any new Detection Rules you create will automatically be applied to the respective subtenant(s).
 
 ## Creating Detection Repositories
 To create new Detection repositories, the followings steps can be used:
@@ -33,6 +33,15 @@ Even though Reflex with *automatically* synchronize subscribed Detection Reposit
 3. Click `Manage` on any of the Detections
 4. Select `Synchronize Now`
 
+## Adding Detections to a Repository
+When adding new Detections to the Default Organization, an [Agent](../agents/index.md) will automatically assess that Detection in a disabled state for 60 minutes. This ensures the Detection is not going to trigger an excessive amount of Events. Once the assessment is complete, if it is not flagged for high-volume, then it will automatically be enabled. Additionally, if the base query of the Detection is modified, the assessment process will repeat. 
+
+To add Detections to a Repository, the following steps can be used:
+
+1. Navigate to the Detections page
+2. Select the Detections to add to the Repository using the checkbox to the left of the names
+3. Click `Bulk Actions`
+4. Select `Add to Repository`
 
 ## Repository Types
 There are two types of Repositories:
@@ -55,9 +64,6 @@ There are two access permissions available per type:
 * `external-public`: accessible by anyone with the URL
 
 ***`remote` Repositories are still in development and will be coming to production soon!*
-
-## Adding Detections to a Repository
-When adding new Detections to the Default Organization, an [Agent](../agents/index.md) will automatically assess that Detection in a disabled state for 60 minutes. This ensures the Detection is not going to trigger an excessive amount of Events. Once the assessment is complete, if it is not flagged for high-volume, then it will automatically be enabled. Additionally, if the base query of the Detection is modified, the assessment process will repeat. 
 
 ---
 

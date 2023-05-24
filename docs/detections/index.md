@@ -47,11 +47,10 @@ There are several pieces of information required to create successful Detection 
 * **Daily Schedule**: specific days and hours to run Detection from
 
 ### _Exclusions_
-* **New Exclusion**: define specific exclusions to prevent a Detection Rule from firing on very specific criteria
+* Define specific exclusions to prevent a Detection Rule from firing on very specific criteria
 
     * Click `New Exclusion` to add as many exclusions as required
-    * Exclusions are client-specific and enable you to effectively modify Detection Rules from a [Repository](repositories.md) without modifying the base query
-
+    * Exclusions are subtenant-specific and enable you to effectively modify Detection Rules from a [Repository](repositories.md) without modifying the base query
 
 ### _Field Settings_
 * **Signature Fields**: create unique signatures on this Detection that will stack duplicates into one card for easier identification
@@ -70,27 +69,29 @@ There are several pieces of information required to create successful Detection 
     Entering a CVE number as a reference will automatically pull the top five CVE reference URLs.
 
 ### _Triage Guide_
-* **Triage Guide**: provide a guide for analysts to reference that will allow them to determine the legitimacy of the event and how/when to alert the customer
-
-* **Email  Template****: provide an email template for analysts to quickly utilize when escalating these Events to [Cases](../cases/cases.md)
+* Provide a guide for analysts to reference that will allow them to determine the legitimacy of the event and how/when to alert the subtenant
 
 * **False Positives**: identify any false positives that can occur with the Detection to help analysts quickly Rule out false positive activity
 
-***This feature is currently in development and will be coming to production soon*
-
 ### _Setup Guide_
-* **Setup Guide**: provide a description to your customers of prerequisite data and configuration needed for this Detection Rule to be implemented
+* Provide a description to your subtenants of prerequisite data and configuration needed for this Detection Rule to be implemented
 
 ### _Testing Guide_
-* **Testing Guide**: provide a description on how the Detection Rule can be tested to ensure it is functioning as expected
+* Provide a description on how the Detection Rule can be tested to ensure it is functioning as expected
+
+### _[Testing Automation](testing-automation.md)_
+* Provide a test script (optional) to test the Detection automatically
+* **Script Language**: chose from Python, PowerShell, Batch, and Bash scripting languages
+* **Safe Script**: when enabled, this says that the script is safe to run automatically
+
+!!! note
+    See [Testing Automation](testing-automation.md) for more information about how to utilize automated testing with your Detections.
+
+### _Email Template_
+* Create an email template utilizing the Jinja2 templating engine that enables analysts to effectively inform subtenants about alerts related to this Detection
 
 ### _Review_
 * The final step to creating a Detection Rule: review it then click `Create`.
 
-<!--## How to leverage Detections?-->
 ## Leveraging Detections
-See [Repositories](repositories.md) for how to leverage Detections effectively with your customers.
-
-
-
-
+See [Repositories](repositories.md) for how to leverage Detections effectively with your subtenants.
