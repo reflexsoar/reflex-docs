@@ -1,5 +1,8 @@
 # Detections
-**Detections**, or _Detection Rules_, are a collection of queries that look for particular behaviors in log sources/Inputs. Detections cannot be configured until an Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
+**Detections**, or _Detection Rules_, are a collection of queries that look for particular behaviors in log sources/Inputs.
+
+!!! note
+    Detections cannot be configured until an Input is created (see [Inputs](../inputs/index.md) for detailed information on how to configure these).
 
 ## Creating Detections
 To create new Detection Rules, the followings steps can be used:
@@ -54,9 +57,7 @@ There are several pieces of information required to create successful Detection 
 
 ### _Field Settings_
 * **Signature Fields**: create unique signatures on this Detection that will stack duplicates into one card for easier identification
-
    * Click `Clone From Input` to automatically generate these signatures from the Input
-
 * **[Field Templates](../field-templates/index.md)**: define fields used to map values to an Observable when consuming data from an Input or creating an Event from a Detection
 * **Additional Fields**: individually provide any other additional relevant fields
 
@@ -79,7 +80,7 @@ There are several pieces of information required to create successful Detection 
 ### _Testing Guide_
 * Provide a description on how the Detection Rule can be tested to ensure it is functioning as expected
 
-### _[Testing Automation](testing-automation.md)_
+### _Testing Automation_
 * Provide a test script (optional) to test the Detection automatically
 * **Script Language**: chose from Python, PowerShell, Batch, and Bash scripting languages
 * **Safe Script**: when enabled, this says that the script is safe to run automatically
@@ -89,6 +90,8 @@ There are several pieces of information required to create successful Detection 
 
 ### _Email Template_
 * Create an email template utilizing the Jinja2 templating engine that enables analysts to effectively inform subtenants about alerts related to this Detection
+
+![Email template](../img/email-template.png)
 
 ### _Review_
 * The final step to creating a Detection Rule: review it then click `Create`.
