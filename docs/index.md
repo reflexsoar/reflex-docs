@@ -11,19 +11,21 @@ As a team of security professionals, our primary objective in developing ReflexS
 ## Features
 ReflexSOAR offers a comprehensive range of capabilities, including but not limited to:
 
-* **Event Rules**: dynamically respond to events by automatically dismissing, merging to cases, adding tags, or updating severity
+* **Event Rules**: dynamically respond to Events by automatically dismissing, merging to cases, adding tags, or updating severity
 
-* **Cases**: create cases and leverage case templates to track the investigation of alerts by your analyst
+* **Cases**: create Cases and leverage Case Templates to track the investigation of alerts by your analyst
 
-* **Intel Lists**: develop internal or poll external threat intel lists to enrich events to further assist your analyst during their investigations
+* **Intel Lists**: develop internal or poll external threat Intel Lists to enrich events to further assist your analyst during their investigations
 
-* **Inputs**: configure inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
+* **Inputs**: configure Inputs to pull alerts or alarms from your SIEM or other security tools for your analyst to review
 
 * **Reflex Query Language (RQL)**: leverage mutators and expressions against alerts to granularly tailor the automated responses and actions
 
-* **Agents**: deploy agents within your environment to pull the alerts and alarms from your on-premise systems
+* **Agents**: deploy Agents within your environment to pull the alerts and alarms from your on-premise systems
 
-* **Playbooks****: automation and orchestration playbooks
+* **Detections**: create your own Detection Rules to share with your Reflex subtenants
+
+* **Playbooks****: automation and orchestration Playbooks
 
 ***This feature is still in development; however, automation is available today in the form of [Event Rules](event-rules/index.md)*
 
@@ -34,6 +36,8 @@ ReflexSOAR is open-source under a [GNU General Public License v3.0](https://www.
 
 ### *Commercial Support*
 ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](https://www.hasecuritysolutions.com/), and is offered under the following commercial support offerings:
+
+<div align="center">
 
 |                                     | Open-Source     |   Standard Support           | Premium Support               |
 | :---------------------------------- | :-------------: | :--------------------------: | :---------------------------: |
@@ -47,7 +51,11 @@ ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](
 | **Intel List Capacity**             | Your hardware    | 10 GB                        | 25 GB - Includes H & A lists  |
 | **Organization Custom Intel Lists** | Not included    | Not included                 | Included with implementation  |
 
+</div>
+
+<p align="center">
 ***On-premises support contracts for ReflexSOAR are available at an additional cost*
+</p>
 
 ## Important Topics to Visit
 

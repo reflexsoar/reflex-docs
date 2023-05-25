@@ -14,7 +14,7 @@ To create new Detection Rules, the followings steps can be used:
 5. Click `Create`
 
 ## Configuring Detections
-There are several pieces of information required to create successful Detection Rules. The following italicized headers provide a detailed description of each section in the Detection Rule creation process.
+The creation of successful Detection Rules requires several essential pieces of information. The following section headers, highlighted in italics, offer a comprehensive description of each step involved in the process of creating a Detection Rule.
 
 ### _Details_
    * **Import from Sigma?**: allows you to paste in previous Sigma queries and convert them to Reflex
