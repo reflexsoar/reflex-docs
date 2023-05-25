@@ -37,8 +37,6 @@ ReflexSOAR is open-source under a [GNU General Public License v3.0](https://www.
 ### *Commercial Support*
 ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](https://www.hasecuritysolutions.com/), and is offered under the following commercial support offerings:
 
-<div align="center">
-
 |                                     | Open-Source     |   Standard Support           | Premium Support               |
 | :---------------------------------- | :-------------: | :--------------------------: | :---------------------------: |
 | **Price**                           | Zero            | Starts at $15k US            | Starts at $25k US             |
@@ -52,8 +50,6 @@ ReflexSOAR commercial support is facilitated by [H & A Security Solutions, LLC](
 | **Organization Custom Intel Lists** | Not included    | Not included                 | Included with implementation  |
 
 ***On-premises support contracts for ReflexSOAR are available at an additional cost*
-
-</div>
 
 ## Important Topics to Visit
 

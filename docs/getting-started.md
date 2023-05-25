@@ -40,7 +40,7 @@ docker-compose start
 ```
 
 ### *Start/Stop/Restart Services*
-You may also start, stop, and restart your individual services using commands similar to below.
+You may also stop, start, and restart your individual services using commands similar to below.
 
 ```bash
 docker stop reflex-api
@@ -65,7 +65,7 @@ You can access ReflexSOAR by connecting to your host operating system using http
     * password: **`admin`**
 
 !!! danger "Changing Default Login Information"
-    We highly recommend immediately changing the default login information upon first login. The installation video [here](https://www.youtube.com/watch?v=6c1jsexKVrU) walks through how to change the default login credentials.
+    We highly recommend immediately changing the default login information upon first login. The installation video [here](https://www.youtube.com/watch?v=6c1jsexKVrU) describes how to change the default login credentials.
 
 ## Uninstall Quickstart Installation
 If you wish to remove the containers and data volumes created by the quickstart `install.sh` script, run the following command:
