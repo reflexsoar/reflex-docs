@@ -1,6 +1,7 @@
 # Domain Admins to Intel List
+The following PowerShell script can be used to push Domain Administrators to an Intel List. This list can then be used in an Event Rule to automatically perform an action based on the user on the event.
 
-The following PowerShell script can be used to push Domain Administrators to an Intel List.  This list can then be used in an Event Rule to automatically perform an action based on the user on the event.  Example, if the user performing a DC Sync is a Domain Admin, lower the severity on an event.
+For instance, if a Domain Administrator is detected performing a DC Sync, the severity level of the corresponding Event can be automatically reduced as an example use case.
 
 ```powershell
 # Set your Reflex API token and the list UUID

@@ -1,36 +1,32 @@
-# Overview
+# Events
+**Events** in ReflexSOAR are anything you want to act on in the Event Queue. Events do not have to strictly be security related; they could be network-related alerts, such as Orion/WhatsUpGold alerts.
 
-## What are Events?
-Events in ReflexSOAR are anything you want to act on in the Event Queue; they do not have to be security related, they could be Orion/WhatsUpGold alerts.  Events are the primary action item for Analysts and Users of ReflexSOAR and will appear on the Event Queue as a card.
+Events serve as the primary action item for [Analysts and Users](../users/index.md) of ReflexSOAR and will appear in the Event Queue as a card (as seen below).
+
+![Example Event](../img/event-example.png)
 
 ## Event Signatures
+**Event Signatures** are the mechanism that ReflexSOAR uses to "*roll up*" or "*deduplicate*" similar events. By default, when using the ReflexSOAR [Agent](../agents/index.md), the Agent will compute the signature for the Event.
 
-Event Signatures are the mechanism that ReflexSOAR uses to "roll up" or "deduplicate" similar events.  By default when using the ReflexSOAR agent, the agent will compute the signature for the Event.  If using the API directly without an agent, you will need to supply the signature logic yourself.  Event Signatures use the following psuedo logic for computation:
+If you are using the API directly without an Agent, you will need to supply the signature logic yourself. Event Signatures use the following psuedo logic for computation:
 
 ```
 md5(str(event_title, ...signature_fields))
 ```
 
-!!! note "No signature provided"
+!!! note "No Signature Provided"
     If no signature is provided the API will use the following logic to compute a signature
     ```
     md5(event_title+iso8601_date_string)
     ```
 
 ## Event States
+Events can exist in four different states to signal where analysts are at in the triage process:
 
-- **New** - The default state of all new events, unless acted on by an Event Rule that overrides this status
-- **Open** - The state an event goes to when added to a case
-- **Dismissed** - The state an event goes to when it has been automatically or manually dismissed.
-- **Closed** - The Event has been worked in a case and has subsequently been closed
+- **New** - default state for all new events (unless acted on by an [Event Rule](../event-rules/index.md) that overrides this status)
+- **Dismissed** - state an event goes to when it has been automatically or manually dismissed
+- **Open** - signals that the event has been added to a case and it awaiting client input/review
+- **Closed** - signals the Event was worked in a case that has now been closed
 
 ## Event Processing
-Event Processing is handled through multiple steps.  At a high level Events are retreived and processed in the following fashion:
-
-1. A ReflexSOAR agent polls an input
-2. The ReflexSAOR agent pushes to the Bulk Event Ingest API
-3. The API hands all events off the the Event Processor service
-4. The Event Processor service checks each incoming event against Intel and Event Rules
-5. The Event Processor performs all indicated actions per Intel and Event Rules
-6. The Event Processor bulk inserts/updates documents in Elasticsearch/Opensearch for each event
-7. The Events show up in the Event Queue in the UI
+See [Event Processing](processing.md) for how Events are processed in Reflex.
