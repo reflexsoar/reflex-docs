@@ -1,5 +1,5 @@
 # Cases 
-Cases are used to escalate potentially suspicious [Events](../events/index.md) to your clients for further investigation.
+**Cases** are used to escalate potentially suspicious [Events](../events/index.md) to your clients for further investigation.
 
 See [Cases](cases.md) for detailed information about Cases, including how to create them.
 

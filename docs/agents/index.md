@@ -1,11 +1,12 @@
-# Overview
+# Agents
 
-Reflex Agents are responsible for digesting the data produced by Inputs (see [Inputs](../inputs/index.md) if you have not yet configured these). Agents will poll your Input for the necessary data before processing it into a format the Reflex API understands.
+Reflex **Agents** are responsible for digesting the data produced by Inputs (see [Inputs](../inputs/index.md) if you have not yet configured these). Agents will poll your Input for the necessary data before processing it into a format the Reflex API understands.
 
 There are several roles that will allow Agents to perform a variety of different functions (see [Agent Roles](roles.md) for these roles and their functions).
 
 ## Creating Agents
 To create new Agents in Reflex, the following procedures can be used:
+
 1. Navigate to the `Agents` page
 2. Click `New Agent`
 3. Copy the Agent Pairing Token command
@@ -13,6 +14,7 @@ To create new Agents in Reflex, the following procedures can be used:
 
 ## Creating Agent Groups
 Agent Groups allow you to group Agents into collections that plugins can use to specifically target certain Inputs. With Agent Groups, each time a new Agent needs to be created, simply assign them to the appropriate Agent Group and they will inherit the necessary requirements for the specified organization. To create a new Agent Group, the following steps can be used:
+
 1. Navigate to the Agents page
 2. Click `Agent Groups`
 3. Click `New Agent Group`

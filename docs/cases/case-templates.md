@@ -38,6 +38,7 @@ Tasks can be created as part of the Case Template to define what steps an analys
 ![Create case template task screenshot](../img/case_template_tasks.png)
 
 ### *Creating and ModifyingTasks*
+
 1. Click the `+` next to Tasks
 2. Enter the title and description of the Task
 3. Click `Save`
@@ -52,6 +53,7 @@ The final step is to review the information provided to create the Case Template
 
 ## Modifying and Deleting Case Templates
 Case Templates can be modified or deleted at any point by using the following steps:
+
 1. Navigate to the Cases page
 2. Click `Case Templates`
 3. Locate the Case Template

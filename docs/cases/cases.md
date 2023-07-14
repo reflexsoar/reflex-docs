@@ -2,7 +2,7 @@
 A Case provides analyst the ability to group events together that may be linked to an [incident](https://csrc.nist.gov/glossary/term/incident). It also provides the ability for analysts to add notes, search event observables, create and track tasks, and provide a history of all actions related to the investigation. 
 
 ## Creating Cases
-There are two ways to create a Case in Reflex:
+There are two ways to create a Case in Reflex: from Event cards and from the Cases page.
 
 ### *From Event Card*
 1. Navigate to the Events page
@@ -19,7 +19,7 @@ There are two ways to create a Case in Reflex:
 3. Enter the necessary Case details
 4. Click `Create`
 
-!!! note "Merging Events into a Case"
+!!! info "Merging Events into a Case"
     This method requires you to merge the relevant Events into the case after its creation.
 
 ### *Merging Events into a Previously Created Case*

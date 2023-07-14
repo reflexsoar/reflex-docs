@@ -1,4 +1,5 @@
 # Permissions
+Below are the different permissions available in Reflex. Headings with a `**` after them are still currently in development and will be coming to production soon.
 
 ## User Management
 - Add User (add_user)
@@ -43,7 +44,7 @@
 - add_tag_to_observable
 - remove_tag_from_observable
 
-## Playbooks (FUTURE)
+## Playbooks**
 - add_playbook
 - update_playbook
 - delete_playbook
@@ -70,7 +71,7 @@
 - update_input
 - delete_input
 
-## Tag Management (FUTURE)
+## Tag Management**
 - add_tag
 - update_tag
 - delete_tag
@@ -109,7 +110,7 @@
 - update_close_reason
 - delete_close_reason
 
-## Plugins (FUTURE)
+## Plugins**
 - view_plugins
 - create_plugin
 - delete_plugin
