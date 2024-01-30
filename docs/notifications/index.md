@@ -50,6 +50,7 @@ A New {{ severity }} severity alert was triggered.
 ### Observables
 {% for observable in event_observables %}
 - {{ observable.value }}
+{% endfor %}
 
 ### Triage Steps
 - {{ guide }}
